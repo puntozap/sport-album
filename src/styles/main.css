@@ -1,0 +1,57 @@
+:root {
+  --red: #a8121a;
+  --ink: #006451;
+  --slot-green: #9fca8e;
+  --slot-gold: #f1d66a;
+  --bg-left: #f8f7f3;
+  --bg-cream: #f4f0ea;
+  --bg-green: #006a58;
+  --bg-green-dark: #004b42;
+  --bg-pink: #f2c9b5;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: clamp(10px, 1.2vw, 24px);
+  background: #08080f;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  overflow-x: hidden;
+}
+
+#app {
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+/* Desktop: ajustar al viewport */
+@media (min-width: 1200px) {
+  .album-shell { width: min(96vw, calc((100vh - 48px) * 1.796)); }
+}
+
+@media (min-width: 1600px) {
+  .album-shell { width: min(94vw, 1629px); }
+}
+
+/* Móvil/Tablet: álbum llena el alto, pan+zoom via transform */
+@media (max-width: 1100px) {
+  body {
+    padding: 0;
+    overflow: hidden;
+    background: #1a1d24;
+    display: block;
+  }
+
+  #app {
+    position: relative; /* contexto de posicionamiento para album-shell absolute */
+    overflow: hidden;
+    display: block;
+    width: 100vw;
+    height: 100dvh;
+  }
+}

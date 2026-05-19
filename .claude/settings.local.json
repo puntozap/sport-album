@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \"const d = require\\('./src/data/teamsData.json'\\); const t = d.teams[0]; console.log\\(Object.keys\\(t\\)\\);\")",
+      "Bash(node -e \"const d = require\\('./src/data/world_cup_2026_matches.json'\\); console.log\\(Object.keys\\(d\\)\\); const first = Object.values\\(d\\)[0]; if\\(Array.isArray\\(first\\)\\) console.log\\(Object.keys\\(first[0]\\)\\); else console.log\\(first\\);\")",
+      "Bash(grep -v \"node_modules\\\\|comment\\\\|//\")",
+      "Bash(npx vite *)",
+      "Bash(dir \"c:\\\\laragon\\\\www\\\\album-panini\\\\cromos_extraidos\" /b)",
+      "Bash(dir c:\\\\laragon\\\\www\\\\album-panini /b)",
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\laragon\\\\www\\\\album-panini\\\\public\\\\assets\\\\client\")"
+    ]
+  }
+}

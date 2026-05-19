@@ -1,0 +1,83 @@
+/* ══════════════════════════════════════════
+   Fondo desktop — rayas + logo SVG
+   ══════════════════════════════════════════ */
+
+.dbg {
+  display: none;
+}
+
+@media (min-width: 1101px) {
+  .dbg {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    background: #08080f;
+  }
+
+  /* ── Logo central ── */
+  .dbg-logo {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .dbg-mark {
+    position: relative;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .dbg-shape {
+    display: block;
+    width: 200px;
+  }
+
+  .dbg-shape-top  { height: 145px; }
+  .dbg-shape-bottom { height: 108px; margin-top: 28px; }
+
+  .dbg-trophy {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5.5rem;
+    filter: drop-shadow(0 0 18px rgba(212,175,55,0.7));
+    z-index: 2;
+    line-height: 1;
+    margin-top: 14px;
+  }
+
+  .dbg-title {
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: clamp(1rem, 1.8vw, 1.6rem);
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.22em;
+    text-align: center;
+  }
+
+  .dbg-sub {
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: clamp(0.6rem, 1vw, 0.9rem);
+    color: rgba(212,175,55,0.5);
+    letter-spacing: 0.3em;
+    text-align: center;
+  }
+}
+
+/* ── Low-perf: ocultar fondo desktop ── */
+.low-perf .dbg {
+  background: #08080f;
+}
+.low-perf .dbg-stripes,
+.low-perf .dbg-logo {
+  display: none;
+}

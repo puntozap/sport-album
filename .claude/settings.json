@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c ' *)",
+      "Bash(node -e \"const d = require\\('./src/data/teamsData.json'\\); d.teams.forEach\\(t => console.log\\(t.name\\)\\);\")"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\LENOVO\\.claude\\projects\\c--laragon-www-album-panini\\memory"
+    ]
+  }
+}

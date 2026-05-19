@@ -1,0 +1,149 @@
+{
+  "name": "Album FIFA 2026 — Resultados de partidos",
+  "nodes": [
+    {
+      "parameters": {
+        "event": "anyUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1dIxWGmcn9AS49Dn7JymDHYEAwQL_fYXO7l3OswwRFro",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Partidos",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "id": "sheets-trigger",
+      "name": "Sheets Trigger",
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [240, 300],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "QZEG3K3ORh7Cmhql",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// El trigger manda una fila a la vez (la que cambió)\nconst row = $input.first().json;\n\n// Validar que tenga match_id y ambos marcadores\nif (\n  !row.match_id ||\n  row.home_score === undefined || row.home_score === '' ||\n  row.away_score === undefined || row.away_score === ''\n) {\n  return [{ json: { skip: true } }];\n}\n\nconst match = {\n  match_id: String(row.match_id),\n  home_score: Number(row.home_score),\n  away_score: Number(row.away_score),\n  status: row.status && row.status !== 'pending' ? row.status : 'played'\n};\n\nreturn [{ json: { matches: JSON.stringify([match]), skip: false } }];"
+      },
+      "id": "code-transform",
+      "name": "Preparar datos",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "check-skip",
+              "leftValue": "={{ $json.skip }}",
+              "rightValue": false,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if-has-scores",
+      "name": "¿Hay marcadores?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://albumfifa2026.chanzia.com/api/manage-matches",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Upload-Token",
+              "value": "xK9#mP2$qR7nL4vT8wY1"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "action",
+              "value": "set-matches"
+            },
+            {
+              "name": "matches",
+              "value": "={{ $json.matches }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "http-request-matches",
+      "name": "Actualizar servidor",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [900, 220]
+    }
+  ],
+  "connections": {
+    "Sheets Trigger": {
+      "main": [
+        [
+          {
+            "node": "Preparar datos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Preparar datos": {
+      "main": [
+        [
+          {
+            "node": "¿Hay marcadores?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "¿Hay marcadores?": {
+      "main": [
+        [
+          {
+            "node": "Actualizar servidor",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "templateCredsSetupCompleted": false,
+    "instanceId": "8d061b820326820ae4d864b9a62443de18a95f63370854af5d6e5c73d4ea1ef9"
+  }
+}

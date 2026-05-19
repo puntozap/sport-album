@@ -1,0 +1,45 @@
+# Dependencias
+node_modules/
+
+# Build
+dist/
+
+# Entorno y credenciales — NUNCA subir
+.env
+credentials*.json
+token.json
+token_drive.json
+_data/credentials*
+_data/token*
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Archivos de trabajo grandes (cromos, páginas escaneadas)
+_workspace/
+cromos_extraidos/
+cromos_extraidos_*/
+paginas_png_sin_margen/
+paginas_png_sin_margen_*/
+
+# Assets de referencia pesados
+_assets-ref/background_base64.txt
+_assets-ref/Gemini_Generated_Image*.png
+_assets-ref/pagina_05_fondo_limpio.png
+_assets-ref/pdf/
+_assets-ref/paginas_png_sin_margen/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+npm-debug.log*

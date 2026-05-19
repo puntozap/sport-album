@@ -1,0 +1,376 @@
+/* ══════════════════════════════════════════════════════
+   Sticker Tray — bandeja de cromos pendientes de pegar
+   ══════════════════════════════════════════════════════ */
+
+.st-tray {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%) translateY(120px);
+  z-index: 9800;
+  background: rgba(10, 20, 14, 0.92);
+  border: 1.5px solid rgba(212,175,55,0.35);
+  border-radius: 20px;
+  padding: 10px 14px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(212,175,55,0.1);
+  transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+  touch-action: none;
+}
+.st-tray.st-tray-visible {
+  transform: translateX(-50%) translateY(0);
+}
+
+.st-tray-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #d4af37;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+}
+
+.st-tray-toggle {
+  width: 28px;
+  height: 28px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.92);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+.st-tray-toggle:active { transform: scale(0.96); }
+.st-tray-title { display: inline-flex; align-items: center; gap: 6px; }
+
+.st-tray-count {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ── Tutorial ─────────────────────────────────────────────────────────────── */
+.st-tray-tutorial {
+  margin-top: 10px;
+  width: 100%;
+  max-width: 320px;
+  background: linear-gradient(160deg, rgba(25, 40, 30, 0.96), rgba(8, 14, 11, 0.96));
+  border: 1px solid rgba(212,175,55,0.28);
+  border-radius: 18px;
+  padding: 12px 12px 12px;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.62), inset 0 1px 0 rgba(255,255,255,0.06);
+  opacity: 0;
+  transform: translateY(10px) scale(0.98);
+  transition: opacity 0.24s ease, transform 0.28s cubic-bezier(0.22,1,0.36,1);
+  position: relative;
+}
+.st-tray-tutorial--show { opacity: 1; transform: translateY(0) scale(1); }
+
+.st-tray-tutorial-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.9);
+  cursor: pointer;
+}
+.st-tray-tutorial-close:active { transform: scale(0.96); }
+
+.st-tray-tutorial-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-right: 34px;
+  margin-bottom: 10px;
+}
+.st-tray-tutorial-badge {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  padding: 5px 8px;
+  border-radius: 999px;
+  color: #111;
+  background: linear-gradient(135deg, #d4af37, #a8892a);
+  box-shadow: 0 8px 24px rgba(212,175,55,0.22);
+}
+.st-tray-tutorial-title {
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.96);
+}
+
+.st-tray-tutorial-steps {
+  display: grid;
+  gap: 8px;
+}
+.st-tray-tutorial-step {
+  display: grid;
+  grid-template-columns: 26px 1fr 22px;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+}
+.st-tray-tutorial-step:not(.done) {
+  animation: st-tut-pulse 1.6s ease-in-out infinite;
+}
+@keyframes st-tut-pulse {
+  0%,100% { border-color: rgba(255,255,255,0.08); }
+  50% { border-color: rgba(212,175,55,0.28); }
+}
+
+.st-tray-tutorial-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  color: #111;
+  background: rgba(212,175,55,0.92);
+}
+.st-tray-tutorial-action {
+  font-size: 12px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.96);
+}
+.st-tray-tutorial-desc {
+  margin-top: 2px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.72);
+}
+.st-tray-tutorial-check {
+  width: 22px;
+  height: 22px;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  font-weight: 1000;
+  color: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.08);
+  opacity: 0.35;
+}
+.st-tray-tutorial-step.done {
+  border-color: rgba(76, 222, 133, 0.35);
+  background: rgba(76, 222, 133, 0.08);
+  animation: none;
+}
+.st-tray-tutorial-step.done .st-tray-tutorial-check {
+  opacity: 1;
+  background: rgba(76, 222, 133, 0.22);
+}
+
+.st-tray-tutorial-hint {
+  margin-top: 10px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.70);
+  text-align: center;
+}
+
+.st-tray-tutorial-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 0;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: linear-gradient(135deg, #d4af37, #a8892a);
+  color: #111;
+  box-shadow: 0 10px 30px rgba(212,175,55,0.22);
+}
+.st-tray-tutorial-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  filter: grayscale(0.35);
+}
+
+.st-tray-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* ── Mobile: modo minimizado ─────────────────────────────────────────────── */
+@media (max-width: 899px) {
+  .st-tray.st-tray--collapsed {
+    padding: 8px 12px;
+  }
+  .st-tray.st-tray--collapsed .st-tray-row {
+    display: none;
+  }
+  .st-tray.st-tray--collapsed .st-tray-label {
+    gap: 10px;
+  }
+}
+
+/* ── Desktop: bandeja vertical (1 columna x 3 filas) a la derecha ─────────── */
+@media (min-width: 900px) {
+  .st-tray {
+    bottom: auto;
+    left: auto;
+    top: 50%;
+    right: 18px;
+    /* Entra desde la derecha */
+    transform: translateX(140px) translateY(-50%);
+    padding: 12px 12px 12px;
+    border-radius: 22px;
+  }
+
+  .st-tray.st-tray-visible {
+    transform: translateX(0) translateY(-50%);
+  }
+
+  .st-tray-row {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 columna */
+    grid-auto-rows: auto;
+    justify-items: center;
+    gap: 10px;
+    /* 3 filas visibles (con scroll si hay más) */
+    max-height: 356px;
+    overflow-y: auto;
+    padding-right: 6px;
+  }
+
+  /* scrollbar discreto */
+  .st-tray-row::-webkit-scrollbar { width: 6px; }
+  .st-tray-row::-webkit-scrollbar-thumb {
+    background: rgba(212,175,55,0.25);
+    border-radius: 10px;
+  }
+  .st-tray-row::-webkit-scrollbar-track { background: transparent; }
+}
+
+/* ── Tarjeta en la bandeja ── */
+.st-card {
+  width: 72px;
+  height: 108px;
+  border-radius: 10px;
+  background: #fff;
+  border: 2px solid rgba(212,175,55,0.4);
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  transition: transform 0.18s, box-shadow 0.18s;
+  user-select: none;
+  touch-action: none;
+}
+.st-card.st-card-armed {
+  transform: translateY(-10px) scale(1.18);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.65), 0 0 0 2px #d4af37;
+  z-index: 3;
+}
+.st-card:hover {
+  transform: translateY(-6px) scale(1.06);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.55), 0 0 0 2px #d4af37;
+  z-index: 1;
+}
+.st-card-dragging {
+  opacity: 0.35;
+  transform: scale(0.92);
+}
+
+.st-card-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 80px;
+  overflow: hidden;
+}
+.st-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+.st-card-flag {
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  width: 20px;
+  height: auto;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+.st-card-label {
+  text-align: center;
+  font-size: 9px;
+  font-weight: 800;
+  color: #111;
+  padding: 3px 2px 2px;
+  letter-spacing: 0.04em;
+}
+.st-card-label span {
+  color: #888;
+  font-weight: 600;
+}
+
+/* ── Ghost (elemento que sigue al puntero) ── */
+.st-ghost {
+  opacity: 0.9;
+  cursor: grabbing !important;
+  transform: scale(1.1) rotate(3deg);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.6);
+}
+.st-ghost.st-ghost-over {
+  transform: scale(1.15) rotate(0deg);
+  box-shadow: 0 0 0 3px #4cde85, 0 16px 40px rgba(0,0,0,0.6);
+}
+
+/* ── Slot en el álbum: resaltado cuando hay un cromo para él ── */
+.st-slot-target {
+  outline: 2px dashed rgba(212,175,55,0.6) !important;
+  outline-offset: 3px;
+  animation: st-slot-pulse 1.2s ease-in-out infinite;
+}
+@keyframes st-slot-pulse {
+  0%,100% { outline-color: rgba(212,175,55,0.5); }
+  50%      { outline-color: rgba(212,175,55,1); }
+}
+
+.st-slot-over {
+  outline: 3px solid #4cde85 !important;
+  outline-offset: 3px;
+  animation: none !important;
+}
+
+/* Imagen pegada en el slot tras un drop exitoso */
+.st-placed-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+  animation: st-snap-in 0.35s cubic-bezier(0.22,1,0.36,1);
+}
+@keyframes st-snap-in {
+  0%   { transform: scale(1.25) rotate(-4deg); opacity: 0; }
+  60%  { transform: scale(0.95) rotate(1deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* ── Mobile ── */
+@media (max-width: 520px) {
+  .st-card { width: 58px; height: 88px; }
+  .st-card-img-wrap { height: 64px; }
+  .st-tray-row { gap: 6px; }
+}

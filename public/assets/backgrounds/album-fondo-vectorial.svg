@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 960 540"
+     preserveAspectRatio="xMidYMid slice">
+
+  <style>
+    .bg-layer { stroke: none; }
+  </style>
+
+  <!-- Fondo izquierda (crema/blanco) -->
+  <rect class="bg-layer" x="0" y="0" width="480" height="540" fill="var(--bg-left-base, #f8f7f3)"/>
+
+  <!-- Fondo derecha (verde oscuro) -->
+  <rect class="bg-layer" x="480" y="0" width="480" height="540" fill="var(--bg-right-base, #0d6354)"/>
+
+  <!-- Curva roja superior -->
+  <path class="bg-layer" fill="var(--bg-top-red, #bc1719)"
+        d="M 200 0 
+           C 260 35, 340 55, 430 60 
+           L 480 60 
+           L 480 100 
+           L 900 100 
+           L 900 0 
+           Z" />
+
+  <!-- Curva blanca (zona izquierda superior) -->
+  <path class="bg-layer" fill="var(--bg-white-swoosh, #ffffff)"
+        d="M 0 0 
+           L 480 0 
+           L 480 100 
+           C 380 100, 300 120, 240 160 
+           C 180 200, 140 260, 120 320 
+           L 0 320 
+           Z" />
+
+  <!-- Curva crema (debajo de la blanca) -->
+  <path class="bg-layer" fill="var(--bg-cream-swoosh, #f4f0ea)"
+        d="M 0 180 
+           C 80 180, 160 200, 220 240 
+           C 280 280, 320 340, 340 400 
+           L 480 400 
+           L 480 180 
+           Z" />
+
+  <!-- Curva verde grande (zona central/derecha) -->
+  <path class="bg-layer" fill="var(--bg-green-swoosh, #0d6354)"
+        d="M 300 120 
+           C 380 80, 480 60, 600 60 
+           L 900 60 
+           L 900 480 
+           C 800 500, 700 520, 600 520 
+           L 480 520 
+           L 480 400 
+           C 440 350, 400 300, 360 250 
+           C 340 220, 320 180, 300 120 
+           Z" />
+
+  <!-- Bloque verde derecha (arriba) -->
+  <rect class="bg-layer" x="900" y="0" width="60" height="100" fill="var(--bg-right-green-block, #73b165)"/>
+
+  <!-- Bloque rosa derecha (abajo) -->
+  <rect class="bg-layer" x="900" y="100" width="60" height="440" fill="var(--bg-right-pink-block, #f0b7aa)"/>
+
+  <!-- Barra inferior -->
+  <rect class="bg-layer" x="400" y="500" width="520" height="20" fill="var(--bg-bottom-bar, #0d6354)"/>
+
+  <!-- Forma inferior izquierda (rosa/salmon con gradiente) -->
+  <path class="bg-layer" fill="var(--bg-shape-left, #f0b7aa)"
+        d="M 120 350 
+           C 160 320, 220 300, 280 300 
+           L 400 300 
+           C 420 340, 430 380, 430 420 
+           L 430 500 
+           L 100 500 
+           C 100 450, 110 400, 120 350 
+           Z" />
+
+  <!-- Forma inferior derecha (verde claro) -->
+  <path class="bg-layer" fill="var(--bg-shape-right, #88bc4b)"
+        d="M 520 380 
+           C 580 360, 650 350, 720 350 
+           L 820 350 
+           C 840 380, 850 410, 850 440 
+           L 850 500 
+           L 500 500 
+           C 500 460, 510 420, 520 380 
+           Z" />
+
+  <!-- Spark / estrella -->
+  <polygon class="bg-layer" fill="rgba(255,255,255,0.62)"
+           points="910,480 916,492 928,496 916,500 910,512 904,500 892,496 904,492" />
+
+</svg>

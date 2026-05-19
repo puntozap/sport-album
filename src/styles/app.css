@@ -1,0 +1,221 @@
+/* Estilos específicos del layout de app que no son genéricos */
+
+.title {
+  position: absolute;
+  left: 5.6%;
+  top: 8.5%;
+  z-index: 20;
+  letter-spacing: -.045em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.title .we {
+  color: var(--titleWe, #006b5a);
+  font-size: clamp(1.5rem, 3.4vw, 3.3rem);
+  line-height: 1;
+  transform: scaleX(1.05);
+  transform-origin: left;
+}
+
+.title .mx {
+  color: var(--titleMx, var(--red));
+  font-size: clamp(1.7rem, 3.8vw, 3.7rem);
+  line-height: 1;
+  transform: scaleX(1.03);
+  transform-origin: left;
+}
+
+.federation {
+  position: absolute;
+  left: 5.3%;
+  top: 25.5%;
+  z-index: 24;
+  display: grid;
+  grid-template-columns: 12% 1fr;
+  gap: 3%;
+  width: 35%;
+  align-items: start;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 900;
+  font-size: clamp(.65rem, 1.35vw, 1.25rem);
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+.federation-flag {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,.14);
+  margin-top: 4%;
+}
+
+.federation-flag img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.group-box {
+  position: absolute;
+  left: 54%;
+  top: 71%;
+  width: 29%;
+  height: 27%;
+  z-index: 24;
+  color: white;
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,.28)) drop-shadow(0 2px 4px rgba(0,0,0,.15));
+}
+
+.group-box-shape {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.group-box-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  padding: 5% 7% 7% 8%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.group-title {
+  position: relative;
+  font-size: clamp(.8rem, 1.8vw, 1.8rem);
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: -.035em;
+  color: #fff;
+  flex: 1;
+}
+
+.flags-grid {
+  width: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7% 5%;
+}
+
+/* Tarjeta de bandera: tira vertical de código a la izquierda + imagen a la derecha */
+.flag-card {
+  border-radius: 3px;
+  overflow: hidden;
+  height: clamp(26px, 4.2vw, 52px);
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  box-shadow: 0 2px 8px rgba(0,0,0,.4), 0 1px 2px rgba(0,0,0,.2);
+}
+
+.flag-card-code {
+  flex-shrink: 0;
+  width: clamp(12px, 1.6vw, 22px);
+  background: rgba(0,0,0,.72);
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(.36rem, .7vw, .7rem);
+  font-weight: 700;
+  letter-spacing: .06em;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.flag-card-img {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ===== MÓVIL: fuente Arial y banderas más grandes ===== */
+@media (max-width: 1100px) {
+  .album-page,
+  .album-page * {
+    font-family: Arial, Helvetica, sans-serif !important;
+  }
+  
+  .title .we,
+  .title .mx {
+    transform: none;
+    letter-spacing: 0;
+  }
+  
+  .group-box {
+    width: 32%;
+    height: 27%;
+  }
+
+  .group-title {
+    font-size: clamp(.9rem, 2.2vh, 1.4rem);
+    margin-bottom: 4%;
+  }
+
+  .flags-grid {
+    width: 92%;
+    gap: 6% 5%;
+  }
+
+  /* Móvil: álbum mide 100dvh → vh en lugar de vw para proporcionar al álbum */
+  .flag-card {
+    height: clamp(50px, 5.2vh, 56px);
+  }
+
+  .flag-card-code {
+    width: clamp(18px, 2.8vh, 30px);
+    font-size: clamp(.48rem, 1vh, .88rem);
+  }
+}
+
+.album-nav {
+  position: absolute;
+  bottom: 1%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: rgba(0,0,0,0.55);
+  padding: 6px 14px;
+  border-radius: 8px;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(.6rem, 1vw, .9rem);
+  box-shadow: 0 4px 12px rgba(0,0,0,.25);
+  backdrop-filter: blur(4px);
+}
+
+.album-nav button {
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.album-nav button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.album-nav button:hover:not(:disabled) {
+  background: rgba(255,255,255,0.3);
+}

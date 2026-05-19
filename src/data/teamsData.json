@@ -1,0 +1,7425 @@
+{
+  "version": "1.0.0",
+  "totalTeams": 48,
+  "slotsPerTeam": 12,
+  "teams": [
+    {
+      "code": "MEX",
+      "name": "Mexico",
+      "flag": "mx",
+      "confederation": "CONCACAF",
+      "groupName": "GROUP A",
+      "pageIndex": 1,
+      "colors": {
+        "primary": "#006B57",
+        "secondary": "#D71920",
+        "accent": "#F6D98A",
+        "sticker": "#A8C98F",
+        "groupBox": "#77C66B"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Luis Malagón",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Johan Vásquez",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "César Montes",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Jesús Gallardo",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Israel Reyes",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Edson Álvarez",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Marcel Ruiz",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Hirving Lozano",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Raúl Jiménez",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Alexis Vega",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Roberto Alvarado",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "RSA",
+      "name": "South Africa",
+      "flag": "za",
+      "confederation": "CAF",
+      "groupName": "GROUP A",
+      "pageIndex": 2,
+      "colors": {
+        "primary": "#E74221",
+        "secondary": "#008A68",
+        "accent": "#F3A51E",
+        "sticker": "#F0A22A",
+        "groupBox": "#77C66B"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Ronwen Williams",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Aubrey Modiba",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Mbekezeli Mbokazi",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Siyabonga Ngezana",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Khuliso Mudau",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Teboho Mokoena",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Vaya Sithole",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Bathusi Aubaas",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Sipho Mbule",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Lyle Foster",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Oswin Appollis",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "KOR",
+      "name": "Korea Republic",
+      "flag": "kr",
+      "confederation": "AFC",
+      "groupName": "GROUP A",
+      "pageIndex": 3,
+      "colors": {
+        "primary": "#1E3F7A",
+        "secondary": "#D71920",
+        "accent": "#F5B93E",
+        "sticker": "#86B8D8",
+        "groupBox": "#77C66B"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Hyeonwoo Jo",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Minjae Kim",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Yumin Cho",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Youngwoo Seol",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Jaesung Lee",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Inbeom Hwang",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Kangin Lee",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Jens Castrop",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Heungmin Son",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Heechan Hwang",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Hyeongyu Oh",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "CZE",
+      "name": "Czechia",
+      "flag": "cz",
+      "confederation": "UEFA",
+      "groupName": "GROUP A",
+      "pageIndex": 4,
+      "colors": {
+        "primary": "#00698F",
+        "secondary": "#C178B8",
+        "accent": "#D71920",
+        "sticker": "#7DB1CC",
+        "groupBox": "#77C66B"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Matěj Kovář",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Ladislav Krejčí",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Vladimír Coufal",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Jaroslav Zelený",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Lukáš Provod",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Lukáš Červ",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Tomáš Souček",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Pavel Šulc",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Václav Černý",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Adam Hložek",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Patrik Schick",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "CAN",
+      "name": "Canada",
+      "flag": "ca",
+      "confederation": "CONCACAF",
+      "groupName": "GROUP B",
+      "pageIndex": 5,
+      "colors": {
+        "primary": "#B5121B",
+        "secondary": "#F07800",
+        "accent": "#F04A2A",
+        "sticker": "#E7A07C",
+        "groupBox": "#E60012"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Dayne St. Clair",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Alphonso Davies",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Richie Laryea",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Derek Cornelius",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Stephen Eustáquio",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Ismaël Koné",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Jacob Shaffelburg",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Niko Sigur",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Tajon Buchanan",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Cyle Larin",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Jonathan David",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "BIH",
+      "name": "Bosnia and Herzegovina",
+      "flag": "ba",
+      "confederation": "UEFA",
+      "groupName": "GROUP B",
+      "pageIndex": 6,
+      "colors": {
+        "primary": "#173D82",
+        "secondary": "#F5D51B",
+        "accent": "#B8DCC7",
+        "sticker": "#83B3D0",
+        "groupBox": "#E60012"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Nikola Vasilj",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Amar Dedić",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Sead Kolašinac",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Tarik Muharemović",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Nikola Katić",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Benjamin Tahirović",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Ivan Šunjić",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Ermedin Demirović",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Esmir Bajraktarević",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Edin Džeko",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Amar Memić",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "QAT",
+      "name": "Qatar",
+      "flag": "qa",
+      "confederation": "AFC",
+      "groupName": "GROUP B",
+      "pageIndex": 7,
+      "colors": {
+        "primary": "#741C3D",
+        "secondary": "#B8DCA8",
+        "accent": "#E60012",
+        "sticker": "#C58A9B",
+        "groupBox": "#E60012"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Meshaal Barsham",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Sultan Al Brake",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Boualem Khoukhi",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Pedro Miguel",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Mohammed Mannai",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Karim Boudiaf",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Assim Madibo",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Edmilson Junior",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Akram Hassan Afif",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Ahmed Al-Ganehi",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Almoez Ali",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "SUI",
+      "name": "Switzerland",
+      "flag": "ch",
+      "confederation": "UEFA",
+      "groupName": "GROUP B",
+      "pageIndex": 8,
+      "colors": {
+        "primary": "#B5121B",
+        "secondary": "#6FA1D4",
+        "accent": "#E9472E",
+        "sticker": "#E79B7E",
+        "groupBox": "#E60012"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Gregor Kobel",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Manuel Akanji",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Ricardo Rodríguez",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Nico Elvedi",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Silvan Widmer",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Granit Xhaka",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Remo Freuler",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Fabian Rieder",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Breel Embolo",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Rubén Vargas",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Dan Ndoye",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "BRA",
+      "name": "Brazil",
+      "flag": "br",
+      "confederation": "CONMEBOL",
+      "groupName": "GROUP C",
+      "pageIndex": 9,
+      "colors": {
+        "primary": "#009B4E",
+        "secondary": "#F5D51B",
+        "accent": "#2C4E9A",
+        "sticker": "#9BC79D",
+        "groupBox": "#E5E849"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Alisson",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Marquinhos",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Éder Militão",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Gabriel Magalhães",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Casemiro",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Bruno Guimarães",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Vinícius Junior",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Rodrygo",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Matheus Cunha",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Raphinha",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Estêvão",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "MAR",
+      "name": "Morocco",
+      "flag": "ma",
+      "confederation": "CAF",
+      "groupName": "GROUP C",
+      "pageIndex": 10,
+      "colors": {
+        "primary": "#E60012",
+        "secondary": "#00843D",
+        "accent": "#8D006E",
+        "sticker": "#F2A27F",
+        "groupBox": "#E5E849"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Yassine Bounou",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Achraf Hakimi",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Noussair Mazraoui",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Nayef Aguerd",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Romain Saïss",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Sofyan Amrabat",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Eliesse Ben Seghir",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Bilal El Khannouss",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Ismael Saibari",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Youssef En-Nesyri",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Brahim Díaz",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "HAI",
+      "name": "Haiti",
+      "flag": "ht",
+      "confederation": "CONCACAF",
+      "groupName": "GROUP C",
+      "pageIndex": 11,
+      "colors": {
+        "primary": "#22347E",
+        "secondary": "#D71920",
+        "accent": "#F5A400",
+        "sticker": "#8CAED3",
+        "groupBox": "#E5E849"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Johny Placide",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Carlens Arcus",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Ricardo Adé",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Duke Lacroix",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Leveiton Pierre",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Danley Jean Jacques",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Jean-Ricner Bellegarde",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Josué Casimir",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Ruben Providence",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Duckens Nazon",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Frantzdy Pierrot",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "SCO",
+      "name": "Scotland",
+      "flag": "gb-sct",
+      "confederation": "UEFA",
+      "groupName": "GROUP C",
+      "pageIndex": 12,
+      "colors": {
+        "primary": "#008DCC",
+        "secondary": "#004B8D",
+        "accent": "#F5A400",
+        "sticker": "#6BBBD3",
+        "groupBox": "#E5E849"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Angus Gunn",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Aaron Hickey",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Andrew Robertson",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "John Souttar",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Grant Hanley",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Scott McTominay",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Lewis Ferguson",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Ryan Christie",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "John McGinn",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Ché Adams",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Ben Gannon-Doak",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "USA",
+      "name": "United States",
+      "flag": "us",
+      "confederation": "CONCACAF",
+      "groupName": "GROUP D",
+      "pageIndex": 13,
+      "colors": {
+        "primary": "#1D2F69",
+        "secondary": "#D71920",
+        "accent": "#9FC4E0",
+        "sticker": "#90BFDF",
+        "groupBox": "#005B96"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Matt Freese",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Chris Richards",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Tim Ream",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Mark McKenzie",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Tyler Adams",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Weston McKennie",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Timothy Weah",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Malik Tillman",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Christian Pulisic",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Brenden Aaronson",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Folarin Balogun",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "PAR",
+      "name": "Paraguay",
+      "flag": "py",
+      "confederation": "CONMEBOL",
+      "groupName": "GROUP D",
+      "pageIndex": 14,
+      "colors": {
+        "primary": "#E60012",
+        "secondary": "#243C86",
+        "accent": "#F5C400",
+        "sticker": "#EA8F72",
+        "groupBox": "#005B96"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Orlando Gill",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Gustavo Gómez",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Juan José Cáceres",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Omar Alderete",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Júnior Alonso",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Diego Gómez",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Andrés Cubas",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Julio Enciso",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Miguel Almirón",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Ramón Sosa",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Antonio Sanabria",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "AUS",
+      "name": "Australia",
+      "flag": "au",
+      "confederation": "AFC",
+      "groupName": "GROUP D",
+      "pageIndex": 15,
+      "colors": {
+        "primary": "#22306F",
+        "secondary": "#D71920",
+        "accent": "#C47CB8",
+        "sticker": "#8BB8D8",
+        "groupBox": "#005B96"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Mathew Ryan",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Harry Souttar",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Aziz Behich",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Cameron Burgess",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Lewis Miller",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Jackson Irvine",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Riley McGree",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Aiden O'Neill",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Connor Metcalfe",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Kusini Yengi",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Nestory Irankunda",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "TUR",
+      "name": "Turkiye",
+      "flag": "tr",
+      "confederation": "UEFA",
+      "groupName": "GROUP D",
+      "pageIndex": 16,
+      "colors": {
+        "primary": "#E8472E",
+        "secondary": "#00A9BD",
+        "accent": "#D71920",
+        "sticker": "#F0A68E",
+        "groupBox": "#005B96"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Uğurcan Çakır",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Mert Müldür",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Abdülkerim Bardakcı",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Merih Demiral",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Ferdi Kadıoğlu",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Hakan Çalhanoğlu",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Orkun Kökçü",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Arda Güler",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Can Uzun",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Kerem Aktürkoğlu",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Kenan Yıldız",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "GER",
+      "name": "Germany",
+      "flag": "de",
+      "confederation": "UEFA",
+      "groupName": "GROUP E",
+      "pageIndex": 17,
+      "colors": {
+        "primary": "#D7472C",
+        "secondary": "#000000",
+        "accent": "#F5D51B",
+        "sticker": "#E99B80",
+        "groupBox": "#F07800"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Marc-André ter Stegen",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Antonio Rüdiger",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Jonathan Tah",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "David Raum",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Florian Wirtz",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Joshua Kimmich",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Leon Goretzka",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Jamal Musiala",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Serge Gnabry",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Kai Havertz",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Nick Woltemade",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "CUW",
+      "name": "Curacao",
+      "flag": "cw",
+      "confederation": "CONCACAF",
+      "groupName": "GROUP E",
+      "pageIndex": 18,
+      "colors": {
+        "primary": "#1D2F69",
+        "secondary": "#F5E600",
+        "accent": "#C47CB8",
+        "sticker": "#86B8D8",
+        "groupBox": "#F07800"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Eloy Room",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Armando Obispo",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Sherel Floranus",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Roshon van Eijma",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Shurandy Sambo",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Livano Comenencia",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Juninho Bacuna",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Leandro Bacuna",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Kenji Gorré",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Jürgen Locadia",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Sontje Hansen",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "CIV",
+      "name": "Cote d'Ivoire",
+      "flag": "ci",
+      "confederation": "CAF",
+      "groupName": "GROUP E",
+      "pageIndex": 19,
+      "colors": {
+        "primary": "#008A4B",
+        "secondary": "#F58220",
+        "accent": "#00A9BD",
+        "sticker": "#9BCFC1",
+        "groupBox": "#F07800"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Yahia Fofana",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Ghislain Konan",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Wilfried Singo",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Evan Ndicka",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Willy Boly",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Franck Kessié",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Seko Fofana",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Ibrahim Sangaré",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Sebastien Haller",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Simon Adingra",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Evann Guessand",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "ECU",
+      "name": "Ecuador",
+      "flag": "ec",
+      "confederation": "CONMEBOL",
+      "groupName": "GROUP E",
+      "pageIndex": 20,
+      "colors": {
+        "primary": "#FFD100",
+        "secondary": "#1D2F69",
+        "accent": "#D71920",
+        "sticker": "#D99A00",
+        "groupBox": "#F07800"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Hernán Galíndez",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Piero Hincapié",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Pervis Estupiñán",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Willian Pacho",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Ángelo Preciado",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Kendry Páez",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Moisés Caicedo",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Alan Franco",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Pedro Vite",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Gonzalo Plata",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Enner Valencia",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "NED",
+      "name": "Netherlands",
+      "flag": "nl",
+      "confederation": "UEFA",
+      "groupName": "GROUP F",
+      "pageIndex": 21,
+      "colors": {
+        "primary": "#1F5F9E",
+        "secondary": "#F07800",
+        "accent": "#C7332E",
+        "sticker": "#8CB6D8",
+        "groupBox": "#00745C"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Bart Verbruggen",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Virgil van Dijk",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Micky van de Ven",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Denzel Dumfries",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Tijjani Reijnders",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Ryan Gravenberch",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Frenkie de Jong",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Xavi Simons",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Memphis Depay",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Donyell Malen",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Cody Gakpo",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "JPN",
+      "name": "Japan",
+      "flag": "jp",
+      "confederation": "AFC",
+      "groupName": "GROUP F",
+      "pageIndex": 22,
+      "colors": {
+        "primary": "#C91424",
+        "secondary": "#3E79B8",
+        "accent": "#F15A3A",
+        "sticker": "#E99A7C",
+        "groupBox": "#00745C"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Zion Suzuki",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Tsuyoshi Watanabe",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Kaishu Sano",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Ao Tanaka",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Daichi Kamada",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Ritsu Doan",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Keito Nakamura",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Takumi Minamino",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Takefusa Kubo",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Shuto Machino",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Ayase Ueda",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "SWE",
+      "name": "Sweden",
+      "flag": "se",
+      "confederation": "UEFA",
+      "groupName": "GROUP F",
+      "pageIndex": 23,
+      "colors": {
+        "primary": "#0089B8",
+        "secondary": "#F5D51B",
+        "accent": "#C47CB8",
+        "sticker": "#80B9D4",
+        "groupBox": "#00745C"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Viktor Johansson",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Isak Hien",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Emil Holm",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Victor Nilsson Lindelöf",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Lucas Bergvall",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Yasin Ayari",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Daniel Svensson",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Dejan Kulusevski",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Anthony Elanga",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Alexander Isak",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Viktor Gyökeres",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "TUN",
+      "name": "Tunisia",
+      "flag": "tn",
+      "confederation": "CAF",
+      "groupName": "GROUP F",
+      "pageIndex": 24,
+      "colors": {
+        "primary": "#E30613",
+        "secondary": "#F7C75A",
+        "accent": "#00745C",
+        "sticker": "#E88F72",
+        "groupBox": "#00745C"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Aymen Dahmen",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Montassar Talbi",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Yassine Meriah",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Ali Abdi",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Ferjani Sassi",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Ellyes Skhiri",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Aïssa Laïdouni",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Hannibal Mejbri",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Naïm Sliti",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Elias Achouri",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Hazem Mastouri",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "BEL",
+      "name": "Belgium",
+      "flag": "be",
+      "confederation": "UEFA",
+      "groupName": "GROUP G",
+      "pageIndex": 25,
+      "colors": {
+        "primary": "#E52535",
+        "secondary": "#000000",
+        "accent": "#FFD21A",
+        "sticker": "#E89978",
+        "groupBox": "#C9D3EF"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Thibaut Courtois",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Arthur Theate",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Timothy Castagne",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Maxim De Cuyper",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Youri Tielemans",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Kevin De Bruyne",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Amadou Onana",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Jérémy Doku",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Charles De Ketelaere",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Leandro Trossard",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Romelu Lukaku",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "EGY",
+      "name": "Egypt",
+      "flag": "eg",
+      "confederation": "CAF",
+      "groupName": "GROUP G",
+      "pageIndex": 26,
+      "colors": {
+        "primary": "#C8171F",
+        "secondary": "#000000",
+        "accent": "#159447",
+        "sticker": "#E99A7C",
+        "groupBox": "#C9D3EF"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Mohamed El Shenawy",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Mohamed Hany",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Yasser Ibrahim",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Ramy Rabia",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Marwan Attia",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Zizo",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Hamdy Fathy",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Omar Marmoush",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Mohamed Salah",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Mostafa Mohamed",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Trézéguet",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "IRN",
+      "name": "Iran",
+      "flag": "ir",
+      "confederation": "AFC",
+      "groupName": "GROUP G",
+      "pageIndex": 27,
+      "colors": {
+        "primary": "#149447",
+        "secondary": "#C91424",
+        "accent": "#8A005F",
+        "sticker": "#96C696",
+        "groupBox": "#C9D3EF"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Alireza Beiranvand",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Shoja Khalilzadeh",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Milad Mohammadi",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Ramin Rezaeian",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Hossein Kanaani",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Saeed Ezatolahi",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Saman Ghoddos",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Mohammad Mohebi",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Mehdi Taremi",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Sardar Azmoun",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Alireza Jahanbakhsh",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "NZL",
+      "name": "New Zealand",
+      "flag": "nz",
+      "confederation": "OFC",
+      "groupName": "GROUP G",
+      "pageIndex": 28,
+      "colors": {
+        "primary": "#1D2F69",
+        "secondary": "#F1A176",
+        "accent": "#C91424",
+        "sticker": "#88B7D8",
+        "groupBox": "#C9D3EF"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Max Crocombe",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Michael Boxall",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Liberato Cacace",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Tim Payne",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Finn Surman",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Marko Stamenic",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Joe Bell",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Sarpreet Singh",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Matt Garbett",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Chris Wood",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Elijah Just",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "ESP",
+      "name": "Spain",
+      "flag": "es",
+      "confederation": "UEFA",
+      "groupName": "GROUP H",
+      "pageIndex": 29,
+      "colors": {
+        "primary": "#D52B1E",
+        "secondary": "#FFD21A",
+        "accent": "#2368A8",
+        "sticker": "#E99A7C",
+        "groupBox": "#5BC7BD"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Unai Simón",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Robin Le Normand",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Dean Huijsen",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Marc Cucurella",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Rodri",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Martín Zubimendi",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Pedri",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Fabián Ruiz",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Lamine Yamal",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Nico Williams",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Mikel Oyarzabal",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "CPV",
+      "name": "Cape Verde",
+      "flag": "cv",
+      "confederation": "CAF",
+      "groupName": "GROUP H",
+      "pageIndex": 30,
+      "colors": {
+        "primary": "#25378D",
+        "secondary": "#F3B340",
+        "accent": "#D71920",
+        "sticker": "#8CB6D8",
+        "groupBox": "#5BC7BD"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Vozinha",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Logan Costa",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Pico",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Steven Moreira",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "João Paulo",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Kevin Pina",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Jamiro Monteiro",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Vannick Semedo",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Ryan Mendes",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Jovane Cabral",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Dailon Livramento",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "KSA",
+      "name": "Saudi Arabia",
+      "flag": "sa",
+      "confederation": "AFC",
+      "groupName": "GROUP H",
+      "pageIndex": 31,
+      "colors": {
+        "primary": "#00843D",
+        "secondary": "#C47CB8",
+        "accent": "#B8DCAA",
+        "sticker": "#9BC98D",
+        "groupBox": "#5BC7BD"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Nawaf Alaqidi",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Hassan Altambakti",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Jehad Thikri",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Saud Abdulhamid",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Nasser Aldawsari",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Abdullah Alkhaibari",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Musab Aljuwayr",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Feras Albrikan",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Salem Aldawsari",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Saleh Abu Alshamat",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Saleh Alshehri",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "URU",
+      "name": "Uruguay",
+      "flag": "uy",
+      "confederation": "CONMEBOL",
+      "groupName": "GROUP H",
+      "pageIndex": 32,
+      "colors": {
+        "primary": "#25378D",
+        "secondary": "#69A9D8",
+        "accent": "#F5C400",
+        "sticker": "#92C1DF",
+        "groupBox": "#5BC7BD"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Sergio Rochet",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "José María Giménez",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Ronaldo Araújo",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Sebastián Cáceres",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Mathías Olivera",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Nahitan Nández",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Federico Valverde",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Rodrigo Bentancur",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Manuel Ugarte",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Facundo Pellistri",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Darwin Núñez",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "FRA",
+      "name": "France",
+      "flag": "fr",
+      "confederation": "UEFA",
+      "groupName": "GROUP I",
+      "pageIndex": 33,
+      "colors": {
+        "primary": "#1F3D82",
+        "secondary": "#E7474B",
+        "accent": "#F1A176",
+        "sticker": "#8CB6D8",
+        "groupBox": "#4A2C83"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Mike Maignan",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "William Saliba",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Jules Koundé",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Théo Hernández",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Aurélien Tchouaméni",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Eduardo Camavinga",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Ousmane Dembélé",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Kylian Mbappé",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Bradley Barcola",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Désiré Doué",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Hugo Ekitiké",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "SEN",
+      "name": "Senegal",
+      "flag": "sn",
+      "confederation": "CAF",
+      "groupName": "GROUP I",
+      "pageIndex": 34,
+      "colors": {
+        "primary": "#F5D51B",
+        "secondary": "#00843D",
+        "accent": "#E30613",
+        "sticker": "#D99A00",
+        "groupBox": "#4A2C83"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Édouard Mendy",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Kalidou Koulibaly",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Moussa Niakhaté",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "El Hadji Malick Diouf",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Idrissa Gana Gueye",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Pape Matar Sarr",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Sadio Mané",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Iliman Ndiaye",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Krépin Diatta",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Ismaïla Sarr",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Nicolas Jackson",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "IRQ",
+      "name": "Iraq",
+      "flag": "iq",
+      "confederation": "AFC",
+      "groupName": "GROUP I",
+      "pageIndex": 35,
+      "colors": {
+        "primary": "#C91424",
+        "secondary": "#000000",
+        "accent": "#009A5B",
+        "sticker": "#E99A7C",
+        "groupBox": "#4A2C83"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Jalal Hassan",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Hussein Ali",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Akam Hashem",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Merchas Doski",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Zaid Tahseen",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Zidane Iqbal",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Amir Al-Ammari",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Ibrahim Bayesh",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Ali Jasim",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Aimar Sher",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Mohanad Ali",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "NOR",
+      "name": "Norway",
+      "flag": "no",
+      "confederation": "UEFA",
+      "groupName": "GROUP I",
+      "pageIndex": 36,
+      "colors": {
+        "primary": "#1F5F9E",
+        "secondary": "#D71920",
+        "accent": "#B8DCAA",
+        "sticker": "#8CB6D8",
+        "groupBox": "#4A2C83"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Ørjan Nyland",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Julian Ryerson",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Kristoffer Vassbakk Ajer",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "David Møller Wolfe",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Martin Ødegaard",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Sander Berge",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Patrick Berg",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Erling Haaland",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Antonio Nusa",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Oscar Bobb",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Alexander Sørloth",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "ARG",
+      "name": "Argentina",
+      "flag": "ar",
+      "confederation": "CONMEBOL",
+      "groupName": "GROUP J",
+      "pageIndex": 37,
+      "colors": {
+        "primary": "#69A9D8",
+        "secondary": "#005B96",
+        "accent": "#F0A000",
+        "sticker": "#92C1DF",
+        "groupBox": "#F2B7A8"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Emiliano Martínez",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Nahuel Molina",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Cristian Romero",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Nicolás Otamendi",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Enzo Fernández",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Alexis Mac Allister",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Rodrigo De Paul",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Julián Álvarez",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Lionel Messi",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Giuliano Simeone",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Lautaro Martínez",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "ALG",
+      "name": "Algeria",
+      "flag": "dz",
+      "confederation": "CAF",
+      "groupName": "GROUP J",
+      "pageIndex": 38,
+      "colors": {
+        "primary": "#00843D",
+        "secondary": "#E30613",
+        "accent": "#C47CB8",
+        "sticker": "#8FC58F",
+        "groupBox": "#F2B7A8"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Alexis Guendouz",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Rayan Aït-Nouri",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Ramy Bensebaini",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Youcef Atal",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Aïssa Mandi",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Nabil Bentaleb",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Riyad Mahrez",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Saïd Benrahma",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Amine Gouiri",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Mohamed Amoura",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Baghdad Bounedjah",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "AUT",
+      "name": "Austria",
+      "flag": "at",
+      "confederation": "UEFA",
+      "groupName": "GROUP J",
+      "pageIndex": 39,
+      "colors": {
+        "primary": "#C91424",
+        "secondary": "#B8DCAA",
+        "accent": "#F15A3A",
+        "sticker": "#E88F72",
+        "groupBox": "#F2B7A8"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Alexander Schlager",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "David Alaba",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Kevin Danso",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Philipp Lienhart",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Konrad Laimer",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Nicolas Seiwald",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Marcel Sabitzer",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Florian Grillitsch",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Marko Arnautović",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Christoph Baumgartner",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Michael Gregoritsch",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "JOR",
+      "name": "Jordan",
+      "flag": "jo",
+      "confederation": "AFC",
+      "groupName": "GROUP J",
+      "pageIndex": 40,
+      "colors": {
+        "primary": "#2E7D46",
+        "secondary": "#000000",
+        "accent": "#D71920",
+        "sticker": "#8FC58F",
+        "groupBox": "#F2B7A8"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Yazeed Abulaila",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Mohammad Abu Hashish",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Yazan Al-Arab",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Abdullah Nasib",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Ibrahim Saadeh",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Nizar Al-Rashdan",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Noor Al-Rawabdeh",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Yazan Al-Naimat",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Mousa Al-Taamari",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Mahmoud Al-Mardi",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Ali Olwan",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "POR",
+      "name": "Portugal",
+      "flag": "pt",
+      "confederation": "UEFA",
+      "groupName": "GROUP K",
+      "pageIndex": 41,
+      "colors": {
+        "primary": "#0B5E35",
+        "secondary": "#D71920",
+        "accent": "#C47CB8",
+        "sticker": "#75B95E",
+        "groupBox": "#EB2B73"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Diogo Costa",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Rúben Dias",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Nuno Mendes",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Vitinha",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Bernardo Silva",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Bruno Fernandes",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Rúben Neves",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Cristiano Ronaldo",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "João Félix",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Pedro Neto",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Rafael Leão",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "COD",
+      "name": "DR Congo",
+      "flag": "cd",
+      "confederation": "CAF",
+      "groupName": "GROUP K",
+      "pageIndex": 42,
+      "colors": {
+        "primary": "#3F75B0",
+        "secondary": "#F5D51B",
+        "accent": "#D71920",
+        "sticker": "#86B8D8",
+        "groupBox": "#EB2B73"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Lionel Mpasi",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Aaron Wan-Bissaka",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Axel Tuanzebe",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Arthur Masuaku",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Chancel Mbemba",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Ngal'ayel Mukau",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Samuel Moutoussamy",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Noah Sadiki",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Théo Bongonda",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Yoane Wissa",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Cédric Bakambu",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "UZB",
+      "name": "Uzbekistan",
+      "flag": "uz",
+      "confederation": "AFC",
+      "groupName": "GROUP K",
+      "pageIndex": 43,
+      "colors": {
+        "primary": "#008FB0",
+        "secondary": "#39A74A",
+        "accent": "#F39A4A",
+        "sticker": "#8BD0D8",
+        "groupBox": "#EB2B73"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Utkir Yusupov",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Abdukodir Khusanov",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Farrukh Sayfiev",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Sherzod Nasrullaev",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Husniddin Aliqulov",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Rustam Ashurmatov",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Khojiakbar Alijonov",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Odiljon Hamrobekov",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Otabek Shukurov",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Eldor Shomurodov",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Abbosbek Fayzullaev",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "COL",
+      "name": "Colombia",
+      "flag": "co",
+      "confederation": "CONMEBOL",
+      "groupName": "GROUP K",
+      "pageIndex": 44,
+      "colors": {
+        "primary": "#FFD100",
+        "secondary": "#243C86",
+        "accent": "#C91424",
+        "sticker": "#D99A00",
+        "groupBox": "#EB2B73"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Camilo Vargas",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Davinson Sánchez",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Yerry Mina",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Daniel Muñoz",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "James Rodríguez",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Jefferson Lerma",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Richard Ríos",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Juan Fernando Quintero",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Luis Díaz",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Jhon Arias",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Luis Suárez",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "ENG",
+      "name": "England",
+      "flag": "gb-eng",
+      "confederation": "UEFA",
+      "groupName": "GROUP L",
+      "pageIndex": 45,
+      "colors": {
+        "primary": "#CF1F2E",
+        "secondary": "#243C86",
+        "accent": "#E96F78",
+        "sticker": "#E87878",
+        "groupBox": "#7D1118"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Jordan Pickford",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Reece James",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "John Stones",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Jude Bellingham",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Declan Rice",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Jordan Henderson",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Phil Foden",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Harry Kane",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Bukayo Saka",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Cole Palmer",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Marcus Rashford",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "CRO",
+      "name": "Croatia",
+      "flag": "hr",
+      "confederation": "UEFA",
+      "groupName": "GROUP L",
+      "pageIndex": 46,
+      "colors": {
+        "primary": "#C7352E",
+        "secondary": "#263B86",
+        "accent": "#00A9BD",
+        "sticker": "#E99A7C",
+        "groupBox": "#7D1118"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Dominik Livaković",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Duje Ćaleta-Car",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Joško Gvardiol",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Josip Stanišić",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Ivan Perišić",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Luka Modrić",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Mateo Kovačić",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Lovro Majer",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Mario Pašalić",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Ante Budimir",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Andrej Kramarić",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "GHA",
+      "name": "Ghana",
+      "flag": "gh",
+      "confederation": "CAF",
+      "groupName": "GROUP L",
+      "pageIndex": 47,
+      "colors": {
+        "primary": "#FFD100",
+        "secondary": "#00843D",
+        "accent": "#C91424",
+        "sticker": "#D99A00",
+        "groupBox": "#7D1118"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Lawrence Ati Zigi",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Alidu Seidu",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Alexander Djiku",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Gideon Mensah",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Caleb Yirenkyi",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Thomas Partey",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Abdul Issahaku Fatawu",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Mohammed Kudus",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "Kamaldeen Sulemana",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Jordan Ayew",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "Antoine Semenyo",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "code": "PAN",
+      "name": "Panama",
+      "flag": "pa",
+      "confederation": "CONCACAF",
+      "groupName": "GROUP L",
+      "pageIndex": 48,
+      "colors": {
+        "primary": "#D71920",
+        "secondary": "#235AA6",
+        "accent": "#B8DCAA",
+        "sticker": "#E97878",
+        "groupBox": "#7D1118"
+      },
+      "players": [
+        {
+          "slot": 0,
+          "name": null,
+          "type": "special"
+        },
+        {
+          "slot": 1,
+          "name": "Orlando Mosquera",
+          "type": "normal"
+        },
+        {
+          "slot": 2,
+          "name": "Michael Amir Murillo",
+          "type": "normal"
+        },
+        {
+          "slot": 3,
+          "name": "Andrés Andrade",
+          "type": "normal"
+        },
+        {
+          "slot": 4,
+          "name": "Fidel Escobar",
+          "type": "normal"
+        },
+        {
+          "slot": 5,
+          "name": "Aníbal Godoy",
+          "type": "normal"
+        },
+        {
+          "slot": 6,
+          "name": "Cristian Martínez",
+          "type": "normal"
+        },
+        {
+          "slot": 7,
+          "name": "Adalberto Carrasquilla",
+          "type": "normal"
+        },
+        {
+          "slot": 8,
+          "name": "Édgar Bárcenas",
+          "type": "normal"
+        },
+        {
+          "slot": 9,
+          "name": "José Fajardo",
+          "type": "normal"
+        },
+        {
+          "slot": 10,
+          "name": "Ismael Díaz",
+          "type": "normal"
+        },
+        {
+          "slot": 11,
+          "name": "José Luis Rodríguez",
+          "type": "normal"
+        }
+      ]
+    }
+  ],
+  "teamsByGroup": {
+    "GROUP A": [
+      {
+        "code": "MEX",
+        "name": "Mexico",
+        "flag": "mx",
+        "confederation": "CONCACAF",
+        "groupName": "GROUP A",
+        "pageIndex": 1,
+        "colors": {
+          "primary": "#006B57",
+          "secondary": "#D71920",
+          "accent": "#F6D98A",
+          "sticker": "#A8C98F",
+          "groupBox": "#77C66B"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Luis Malagón",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Johan Vásquez",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "César Montes",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Jesús Gallardo",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Israel Reyes",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Edson Álvarez",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Marcel Ruiz",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Hirving Lozano",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Raúl Jiménez",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Alexis Vega",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Roberto Alvarado",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "RSA",
+        "name": "South Africa",
+        "flag": "za",
+        "confederation": "CAF",
+        "groupName": "GROUP A",
+        "pageIndex": 2,
+        "colors": {
+          "primary": "#E74221",
+          "secondary": "#008A68",
+          "accent": "#F3A51E",
+          "sticker": "#F0A22A",
+          "groupBox": "#77C66B"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Ronwen Williams",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Aubrey Modiba",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Mbekezeli Mbokazi",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Siyabonga Ngezana",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Khuliso Mudau",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Teboho Mokoena",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Vaya Sithole",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Bathusi Aubaas",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Sipho Mbule",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Lyle Foster",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Oswin Appollis",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "KOR",
+        "name": "Korea Republic",
+        "flag": "kr",
+        "confederation": "AFC",
+        "groupName": "GROUP A",
+        "pageIndex": 3,
+        "colors": {
+          "primary": "#1E3F7A",
+          "secondary": "#D71920",
+          "accent": "#F5B93E",
+          "sticker": "#86B8D8",
+          "groupBox": "#77C66B"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Hyeonwoo Jo",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Minjae Kim",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Yumin Cho",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Youngwoo Seol",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Jaesung Lee",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Inbeom Hwang",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Kangin Lee",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Jens Castrop",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Heungmin Son",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Heechan Hwang",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Hyeongyu Oh",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "CZE",
+        "name": "Czechia",
+        "flag": "cz",
+        "confederation": "UEFA",
+        "groupName": "GROUP A",
+        "pageIndex": 4,
+        "colors": {
+          "primary": "#00698F",
+          "secondary": "#C178B8",
+          "accent": "#D71920",
+          "sticker": "#7DB1CC",
+          "groupBox": "#77C66B"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Matěj Kovář",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Ladislav Krejčí",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Vladimír Coufal",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Jaroslav Zelený",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Lukáš Provod",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Lukáš Červ",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Tomáš Souček",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Pavel Šulc",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Václav Černý",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Adam Hložek",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Patrik Schick",
+            "type": "normal"
+          }
+        ]
+      }
+    ],
+    "GROUP B": [
+      {
+        "code": "CAN",
+        "name": "Canada",
+        "flag": "ca",
+        "confederation": "CONCACAF",
+        "groupName": "GROUP B",
+        "pageIndex": 5,
+        "colors": {
+          "primary": "#B5121B",
+          "secondary": "#F07800",
+          "accent": "#F04A2A",
+          "sticker": "#E7A07C",
+          "groupBox": "#E60012"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Dayne St. Clair",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Alphonso Davies",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Richie Laryea",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Derek Cornelius",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Stephen Eustáquio",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Ismaël Koné",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Jacob Shaffelburg",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Niko Sigur",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Tajon Buchanan",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Cyle Larin",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Jonathan David",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "BIH",
+        "name": "Bosnia and Herzegovina",
+        "flag": "ba",
+        "confederation": "UEFA",
+        "groupName": "GROUP B",
+        "pageIndex": 6,
+        "colors": {
+          "primary": "#173D82",
+          "secondary": "#F5D51B",
+          "accent": "#B8DCC7",
+          "sticker": "#83B3D0",
+          "groupBox": "#E60012"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Nikola Vasilj",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Amar Dedić",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Sead Kolašinac",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Tarik Muharemović",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Nikola Katić",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Benjamin Tahirović",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Ivan Šunjić",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Ermedin Demirović",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Esmir Bajraktarević",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Edin Džeko",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Amar Memić",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "QAT",
+        "name": "Qatar",
+        "flag": "qa",
+        "confederation": "AFC",
+        "groupName": "GROUP B",
+        "pageIndex": 7,
+        "colors": {
+          "primary": "#741C3D",
+          "secondary": "#B8DCA8",
+          "accent": "#E60012",
+          "sticker": "#C58A9B",
+          "groupBox": "#E60012"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Meshaal Barsham",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Sultan Al Brake",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Boualem Khoukhi",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Pedro Miguel",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Mohammed Mannai",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Karim Boudiaf",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Assim Madibo",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Edmilson Junior",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Akram Hassan Afif",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Ahmed Al-Ganehi",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Almoez Ali",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "SUI",
+        "name": "Switzerland",
+        "flag": "ch",
+        "confederation": "UEFA",
+        "groupName": "GROUP B",
+        "pageIndex": 8,
+        "colors": {
+          "primary": "#B5121B",
+          "secondary": "#6FA1D4",
+          "accent": "#E9472E",
+          "sticker": "#E79B7E",
+          "groupBox": "#E60012"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Gregor Kobel",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Manuel Akanji",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Ricardo Rodríguez",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Nico Elvedi",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Silvan Widmer",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Granit Xhaka",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Remo Freuler",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Fabian Rieder",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Breel Embolo",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Rubén Vargas",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Dan Ndoye",
+            "type": "normal"
+          }
+        ]
+      }
+    ],
+    "GROUP C": [
+      {
+        "code": "BRA",
+        "name": "Brazil",
+        "flag": "br",
+        "confederation": "CONMEBOL",
+        "groupName": "GROUP C",
+        "pageIndex": 9,
+        "colors": {
+          "primary": "#009B4E",
+          "secondary": "#F5D51B",
+          "accent": "#2C4E9A",
+          "sticker": "#9BC79D",
+          "groupBox": "#E5E849"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Alisson",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Marquinhos",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Éder Militão",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Gabriel Magalhães",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Casemiro",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Bruno Guimarães",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Vinícius Junior",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Rodrygo",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Matheus Cunha",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Raphinha",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Estêvão",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "MAR",
+        "name": "Morocco",
+        "flag": "ma",
+        "confederation": "CAF",
+        "groupName": "GROUP C",
+        "pageIndex": 10,
+        "colors": {
+          "primary": "#E60012",
+          "secondary": "#00843D",
+          "accent": "#8D006E",
+          "sticker": "#F2A27F",
+          "groupBox": "#E5E849"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Yassine Bounou",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Achraf Hakimi",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Noussair Mazraoui",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Nayef Aguerd",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Romain Saïss",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Sofyan Amrabat",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Eliesse Ben Seghir",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Bilal El Khannouss",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Ismael Saibari",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Youssef En-Nesyri",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Brahim Díaz",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "HAI",
+        "name": "Haiti",
+        "flag": "ht",
+        "confederation": "CONCACAF",
+        "groupName": "GROUP C",
+        "pageIndex": 11,
+        "colors": {
+          "primary": "#22347E",
+          "secondary": "#D71920",
+          "accent": "#F5A400",
+          "sticker": "#8CAED3",
+          "groupBox": "#E5E849"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Johny Placide",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Carlens Arcus",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Ricardo Adé",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Duke Lacroix",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Leveiton Pierre",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Danley Jean Jacques",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Jean-Ricner Bellegarde",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Josué Casimir",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Ruben Providence",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Duckens Nazon",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Frantzdy Pierrot",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "SCO",
+        "name": "Scotland",
+        "flag": "gb-sct",
+        "confederation": "UEFA",
+        "groupName": "GROUP C",
+        "pageIndex": 12,
+        "colors": {
+          "primary": "#008DCC",
+          "secondary": "#004B8D",
+          "accent": "#F5A400",
+          "sticker": "#6BBBD3",
+          "groupBox": "#E5E849"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Angus Gunn",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Aaron Hickey",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Andrew Robertson",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "John Souttar",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Grant Hanley",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Scott McTominay",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Lewis Ferguson",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Ryan Christie",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "John McGinn",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Ché Adams",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Ben Gannon-Doak",
+            "type": "normal"
+          }
+        ]
+      }
+    ],
+    "GROUP D": [
+      {
+        "code": "USA",
+        "name": "United States",
+        "flag": "us",
+        "confederation": "CONCACAF",
+        "groupName": "GROUP D",
+        "pageIndex": 13,
+        "colors": {
+          "primary": "#1D2F69",
+          "secondary": "#D71920",
+          "accent": "#9FC4E0",
+          "sticker": "#90BFDF",
+          "groupBox": "#005B96"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Matt Freese",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Chris Richards",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Tim Ream",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Mark McKenzie",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Tyler Adams",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Weston McKennie",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Timothy Weah",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Malik Tillman",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Christian Pulisic",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Brenden Aaronson",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Folarin Balogun",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "PAR",
+        "name": "Paraguay",
+        "flag": "py",
+        "confederation": "CONMEBOL",
+        "groupName": "GROUP D",
+        "pageIndex": 14,
+        "colors": {
+          "primary": "#E60012",
+          "secondary": "#243C86",
+          "accent": "#F5C400",
+          "sticker": "#EA8F72",
+          "groupBox": "#005B96"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Orlando Gill",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Gustavo Gómez",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Juan José Cáceres",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Omar Alderete",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Júnior Alonso",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Diego Gómez",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Andrés Cubas",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Julio Enciso",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Miguel Almirón",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Ramón Sosa",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Antonio Sanabria",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "AUS",
+        "name": "Australia",
+        "flag": "au",
+        "confederation": "AFC",
+        "groupName": "GROUP D",
+        "pageIndex": 15,
+        "colors": {
+          "primary": "#22306F",
+          "secondary": "#D71920",
+          "accent": "#C47CB8",
+          "sticker": "#8BB8D8",
+          "groupBox": "#005B96"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Mathew Ryan",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Harry Souttar",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Aziz Behich",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Cameron Burgess",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Lewis Miller",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Jackson Irvine",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Riley McGree",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Aiden O'Neill",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Connor Metcalfe",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Kusini Yengi",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Nestory Irankunda",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "TUR",
+        "name": "Turkiye",
+        "flag": "tr",
+        "confederation": "UEFA",
+        "groupName": "GROUP D",
+        "pageIndex": 16,
+        "colors": {
+          "primary": "#E8472E",
+          "secondary": "#00A9BD",
+          "accent": "#D71920",
+          "sticker": "#F0A68E",
+          "groupBox": "#005B96"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Uğurcan Çakır",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Mert Müldür",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Abdülkerim Bardakcı",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Merih Demiral",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Ferdi Kadıoğlu",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Hakan Çalhanoğlu",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Orkun Kökçü",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Arda Güler",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Can Uzun",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Kerem Aktürkoğlu",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Kenan Yıldız",
+            "type": "normal"
+          }
+        ]
+      }
+    ],
+    "GROUP E": [
+      {
+        "code": "GER",
+        "name": "Germany",
+        "flag": "de",
+        "confederation": "UEFA",
+        "groupName": "GROUP E",
+        "pageIndex": 17,
+        "colors": {
+          "primary": "#D7472C",
+          "secondary": "#000000",
+          "accent": "#F5D51B",
+          "sticker": "#E99B80",
+          "groupBox": "#F07800"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Marc-André ter Stegen",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Antonio Rüdiger",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Jonathan Tah",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "David Raum",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Florian Wirtz",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Joshua Kimmich",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Leon Goretzka",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Jamal Musiala",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Serge Gnabry",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Kai Havertz",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Nick Woltemade",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "CUW",
+        "name": "Curacao",
+        "flag": "cw",
+        "confederation": "CONCACAF",
+        "groupName": "GROUP E",
+        "pageIndex": 18,
+        "colors": {
+          "primary": "#1D2F69",
+          "secondary": "#F5E600",
+          "accent": "#C47CB8",
+          "sticker": "#86B8D8",
+          "groupBox": "#F07800"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Eloy Room",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Armando Obispo",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Sherel Floranus",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Roshon van Eijma",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Shurandy Sambo",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Livano Comenencia",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Juninho Bacuna",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Leandro Bacuna",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Kenji Gorré",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Jürgen Locadia",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Sontje Hansen",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "CIV",
+        "name": "Cote d'Ivoire",
+        "flag": "ci",
+        "confederation": "CAF",
+        "groupName": "GROUP E",
+        "pageIndex": 19,
+        "colors": {
+          "primary": "#008A4B",
+          "secondary": "#F58220",
+          "accent": "#00A9BD",
+          "sticker": "#9BCFC1",
+          "groupBox": "#F07800"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Yahia Fofana",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Ghislain Konan",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Wilfried Singo",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Evan Ndicka",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Willy Boly",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Franck Kessié",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Seko Fofana",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Ibrahim Sangaré",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Sebastien Haller",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Simon Adingra",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Evann Guessand",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "ECU",
+        "name": "Ecuador",
+        "flag": "ec",
+        "confederation": "CONMEBOL",
+        "groupName": "GROUP E",
+        "pageIndex": 20,
+        "colors": {
+          "primary": "#FFD100",
+          "secondary": "#1D2F69",
+          "accent": "#D71920",
+          "sticker": "#D99A00",
+          "groupBox": "#F07800"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Hernán Galíndez",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Piero Hincapié",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Pervis Estupiñán",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Willian Pacho",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Ángelo Preciado",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Kendry Páez",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Moisés Caicedo",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Alan Franco",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Pedro Vite",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Gonzalo Plata",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Enner Valencia",
+            "type": "normal"
+          }
+        ]
+      }
+    ],
+    "GROUP F": [
+      {
+        "code": "NED",
+        "name": "Netherlands",
+        "flag": "nl",
+        "confederation": "UEFA",
+        "groupName": "GROUP F",
+        "pageIndex": 21,
+        "colors": {
+          "primary": "#1F5F9E",
+          "secondary": "#F07800",
+          "accent": "#C7332E",
+          "sticker": "#8CB6D8",
+          "groupBox": "#00745C"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Bart Verbruggen",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Virgil van Dijk",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Micky van de Ven",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Denzel Dumfries",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Tijjani Reijnders",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Ryan Gravenberch",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Frenkie de Jong",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Xavi Simons",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Memphis Depay",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Donyell Malen",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Cody Gakpo",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "JPN",
+        "name": "Japan",
+        "flag": "jp",
+        "confederation": "AFC",
+        "groupName": "GROUP F",
+        "pageIndex": 22,
+        "colors": {
+          "primary": "#C91424",
+          "secondary": "#3E79B8",
+          "accent": "#F15A3A",
+          "sticker": "#E99A7C",
+          "groupBox": "#00745C"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Zion Suzuki",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Tsuyoshi Watanabe",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Kaishu Sano",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Ao Tanaka",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Daichi Kamada",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Ritsu Doan",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Keito Nakamura",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Takumi Minamino",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Takefusa Kubo",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Shuto Machino",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Ayase Ueda",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "SWE",
+        "name": "Sweden",
+        "flag": "se",
+        "confederation": "UEFA",
+        "groupName": "GROUP F",
+        "pageIndex": 23,
+        "colors": {
+          "primary": "#0089B8",
+          "secondary": "#F5D51B",
+          "accent": "#C47CB8",
+          "sticker": "#80B9D4",
+          "groupBox": "#00745C"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Viktor Johansson",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Isak Hien",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Emil Holm",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Victor Nilsson Lindelöf",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Lucas Bergvall",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Yasin Ayari",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Daniel Svensson",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Dejan Kulusevski",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Anthony Elanga",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Alexander Isak",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Viktor Gyökeres",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "TUN",
+        "name": "Tunisia",
+        "flag": "tn",
+        "confederation": "CAF",
+        "groupName": "GROUP F",
+        "pageIndex": 24,
+        "colors": {
+          "primary": "#E30613",
+          "secondary": "#F7C75A",
+          "accent": "#00745C",
+          "sticker": "#E88F72",
+          "groupBox": "#00745C"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Aymen Dahmen",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Montassar Talbi",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Yassine Meriah",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Ali Abdi",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Ferjani Sassi",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Ellyes Skhiri",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Aïssa Laïdouni",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Hannibal Mejbri",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Naïm Sliti",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Elias Achouri",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Hazem Mastouri",
+            "type": "normal"
+          }
+        ]
+      }
+    ],
+    "GROUP G": [
+      {
+        "code": "BEL",
+        "name": "Belgium",
+        "flag": "be",
+        "confederation": "UEFA",
+        "groupName": "GROUP G",
+        "pageIndex": 25,
+        "colors": {
+          "primary": "#E52535",
+          "secondary": "#000000",
+          "accent": "#FFD21A",
+          "sticker": "#E89978",
+          "groupBox": "#C9D3EF"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Thibaut Courtois",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Arthur Theate",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Timothy Castagne",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Maxim De Cuyper",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Youri Tielemans",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Kevin De Bruyne",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Amadou Onana",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Jérémy Doku",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Charles De Ketelaere",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Leandro Trossard",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Romelu Lukaku",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "EGY",
+        "name": "Egypt",
+        "flag": "eg",
+        "confederation": "CAF",
+        "groupName": "GROUP G",
+        "pageIndex": 26,
+        "colors": {
+          "primary": "#C8171F",
+          "secondary": "#000000",
+          "accent": "#159447",
+          "sticker": "#E99A7C",
+          "groupBox": "#C9D3EF"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Mohamed El Shenawy",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Mohamed Hany",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Yasser Ibrahim",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Ramy Rabia",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Marwan Attia",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Zizo",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Hamdy Fathy",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Omar Marmoush",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Mohamed Salah",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Mostafa Mohamed",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Trézéguet",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "IRN",
+        "name": "Iran",
+        "flag": "ir",
+        "confederation": "AFC",
+        "groupName": "GROUP G",
+        "pageIndex": 27,
+        "colors": {
+          "primary": "#149447",
+          "secondary": "#C91424",
+          "accent": "#8A005F",
+          "sticker": "#96C696",
+          "groupBox": "#C9D3EF"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Alireza Beiranvand",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Shoja Khalilzadeh",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Milad Mohammadi",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Ramin Rezaeian",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Hossein Kanaani",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Saeed Ezatolahi",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Saman Ghoddos",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Mohammad Mohebi",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Mehdi Taremi",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Sardar Azmoun",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Alireza Jahanbakhsh",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "NZL",
+        "name": "New Zealand",
+        "flag": "nz",
+        "confederation": "OFC",
+        "groupName": "GROUP G",
+        "pageIndex": 28,
+        "colors": {
+          "primary": "#1D2F69",
+          "secondary": "#F1A176",
+          "accent": "#C91424",
+          "sticker": "#88B7D8",
+          "groupBox": "#C9D3EF"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Max Crocombe",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Michael Boxall",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Liberato Cacace",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Tim Payne",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Finn Surman",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Marko Stamenic",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Joe Bell",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Sarpreet Singh",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Matt Garbett",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Chris Wood",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Elijah Just",
+            "type": "normal"
+          }
+        ]
+      }
+    ],
+    "GROUP H": [
+      {
+        "code": "ESP",
+        "name": "Spain",
+        "flag": "es",
+        "confederation": "UEFA",
+        "groupName": "GROUP H",
+        "pageIndex": 29,
+        "colors": {
+          "primary": "#D52B1E",
+          "secondary": "#FFD21A",
+          "accent": "#2368A8",
+          "sticker": "#E99A7C",
+          "groupBox": "#5BC7BD"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Unai Simón",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Robin Le Normand",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Dean Huijsen",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Marc Cucurella",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Rodri",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Martín Zubimendi",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Pedri",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Fabián Ruiz",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Lamine Yamal",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Nico Williams",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Mikel Oyarzabal",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "CPV",
+        "name": "Cape Verde",
+        "flag": "cv",
+        "confederation": "CAF",
+        "groupName": "GROUP H",
+        "pageIndex": 30,
+        "colors": {
+          "primary": "#25378D",
+          "secondary": "#F3B340",
+          "accent": "#D71920",
+          "sticker": "#8CB6D8",
+          "groupBox": "#5BC7BD"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Vozinha",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Logan Costa",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Pico",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Steven Moreira",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "João Paulo",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Kevin Pina",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Jamiro Monteiro",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Vannick Semedo",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Ryan Mendes",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Jovane Cabral",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Dailon Livramento",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "KSA",
+        "name": "Saudi Arabia",
+        "flag": "sa",
+        "confederation": "AFC",
+        "groupName": "GROUP H",
+        "pageIndex": 31,
+        "colors": {
+          "primary": "#00843D",
+          "secondary": "#C47CB8",
+          "accent": "#B8DCAA",
+          "sticker": "#9BC98D",
+          "groupBox": "#5BC7BD"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Nawaf Alaqidi",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Hassan Altambakti",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Jehad Thikri",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Saud Abdulhamid",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Nasser Aldawsari",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Abdullah Alkhaibari",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Musab Aljuwayr",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Feras Albrikan",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Salem Aldawsari",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Saleh Abu Alshamat",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Saleh Alshehri",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "URU",
+        "name": "Uruguay",
+        "flag": "uy",
+        "confederation": "CONMEBOL",
+        "groupName": "GROUP H",
+        "pageIndex": 32,
+        "colors": {
+          "primary": "#25378D",
+          "secondary": "#69A9D8",
+          "accent": "#F5C400",
+          "sticker": "#92C1DF",
+          "groupBox": "#5BC7BD"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Sergio Rochet",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "José María Giménez",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Ronaldo Araújo",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Sebastián Cáceres",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Mathías Olivera",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Nahitan Nández",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Federico Valverde",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Rodrigo Bentancur",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Manuel Ugarte",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Facundo Pellistri",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Darwin Núñez",
+            "type": "normal"
+          }
+        ]
+      }
+    ],
+    "GROUP I": [
+      {
+        "code": "FRA",
+        "name": "France",
+        "flag": "fr",
+        "confederation": "UEFA",
+        "groupName": "GROUP I",
+        "pageIndex": 33,
+        "colors": {
+          "primary": "#1F3D82",
+          "secondary": "#E7474B",
+          "accent": "#F1A176",
+          "sticker": "#8CB6D8",
+          "groupBox": "#4A2C83"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Mike Maignan",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "William Saliba",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Jules Koundé",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Théo Hernández",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Aurélien Tchouaméni",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Eduardo Camavinga",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Ousmane Dembélé",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Kylian Mbappé",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Bradley Barcola",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Désiré Doué",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Hugo Ekitiké",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "SEN",
+        "name": "Senegal",
+        "flag": "sn",
+        "confederation": "CAF",
+        "groupName": "GROUP I",
+        "pageIndex": 34,
+        "colors": {
+          "primary": "#F5D51B",
+          "secondary": "#00843D",
+          "accent": "#E30613",
+          "sticker": "#D99A00",
+          "groupBox": "#4A2C83"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Édouard Mendy",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Kalidou Koulibaly",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Moussa Niakhaté",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "El Hadji Malick Diouf",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Idrissa Gana Gueye",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Pape Matar Sarr",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Sadio Mané",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Iliman Ndiaye",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Krépin Diatta",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Ismaïla Sarr",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Nicolas Jackson",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "IRQ",
+        "name": "Iraq",
+        "flag": "iq",
+        "confederation": "AFC",
+        "groupName": "GROUP I",
+        "pageIndex": 35,
+        "colors": {
+          "primary": "#C91424",
+          "secondary": "#000000",
+          "accent": "#009A5B",
+          "sticker": "#E99A7C",
+          "groupBox": "#4A2C83"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Jalal Hassan",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Hussein Ali",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Akam Hashem",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Merchas Doski",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Zaid Tahseen",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Zidane Iqbal",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Amir Al-Ammari",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Ibrahim Bayesh",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Ali Jasim",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Aimar Sher",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Mohanad Ali",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "NOR",
+        "name": "Norway",
+        "flag": "no",
+        "confederation": "UEFA",
+        "groupName": "GROUP I",
+        "pageIndex": 36,
+        "colors": {
+          "primary": "#1F5F9E",
+          "secondary": "#D71920",
+          "accent": "#B8DCAA",
+          "sticker": "#8CB6D8",
+          "groupBox": "#4A2C83"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Ørjan Nyland",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Julian Ryerson",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Kristoffer Vassbakk Ajer",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "David Møller Wolfe",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Martin Ødegaard",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Sander Berge",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Patrick Berg",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Erling Haaland",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Antonio Nusa",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Oscar Bobb",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Alexander Sørloth",
+            "type": "normal"
+          }
+        ]
+      }
+    ],
+    "GROUP J": [
+      {
+        "code": "ARG",
+        "name": "Argentina",
+        "flag": "ar",
+        "confederation": "CONMEBOL",
+        "groupName": "GROUP J",
+        "pageIndex": 37,
+        "colors": {
+          "primary": "#69A9D8",
+          "secondary": "#005B96",
+          "accent": "#F0A000",
+          "sticker": "#92C1DF",
+          "groupBox": "#F2B7A8"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Emiliano Martínez",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Nahuel Molina",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Cristian Romero",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Nicolás Otamendi",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Enzo Fernández",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Alexis Mac Allister",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Rodrigo De Paul",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Julián Álvarez",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Lionel Messi",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Giuliano Simeone",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Lautaro Martínez",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "ALG",
+        "name": "Algeria",
+        "flag": "dz",
+        "confederation": "CAF",
+        "groupName": "GROUP J",
+        "pageIndex": 38,
+        "colors": {
+          "primary": "#00843D",
+          "secondary": "#E30613",
+          "accent": "#C47CB8",
+          "sticker": "#8FC58F",
+          "groupBox": "#F2B7A8"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Alexis Guendouz",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Rayan Aït-Nouri",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Ramy Bensebaini",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Youcef Atal",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Aïssa Mandi",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Nabil Bentaleb",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Riyad Mahrez",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Saïd Benrahma",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Amine Gouiri",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Mohamed Amoura",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Baghdad Bounedjah",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "AUT",
+        "name": "Austria",
+        "flag": "at",
+        "confederation": "UEFA",
+        "groupName": "GROUP J",
+        "pageIndex": 39,
+        "colors": {
+          "primary": "#C91424",
+          "secondary": "#B8DCAA",
+          "accent": "#F15A3A",
+          "sticker": "#E88F72",
+          "groupBox": "#F2B7A8"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Alexander Schlager",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "David Alaba",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Kevin Danso",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Philipp Lienhart",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Konrad Laimer",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Nicolas Seiwald",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Marcel Sabitzer",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Florian Grillitsch",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Marko Arnautović",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Christoph Baumgartner",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Michael Gregoritsch",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "JOR",
+        "name": "Jordan",
+        "flag": "jo",
+        "confederation": "AFC",
+        "groupName": "GROUP J",
+        "pageIndex": 40,
+        "colors": {
+          "primary": "#2E7D46",
+          "secondary": "#000000",
+          "accent": "#D71920",
+          "sticker": "#8FC58F",
+          "groupBox": "#F2B7A8"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Yazeed Abulaila",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Mohammad Abu Hashish",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Yazan Al-Arab",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Abdullah Nasib",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Ibrahim Saadeh",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Nizar Al-Rashdan",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Noor Al-Rawabdeh",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Yazan Al-Naimat",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Mousa Al-Taamari",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Mahmoud Al-Mardi",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Ali Olwan",
+            "type": "normal"
+          }
+        ]
+      }
+    ],
+    "GROUP K": [
+      {
+        "code": "POR",
+        "name": "Portugal",
+        "flag": "pt",
+        "confederation": "UEFA",
+        "groupName": "GROUP K",
+        "pageIndex": 41,
+        "colors": {
+          "primary": "#0B5E35",
+          "secondary": "#D71920",
+          "accent": "#C47CB8",
+          "sticker": "#75B95E",
+          "groupBox": "#EB2B73"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Diogo Costa",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Rúben Dias",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Nuno Mendes",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Vitinha",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Bernardo Silva",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Bruno Fernandes",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Rúben Neves",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Cristiano Ronaldo",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "João Félix",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Pedro Neto",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Rafael Leão",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "COD",
+        "name": "DR Congo",
+        "flag": "cd",
+        "confederation": "CAF",
+        "groupName": "GROUP K",
+        "pageIndex": 42,
+        "colors": {
+          "primary": "#3F75B0",
+          "secondary": "#F5D51B",
+          "accent": "#D71920",
+          "sticker": "#86B8D8",
+          "groupBox": "#EB2B73"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Lionel Mpasi",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Aaron Wan-Bissaka",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Axel Tuanzebe",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Arthur Masuaku",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Chancel Mbemba",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Ngal'ayel Mukau",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Samuel Moutoussamy",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Noah Sadiki",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Théo Bongonda",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Yoane Wissa",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Cédric Bakambu",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "UZB",
+        "name": "Uzbekistan",
+        "flag": "uz",
+        "confederation": "AFC",
+        "groupName": "GROUP K",
+        "pageIndex": 43,
+        "colors": {
+          "primary": "#008FB0",
+          "secondary": "#39A74A",
+          "accent": "#F39A4A",
+          "sticker": "#8BD0D8",
+          "groupBox": "#EB2B73"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Utkir Yusupov",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Abdukodir Khusanov",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Farrukh Sayfiev",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Sherzod Nasrullaev",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Husniddin Aliqulov",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Rustam Ashurmatov",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Khojiakbar Alijonov",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Odiljon Hamrobekov",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Otabek Shukurov",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Eldor Shomurodov",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Abbosbek Fayzullaev",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "COL",
+        "name": "Colombia",
+        "flag": "co",
+        "confederation": "CONMEBOL",
+        "groupName": "GROUP K",
+        "pageIndex": 44,
+        "colors": {
+          "primary": "#FFD100",
+          "secondary": "#243C86",
+          "accent": "#C91424",
+          "sticker": "#D99A00",
+          "groupBox": "#EB2B73"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Camilo Vargas",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Davinson Sánchez",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Yerry Mina",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Daniel Muñoz",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "James Rodríguez",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Jefferson Lerma",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Richard Ríos",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Juan Fernando Quintero",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Luis Díaz",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Jhon Arias",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Luis Suárez",
+            "type": "normal"
+          }
+        ]
+      }
+    ],
+    "GROUP L": [
+      {
+        "code": "ENG",
+        "name": "England",
+        "flag": "gb-eng",
+        "confederation": "UEFA",
+        "groupName": "GROUP L",
+        "pageIndex": 45,
+        "colors": {
+          "primary": "#CF1F2E",
+          "secondary": "#243C86",
+          "accent": "#E96F78",
+          "sticker": "#E87878",
+          "groupBox": "#7D1118"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Jordan Pickford",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Reece James",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "John Stones",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Jude Bellingham",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Declan Rice",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Jordan Henderson",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Phil Foden",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Harry Kane",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Bukayo Saka",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Cole Palmer",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Marcus Rashford",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "CRO",
+        "name": "Croatia",
+        "flag": "hr",
+        "confederation": "UEFA",
+        "groupName": "GROUP L",
+        "pageIndex": 46,
+        "colors": {
+          "primary": "#C7352E",
+          "secondary": "#263B86",
+          "accent": "#00A9BD",
+          "sticker": "#E99A7C",
+          "groupBox": "#7D1118"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Dominik Livaković",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Duje Ćaleta-Car",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Joško Gvardiol",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Josip Stanišić",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Ivan Perišić",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Luka Modrić",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Mateo Kovačić",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Lovro Majer",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Mario Pašalić",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Ante Budimir",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Andrej Kramarić",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "GHA",
+        "name": "Ghana",
+        "flag": "gh",
+        "confederation": "CAF",
+        "groupName": "GROUP L",
+        "pageIndex": 47,
+        "colors": {
+          "primary": "#FFD100",
+          "secondary": "#00843D",
+          "accent": "#C91424",
+          "sticker": "#D99A00",
+          "groupBox": "#7D1118"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Lawrence Ati Zigi",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Alidu Seidu",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Alexander Djiku",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Gideon Mensah",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Caleb Yirenkyi",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Thomas Partey",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Abdul Issahaku Fatawu",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Mohammed Kudus",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "Kamaldeen Sulemana",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Jordan Ayew",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "Antoine Semenyo",
+            "type": "normal"
+          }
+        ]
+      },
+      {
+        "code": "PAN",
+        "name": "Panama",
+        "flag": "pa",
+        "confederation": "CONCACAF",
+        "groupName": "GROUP L",
+        "pageIndex": 48,
+        "colors": {
+          "primary": "#D71920",
+          "secondary": "#235AA6",
+          "accent": "#B8DCAA",
+          "sticker": "#E97878",
+          "groupBox": "#7D1118"
+        },
+        "players": [
+          {
+            "slot": 0,
+            "name": null,
+            "type": "special"
+          },
+          {
+            "slot": 1,
+            "name": "Orlando Mosquera",
+            "type": "normal"
+          },
+          {
+            "slot": 2,
+            "name": "Michael Amir Murillo",
+            "type": "normal"
+          },
+          {
+            "slot": 3,
+            "name": "Andrés Andrade",
+            "type": "normal"
+          },
+          {
+            "slot": 4,
+            "name": "Fidel Escobar",
+            "type": "normal"
+          },
+          {
+            "slot": 5,
+            "name": "Aníbal Godoy",
+            "type": "normal"
+          },
+          {
+            "slot": 6,
+            "name": "Cristian Martínez",
+            "type": "normal"
+          },
+          {
+            "slot": 7,
+            "name": "Adalberto Carrasquilla",
+            "type": "normal"
+          },
+          {
+            "slot": 8,
+            "name": "Édgar Bárcenas",
+            "type": "normal"
+          },
+          {
+            "slot": 9,
+            "name": "José Fajardo",
+            "type": "normal"
+          },
+          {
+            "slot": 10,
+            "name": "Ismael Díaz",
+            "type": "normal"
+          },
+          {
+            "slot": 11,
+            "name": "José Luis Rodríguez",
+            "type": "normal"
+          }
+        ]
+      }
+    ]
+  }
+}

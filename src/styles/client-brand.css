@@ -1,0 +1,278 @@
+/* ══════════════════════════════════════════
+   Client Branding — todos los puntos de marca
+   ══════════════════════════════════════════ */
+
+/* ── Variable de color del cliente ── */
+:root {
+  --client-color: #1a56db;
+}
+
+/* ══ Logo flotante en el cuerpo del álbum ══ */
+.client-album-logo {
+  position: absolute;
+  z-index: 10;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  backdrop-filter: none;
+  pointer-events: none;
+  user-select: none;
+  opacity: var(--album-logo-opacity, 0.28);
+  mix-blend-mode: var(--album-logo-blend, luminosity);
+}
+
+.client-album-logo-img {
+  height: 48px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  display: block;
+}
+
+.client-album-logo-text {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.10em;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ══ 1. Corner badge en páginas de álbum ══ */
+.client-corner-badge {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px 5px 7px;
+  border-radius: 20px;
+  background: rgba(7, 10, 20, 0.60);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(6px);
+  pointer-events: none;
+  user-select: none;
+}
+
+.client-corner-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--client-color);
+  flex-shrink: 0;
+  box-shadow: 0 0 6px var(--client-color);
+}
+
+.client-corner-badge img,
+.client-corner-badge-img {
+  height: 26px;
+  width: auto;
+  max-width: 120px;
+  object-fit: contain;
+  display: block;
+}
+
+.client-corner-badge .client-logo-text,
+.client-corner-badge-name {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.75);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ══ 2. Stamp en cromo expandido — sale diagonalmente de la esquina ══ */
+.sticker-client-stamp {
+  position: absolute;
+  bottom: -20px;
+  right: -14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  border-radius: 10px;
+  background: rgba(8, 8, 16, 0.88);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6), 0 0 12px var(--client-color, #1a56db);
+  z-index: 10;
+  transform: rotate(-6deg);
+}
+
+.sticker-client-stamp-img {
+  height: 26px;
+  width: auto;
+  max-width: 120px;
+  object-fit: contain;
+  display: block;
+}
+
+.sticker-client-stamp .client-logo-text,
+.sticker-client-stamp-name {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.10em;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ══ 3. Curtain — presentado por ══ */
+.curtain-sponsor {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.curtain-sponsor-label {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.curtain-sponsor-brand {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 12px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.30);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.curtain-sponsor-img {
+  height: 20px;
+  width: auto;
+  max-width: 100px;
+  object-fit: contain;
+  display: block;
+}
+
+.curtain-sponsor-brand .client-logo-text,
+.curtain-sponsor-brand-name {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+}
+
+/* ══ 4. Loading splash — presentado por (centrado, igual en móvil y desktop) ══ */
+.loading-client-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.loading-client-label {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(0.58rem, 1.4vw, 0.68rem);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.loading-client-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: clamp(8px, 1.5vw, 12px) clamp(18px, 3vw, 28px);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.loading-client-img {
+  height: clamp(28px, 5vw, 40px);
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.loading-client-text,
+.loading-client-brand .client-logo-text {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+  letter-spacing: 0.10em;
+  color: #fff;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.loading-client-name {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+  letter-spacing: 0.10em;
+  color: #fff;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.loading-client-tagline {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(0.62rem, 1.5vw, 0.75rem);
+  color: rgba(255, 255, 255, 0.42);
+  letter-spacing: 0.05em;
+}
+
+/* ══ 5. Credits modal — logo del cliente ══ */
+.fa-client-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.fa-client-header-label {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.fa-client-header-brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.fa-client-header-img {
+  height: 32px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  display: block;
+}
+
+.fa-client-header-brand .client-logo-text,
+.fa-client-header-name {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.10em;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.fa-client-header-tagline {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.05em;
+}

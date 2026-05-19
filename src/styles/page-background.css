@@ -1,0 +1,137 @@
+/* Fondo CSS vectorial editable por país vía custom properties */
+
+.album-page::after {
+  content: '';
+  position: absolute;
+  right: 3.3%;
+  bottom: 0;
+  width: 56%;
+  height: 3.1%;
+  background: var(--bg-bottom-bar);
+  z-index: 7;
+  pointer-events: none;
+}
+
+.left-base,
+.right-base {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  z-index: 1;
+}
+
+.left-base {
+  left: 0;
+  background: var(--bg-left-base);
+}
+
+.right-base {
+  right: 0;
+  background: var(--bg-right-base);
+}
+
+.top-red {
+  position: absolute;
+  top: -24.6%;
+  left: 22.1%;
+  width: 73.4%;
+  height: 42.9%;
+  background: linear-gradient(90deg, var(--bg-top-red-start) 0%, var(--bg-top-red-mid) 58%, var(--bg-top-red-end) 100%);
+  border-bottom-left-radius: 86% 100%;
+  z-index: 3;
+}
+
+.white-swoosh {
+  position: absolute;
+  left: -2.7%;
+  top: -15.8%;
+  width: 52.7%;
+  height: 35.9%;
+  background: var(--bg-white-swoosh);
+  border-bottom-right-radius: 100% 86%;
+  z-index: 4;
+}
+
+.cream-swoosh {
+  position: absolute;
+  left: -1.8%;
+  top: 15.7%;
+  width: 55.7%;
+  height: 17.2%;
+  background: var(--bg-cream-swoosh);
+  border-bottom-right-radius: 100% 90%;
+  z-index: 4;
+}
+
+.green-swoosh {
+  position: absolute;
+  left: 6.1%;
+  top: 15.6%;
+  width: 92.4%;
+  height: 86.8%;
+  background: linear-gradient(90deg, var(--bg-green-swoosh-start) 0%, var(--bg-green-swoosh-mid) 42%, var(--bg-green-swoosh-end) 100%);
+  border-top-left-radius: 59% 34%;
+  border-top-right-radius: 31% 76%;
+  z-index: 5;
+}
+
+.right-green-block {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 4.7%;
+  height: 18.4%;
+  background: var(--bg-right-green-block);
+  z-index: 8;
+}
+
+.right-pink-block {
+  position: absolute;
+  right: 0;
+  top: 18.4%;
+  width: 4.7%;
+  height: 78.5%;
+  background: linear-gradient(180deg, var(--bg-right-pink-start) 0%, var(--bg-right-pink-end) 100%);
+  z-index: 6;
+}
+
+.bg-shape {
+  position: absolute;
+  z-index: 6;
+  pointer-events: none;
+  user-select: none;
+}
+
+.bg-shape svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.bg-shape-left {
+  left: 14.3%;
+  bottom: .6%;
+  width: 33.6%;
+  height: 44.4%;
+}
+
+.bg-shape-right {
+  right: 13.0%;
+  bottom: .7%;
+  width: 34.5%;
+  height: 36.5%;
+}
+
+.spark-bg {
+  position: absolute;
+  right: 2.5%;
+  bottom: 5.5%;
+  width: 2.6%;
+  aspect-ratio: 1;
+  z-index: 8;
+  background: rgba(255,255,255,.62);
+  clip-path: polygon(50% 0%, 62% 36%, 100% 50%, 62% 64%, 50% 100%, 38% 64%, 0% 50%, 38% 36%);
+  pointer-events: none;
+}

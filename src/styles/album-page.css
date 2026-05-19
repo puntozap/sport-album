@@ -1,0 +1,54 @@
+.album-shell {
+  width: min(100%, calc((100vh - clamp(20px, 2.4vw, 48px)) * 1.796));
+  max-width: 1629px;
+  min-width: 980px;
+  background: #1a1d24;
+  box-shadow: 0 18px 40px rgba(0,0,0,.28);
+}
+
+@media (max-width: 1100px) {
+  .album-shell {
+    position: absolute; /* garantiza que empiece exactamente en (0,0) de #app */
+    top: 0;
+    left: 0;
+    width: calc(100dvh * (1629 / 907));
+    min-width: auto;
+    max-width: none;
+    transform-origin: 0 0;
+    touch-action: none;
+  }
+}
+
+@media (max-width: 1100px) and (orientation: landscape) {
+  .album-shell {
+    width: 100dvw;
+  }
+}
+
+@media (min-width: 1101px) and (orientation: landscape) {
+  .album-shell {
+    width: min(80%, 1629px);
+  }
+}
+
+.album-page {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1629 / 907;
+  overflow: hidden;
+  isolation: isolate;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.page-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  user-select: none;
+  pointer-events: none;
+}

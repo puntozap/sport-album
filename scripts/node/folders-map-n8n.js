@@ -1,0 +1,73 @@
+const folders = {
+  "1VeKc7liTH9tauMUe9ZECLdrRGN_-NMxn": "grupos/a/1",
+  "1LwvKTlWacxzlTM7QtjE8xCvrCoWYafaR": "grupos/a/2",
+  "1rcedv-uEDQihdwFA0D8eWfFm8OBum4Na": "grupos/a/3",
+  "13H3hSQ2cA7t-CeIdw44iQ3zgCMDmoV6I": "grupos/a/4",
+  "1IAaxxXGCIhRd_2eUiJKb7fJomz7vYSg_": "grupos/b/1",
+  "1oZFqDjftUGlQyAfl08qKe-bratzYKCE5": "grupos/b/2",
+  "1mCqEEU59M0TWf9KQ32yPSKHu5X3m3VbK": "grupos/b/3",
+  "1XAdZtQ5YqKUmXB3AjRnYuJ0NJhY85gqj": "grupos/b/4",
+  "1YVrmWqFj0GshP2AnR9Bk-MRydehZxg6Z": "grupos/c/1",
+  "1SlkfOQx3qEwQ7v32s3v0l48b8-t5wuvJ": "grupos/c/2",
+  "1TJgY46zcn-Hj0iDX3C38xfUW5Up9XYfe": "grupos/c/3",
+  "15Vo-Hg6aJ_2H00hvYzS9sDKzN-67SfQd": "grupos/c/4",
+  "18r7CmOj556Y4vzq6lDUbWt8BCappgTtF": "grupos/d/1",
+  "1-QItLjnOnOKUtmNrB3YTjmBBlRpiHvFE": "grupos/d/2",
+  "1UJqttxbN9xawfUncfSLImH9AxfW1Xxrs": "grupos/d/3",
+  "1dNBIqQcbGEluJiBd3D7XJ_lAkzPWJ5AZ": "grupos/d/4",
+  "1-AK_F5rLH0YBqEZ8KqzGJ8c19y5RV3kD": "grupos/e/1",
+  "1se3jeWgfqWDZc_iSbfkOWAD4XmFeCPWd": "grupos/e/2",
+  "1m2pugzgEFc4FJgCw8eKIoGF8jVRuJ2lw": "grupos/e/3",
+  "149p1Alcbvk5ndMGOUeGZNu0Ca56YP4fZ": "grupos/e/4",
+  "17vV10YiJGT-lcP0fTOgtIk1lf3DCN7Yn": "grupos/f/1",
+  "14sBmBCvEhaBjkG6doLEQ3KLJLBN7-i4q": "grupos/f/2",
+  "1pYBeV8lyz52_r9C5omMV11NHFBNmRl0l": "grupos/f/3",
+  "1MsU93G3LuR3xxjeGi1-M__izIc7Eb3ox": "grupos/f/4",
+  "1ZWWFbYoxkTJPJVGMG-_4aBe87-JtHXCO": "grupos/g/1",
+  "1FlP9OqP1Gvp8_W7ZJOAphwvlxpY2DVjR": "grupos/g/2",
+  "1EHzwJEIVKtoRqtZQiT2QyGLdCcWxvEMO": "grupos/g/3",
+  "1QhaiS1UWNV-H2kPuhPbqk2qKWGWueV-t": "grupos/g/4",
+  "1zgheGhGDdiHtrXGJ2m5y6hP-vWmRn35k": "grupos/h/1",
+  "1YoKFc_V4a1Pt6p_HBbF_RM6mxUw5MHtR": "grupos/h/2",
+  "11fem1WOmJVdk_jucYiuAG37w5Dh5zIaf": "grupos/h/3",
+  "1kXBCpAvyDD1mbPaYuIYVRz5Hgl-r04lz": "grupos/h/4",
+  "1XHVOLnxpYuOAjhKjlr9EolGQoEdR9wg8": "grupos/i/1",
+  "1TUW8adcFpcY3q7h0ojp-ZDGNk3MsNm3Z": "grupos/i/2",
+  "1UKcHNN3ZQV_cUJ2Gjl_hKRQRhA1dp7HO": "grupos/i/3",
+  "1K4FumJpNjkXsf889sUM4X2NQmiC2dRph": "grupos/i/4",
+  "1r-LQmG6HEhTIhNWKYuUOzltYVZk4ua29": "grupos/j/1",
+  "1qKpv1e-zclEELj7cKsvXcyrvLJadphYR": "grupos/j/2",
+  "1fMEKnodgZL1xmqGwaFM_3JlJMVI2N3Yd": "grupos/j/3",
+  "11IiZDJ1r8nR5C0byzWwCfIfjuE0uryio": "grupos/j/4",
+  "1Cu1-h9_1IbIAFojty90Z1YkvboE1_K4d": "grupos/k/1",
+  "1bZ3n1wlj3p4xkoaBsXjvP-C18RouZyFz": "grupos/k/2",
+  "1Bo9_M3m2nUF0S3bmAqYsAk91PzUa1Bib": "grupos/k/3",
+  "1pW2k4Y1joWEMG_jnYV4meBdkk5GfE-vH": "grupos/k/4",
+  "1oUduTPBx2KOoWK_VWFwuQLptCUtOAQbF": "grupos/l/1",
+  "1rqhz-kRSUq2q_fA59gTnX5VsUiTj8THC": "grupos/l/2",
+  "1jygtnJ1KJGs2rjTIYQ8dtEu04QFCt-70": "grupos/l/3",
+  "1gTTyrRGwbjIg5QfqZgQajeHu8Mh7FVxC": "grupos/l/4"
+};
+
+const item = $input.first().json;
+
+const parentId = Array.isArray(item.parents) ? item.parents[0] : item.parents;
+
+const pathPrefix = folders[parentId];
+
+if (!pathPrefix) {
+  throw new Error(`No existe pathPrefix configurado para parentId: ${parentId}`);
+}
+
+return [
+  {
+    json: {
+      fileId: item.id,
+      name: item.name,
+      mimeType: item.mimeType,
+      parentId,
+      pathPrefix,
+      path: `${pathPrefix}/${item.name}`,
+    }
+  }
+];

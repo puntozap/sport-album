@@ -1,0 +1,88 @@
+:root {
+    --bg-blue: #89aec5; /* El azul de image_2dfccc.jpg */
+    --shape-white: #ffffff;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0; /* Fondo externo */
+}
+
+/* Contenedor principal que imita el poster */
+.canvas {
+    position: relative;
+    width: 90vw;
+    max-width: 400px;
+    aspect-ratio: 2 / 3;
+    background-color: var(--bg-blue);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2%;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
+
+.shape {
+    background-color: var(--shape-white);
+    width: 85%;
+    height: 40%;
+    position: relative;
+}
+
+/* FIGURA SUPERIOR (El "2" estilizado) */
+.shape-top {
+    /* Creamos las curvas básicas */
+    border-radius: 80px 80px 0 0;
+    /* El clip-path crea el "mordisco" horizontal en la parte media izquierda */
+    clip-path: polygon(
+        0% 0%, 100% 0%, 
+        100% 65%, 45% 65%, 
+        0% 35%, 0% 0%
+    );
+    /* Refinamiento adicional: añadimos la base con un pseudo-elemento */
+}
+
+.shape-top::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 35%;
+    background: var(--shape-white);
+}
+
+/* FIGURA INFERIOR (El "6" estilizado) */
+.shape-bottom {
+    border-radius: 80px;
+    /* El clip-path genera el corte nítido en el lado derecho */
+    clip-path: polygon(
+        0% 0%, 80% 0%, 
+        100% 35%, 65% 35%, 
+        100% 35%, 100% 100%, 
+        0% 100%
+    );
+}
+
+/* Detalle visual de la estrella */
+.star {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    color: rgba(255,255,255,0.6);
+    font-size: 24px;
+}
+
+/* Ajustes para móviles */
+@media (max-width: 480px) {
+    .canvas {
+        width: 95vw;
+    }
+}

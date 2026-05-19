@@ -1,0 +1,27 @@
+# Deshabilitar listado de directorio, activar resolución sin extensión
+Options -Indexes +MultiViews
+
+# Evitar cache de JSON (overrides/config) para que el frontend siempre vea lo último
+<IfModule mod_headers.c>
+  <FilesMatch "\\.json$">
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+  </FilesMatch>
+</IfModule>
+
+# Bloquear archivos internos sensibles (manifesto de Drive, etc.)
+<FilesMatch "^drive-manifest\.json$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
+# Bloquear cualquier .php que no sea un endpoint conocido
+<FilesMatch "\.php$">
+  Order Deny,Allow
+  Deny from all
+</FilesMatch>
+<FilesMatch "^(upload-cromo|manage-cromo|manage-players|manage-matches|progress)\.php$">
+  Order Allow,Deny
+  Allow from all
+</FilesMatch>

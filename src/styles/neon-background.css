@@ -1,0 +1,36 @@
+/* ══════════════════════════════════════════
+   Fondo neón tipo FIFA WC 2026
+   ══════════════════════════════════════════ */
+
+.neon-bg {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .neon-bg {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+}
+
+.neon-bg svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+
+/* Asegurar que #app quede encima */
+#app {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Low-perf: desactivar animación y simplificar ── */
+.low-perf .neon-bg {
+  display: none !important;
+}

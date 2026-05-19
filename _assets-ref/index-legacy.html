@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Álbum Mundial 2026 - México</title>
+  <style>
+    :root {
+      --red: #df171d;
+      --ink: #006451;
+      --slot-green: #9fca8e;
+      --slot-gold: #f1d66a;
+      --bg-left: #f8f7f3;
+      --bg-cream: #f4f0ea;
+      --bg-green: #006a58;
+      --bg-green-dark: #004b42;
+      --bg-pink: #f2c9b5;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: clamp(10px, 1.2vw, 24px);
+      background: #d9e7e1;
+      font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+      overflow-x: hidden;
+    }
+
+    .album-shell {
+      width: min(100%, calc((100vh - clamp(20px, 2.4vw, 48px)) * 1.796));
+      max-width: 1629px;
+      min-width: 980px;
+      background: #1a1d24;
+      box-shadow: 0 18px 40px rgba(0,0,0,.28);
+    }
+
+    .album-page {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1629 / 907;
+      overflow: hidden;
+      isolation: isolate;
+
+      /* =====================================================
+         PEGA AQUÍ EL CONTENIDO COMPLETO DE background_base64.txt
+
+         Ejemplo:
+         background-image: url("data:image/png;base64,AAAA...");
+
+         Tu archivo background_base64.txt ya trae la línea completa:
+         background-image: url("data:image/png;base64,...");
+         ===================================================== */
+        background-image: url("assets/backgrounds/mexico-bg.svg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    /* Cuando uses el fondo en base64, estas capas CSS quedan apagadas
+       para que no se monten encima del fondo real. */
+    .left-base,
+    .right-base,
+    .top-red,
+    .white-swoosh,
+    .cream-swoosh,
+    .green-swoosh,
+    .right-green-block,
+    .right-pink-block,
+    .bg-shape,
+    .spark-bg {
+      display: none;
+    }
+
+    .page-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* Modo fondo exacto: ocultamos las capas CSS del fondo para usar la imagen base real */
+    .left-base,
+    .right-base,
+    .top-red,
+    .white-swoosh,
+    .cream-swoosh,
+    .green-swoosh,
+    .right-green-block,
+    .right-pink-block,
+    .bg-shape,
+    .spark-bg,
+    .album-page::after {
+      display: none;
+    }
+
+    .album-page::after {
+      content: '';
+      position: absolute;
+      right: 3.3%;
+      bottom: 0;
+      width: 56%;
+      height: 3.1%;
+      background: #006a58;
+      z-index: 7;
+      pointer-events: none;
+    }
+
+    .left-base,
+    .right-base {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 50%;
+      z-index: 1;
+    }
+
+    .left-base {
+      left: 0;
+      background: #f8f7f3;
+    }
+
+    .right-base {
+      right: 0;
+      background: #006a58;
+    }
+
+    /* Fondo real aproximado */
+    .top-red {
+      position: absolute;
+      top: -24.6%;
+      left: 22.1%;
+      width: 73.4%;
+      height: 42.9%;
+      background: linear-gradient(90deg, #ba0e16 0%, #ed171f 58%, #b90d15 100%);
+      border-bottom-left-radius: 86% 100%;
+      z-index: 3;
+    }
+
+    .white-swoosh {
+      position: absolute;
+      left: -2.7%;
+      top: -15.8%;
+      width: 52.7%;
+      height: 35.9%;
+      background: #ffffff;
+      border-bottom-right-radius: 100% 86%;
+      z-index: 4;
+    }
+
+    .cream-swoosh {
+      position: absolute;
+      left: -1.8%;
+      top: 15.7%;
+      width: 55.7%;
+      height: 17.2%;
+      background: #f4f0ea;
+      border-bottom-right-radius: 100% 90%;
+      z-index: 4;
+    }
+
+    .green-swoosh {
+      position: absolute;
+      left: 6.1%;
+      top: 15.6%;
+      width: 92.4%;
+      height: 86.8%;
+      background: linear-gradient(90deg, #00705b 0%, #006451 42%, #004b42 100%);
+      border-top-left-radius: 59% 34%;
+      border-top-right-radius: 31% 76%;
+      z-index: 5;
+    }
+
+    .right-green-block {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 4.7%;
+      height: 18.4%;
+      background: #80c86b;
+      z-index: 8;
+    }
+
+    .right-pink-block {
+      position: absolute;
+      right: 0;
+      top: 18.4%;
+      width: 4.7%;
+      height: 78.5%;
+      background: linear-gradient(180deg, #f2c9b5 0%, #f5c7b5 100%);
+      z-index: 6;
+    }
+
+    .bg-shape {
+      position: absolute;
+      z-index: 6;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .bg-shape svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      overflow: visible;
+    }
+
+    .bg-shape-left {
+      left: 14.3%;
+      bottom: .6%;
+      width: 33.6%;
+      height: 44.4%;
+    }
+
+    .bg-shape-right {
+      right: 13.0%;
+      bottom: .7%;
+      width: 34.5%;
+      height: 36.5%;
+    }
+
+    .spark-bg {
+      position: absolute;
+      right: 2.5%;
+      bottom: 5.5%;
+      width: 2.6%;
+      aspect-ratio: 1;
+      z-index: 8;
+      background: rgba(255,255,255,.62);
+      clip-path: polygon(50% 0%, 62% 36%, 100% 50%, 62% 64%, 50% 100%, 38% 64%, 0% 50%, 38% 36%);
+      pointer-events: none;
+    }
+
+    .title {
+      position: absolute;
+      left: 5.6%;
+      top: 5.6%;
+      z-index: 20;
+      letter-spacing: -.045em;
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+
+    .title .we {
+      color: #006b5a;
+      font-size: clamp(2rem, 4.55vw, 4.45rem);
+      line-height: .84;
+      transform: scaleX(1.05);
+      transform-origin: left;
+    }
+
+    .title .mx {
+      color: var(--red);
+      font-size: clamp(2.35rem, 5vw, 4.9rem);
+      line-height: .82;
+      transform: scaleX(1.03);
+      transform-origin: left;
+    }
+
+    .federation {
+      position: absolute;
+      left: 5.3%;
+      top: 23.7%;
+      z-index: 24;
+      display: grid;
+      grid-template-columns: 8.5% 1fr;
+      gap: 1.1%;
+      width: 26%;
+      align-items: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 900;
+      font-size: clamp(.72rem, 1.45vw, 1.35rem);
+      line-height: .96;
+      color: var(--ink);
+    }
+
+    .federation-flag {
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 1px 2px rgba(0,0,0,.14);
+    }
+
+    .federation-flag img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .slot {
+      position: absolute;
+      z-index: 22;
+      width: 10.82%;
+      aspect-ratio: 176 / 237;
+      background: var(--slot-green);
+      box-shadow: inset 0 0 0 2px rgba(0,0,0,.04), 0 2px 3px rgba(0,0,0,.14);
+      overflow: hidden;
+      color: #006150;
+      display: grid;
+      place-items: center;
+    }
+
+    .slot.gold { background: var(--slot-gold); }
+
+    .slot::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(90deg, rgba(255,255,255,.12) 0 1px, transparent 1px 4px),
+        repeating-linear-gradient(0deg, rgba(0,0,0,.05) 0 1px, transparent 1px 4px);
+      opacity: .28;
+      z-index: 1;
+    }
+
+    .slot-shape {
+      position: absolute;
+      left: 10.5%;
+      top: 7.5%;
+      width: 79%;
+      height: 82%;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .slot-shape svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      overflow: visible;
+    }
+
+    .slot-shape path { fill: #fff; }
+
+    .slot-code,
+    .slot-number,
+    .slot-name {
+      position: absolute;
+      z-index: 4;
+      left: 0;
+      right: 0;
+      text-align: center;
+      text-transform: uppercase;
+      color: #006150;
+      text-shadow: 0 1px rgba(255,255,255,.32);
+    }
+
+    .slot-code { top: 13%; font-size: clamp(.72rem, 1.56vw, 1.55rem); line-height: .75; }
+    .slot-number { top: 26%; font-size: clamp(.9rem, 1.85vw, 1.85rem); line-height: .75; }
+    .slot-name { bottom: 12.3%; font-size: clamp(.46rem, 1.06vw, 1.05rem); line-height: .85; }
+
+    .mex0  { left: 5.89%;  top: 38.37%; }
+    .mex1  { left: 19.58%; top: 38.37%; }
+    .mex2  { left: 33.40%; top: 38.37%; }
+    .mex3  { left: 19.58%; top: 70.89%; }
+    .mex4  { left: 33.40%; top: 70.89%; }
+    .mex5  { left: 55.49%; top: 6.06%; }
+    .mex6  { left: 69.43%; top: 6.06%; }
+    .mex7  { left: 83.12%; top: 6.06%; }
+    .mex8  { left: 55.49%; top: 38.37%; }
+    .mex9  { left: 69.43%; top: 38.37%; }
+    .mex10 { left: 83.12%; top: 38.37%; }
+    .mex11 { left: 83.12%; top: 70.89%; }
+
+    .group-box {
+      position: absolute;
+      left: 55.8%;
+      top: 67.2%;
+      width: 31.5%;
+      height: 26.6%;
+      z-index: 18;
+      /* background: linear-gradient(135deg, #58b848, #72c865 60%, #88dc79); */
+      border-radius: 9.5% / 19%;
+      padding: 2.2% 2.6% 6.2% 2.6%;
+      color: white;
+      /* box-shadow: inset 0 0 30px rgba(0,0,0,.08); */
+      overflow: hidden;
+    }
+
+    .group-title {
+      font-size: clamp(1.2rem, 3vw, 3rem);
+      line-height: .82;
+      text-transform: uppercase;
+      letter-spacing: -.035em;
+      margin-bottom: 5.2%;
+    }
+
+    .flags-grid {
+      width: 60%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12% 10%;
+    }
+
+    .country-row {
+      display: grid;
+      grid-template-columns: 28% 72%;
+      height: clamp(16px, 3vw, 42px);
+      box-shadow: 0 1px 2px rgba(0,0,0,.22);
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .country-code {
+      background: #050505;
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: clamp(.42rem, .9vw, .95rem);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      line-height: .8;
+    }
+
+    .flag-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .repro {
+      position: absolute;
+      left: 10%;
+      bottom: 3.2%;
+      width: 84%;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      font-size: clamp(.18rem, .42vw, .42rem);
+      line-height: 1;
+      color: rgba(255,255,255,.9);
+      white-space: nowrap;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .fold {
+      display: none;
+    }
+
+    .paper-texture {
+      display: none;
+    }
+
+    @media (min-width: 1200px) {
+      .album-shell { width: min(96vw, calc((100vh - 48px) * 1.796)); }
+    }
+
+    @media (min-width: 1600px) {
+      .album-shell { width: min(94vw, 1629px); }
+    }
+
+    @media (max-width: 1100px) {
+      body { place-items: start center; overflow-x: auto; }
+      .album-shell { min-width: 980px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="album-shell">
+    <section class="album-page" aria-label="Página del álbum México FIFA World Cup 2026">
+      <!-- Fondo exacto tomado de la plantilla original. Guarda esta imagen en assets/backgrounds/mexico-bg.png -->
+      
+
+      <div class="left-base"></div>
+      <div class="right-base"></div>
+      <div class="top-red"></div>
+      <div class="white-swoosh"></div>
+      <div class="cream-swoosh"></div>
+      <div class="green-swoosh"></div>
+      <div class="right-green-block"></div>
+      <div class="right-pink-block"></div>
+
+      <div class="bg-shape bg-shape-left" aria-hidden="true">
+        <svg viewBox="0 0 650 500" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="pinkShapeGradient" x1="0%" y1="0%" x2="100%" y2="70%">
+              <stop offset="0%" stop-color="#f2bfa7"/>
+              <stop offset="46%" stop-color="#e47782"/>
+              <stop offset="100%" stop-color="#f3c3ad"/>
+            </linearGradient>
+          </defs>
+          <path fill="url(#pinkShapeGradient)" d="M120 22 H430 C540 22 610 82 610 170 C610 250 548 318 448 325 H650 V490 H0 V318 C0 234 60 178 156 178 H0 C0 92 58 22 120 22 Z" />
+        </svg>
+      </div>
+
+      <div class="bg-shape bg-shape-right" aria-hidden="true">
+        <svg viewBox="0 0 650 420" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="greenShapeGradient" x1="0%" y1="0%" x2="100%" y2="70%">
+              <stop offset="0%" stop-color="#99c762"/>
+              <stop offset="55%" stop-color="#78c86b"/>
+              <stop offset="100%" stop-color="#5bae48"/>
+            </linearGradient>
+          </defs>
+          <path fill="url(#greenShapeGradient)" d="M95 18 H460 C565 18 625 86 625 168 H485 C574 176 625 244 625 334 C625 392 582 420 500 420 H104 C42 420 0 370 0 305 V130 C0 62 42 18 95 18 Z" />
+        </svg>
+      </div>
+
+      <div class="spark-bg" aria-hidden="true"></div>
+
+      <header class="title">
+        <div class="we">WE ARE</div>
+        <div class="mx">MEXICO</div>
+      </header>
+
+      <div class="federation">
+        <div class="federation-flag"><img src="https://flagcdn.com/w80/mx.png" alt="Bandera de México"></div>
+        <div>Federación<br>Mexicana de Fútbol<br>Asociación, A.C.</div>
+      </div>
+
+      <article class="slot gold mex0"><div class="slot-shape"><svg viewBox="0 0 176 237" preserveAspectRatio="none" aria-hidden="true"><path d="M22 10 H124 C154 10 166 27 166 52 C166 76 151 92 124 93 H176 V128 H0 V92 C0 72 14 58 39 58 H0 C0 28 14 10 22 10 Z"/><path d="M24 142 H132 C154 142 166 156 166 173 H126 C151 176 166 192 166 214 C166 229 156 237 135 237 H24 C10 237 0 224 0 207 V170 C0 154 10 142 24 142 Z"/></svg></div><div class="slot-code">MEX</div><div class="slot-number">0</div><div class="slot-name">&nbsp;</div></article>
+      <article class="slot mex1"><div class="slot-shape"><svg viewBox="0 0 176 237" preserveAspectRatio="none" aria-hidden="true"><path d="M22 10 H124 C154 10 166 27 166 52 C166 76 151 92 124 93 H176 V128 H0 V92 C0 72 14 58 39 58 H0 C0 28 14 10 22 10 Z"/><path d="M24 142 H132 C154 142 166 156 166 173 H126 C151 176 166 192 166 214 C166 229 156 237 135 237 H24 C10 237 0 224 0 207 V170 C0 154 10 142 24 142 Z"/></svg></div><div class="slot-code">MEX</div><div class="slot-number">1</div><div class="slot-name">Luis<br>Malagón</div></article>
+      <article class="slot mex2"><div class="slot-shape"><svg viewBox="0 0 176 237" preserveAspectRatio="none" aria-hidden="true"><path d="M22 10 H124 C154 10 166 27 166 52 C166 76 151 92 124 93 H176 V128 H0 V92 C0 72 14 58 39 58 H0 C0 28 14 10 22 10 Z"/><path d="M24 142 H132 C154 142 166 156 166 173 H126 C151 176 166 192 166 214 C166 229 156 237 135 237 H24 C10 237 0 224 0 207 V170 C0 154 10 142 24 142 Z"/></svg></div><div class="slot-code">MEX</div><div class="slot-number">2</div><div class="slot-name">Johan<br>Vásquez</div></article>
+      <article class="slot mex3"><div class="slot-shape"><svg viewBox="0 0 176 237" preserveAspectRatio="none" aria-hidden="true"><path d="M22 10 H124 C154 10 166 27 166 52 C166 76 151 92 124 93 H176 V128 H0 V92 C0 72 14 58 39 58 H0 C0 28 14 10 22 10 Z"/><path d="M24 142 H132 C154 142 166 156 166 173 H126 C151 176 166 192 166 214 C166 229 156 237 135 237 H24 C10 237 0 224 0 207 V170 C0 154 10 142 24 142 Z"/></svg></div><div class="slot-code">MEX</div><div class="slot-number">3</div><div class="slot-name">César<br>Montes</div></article>
+      <article class="slot mex4"><div class="slot-shape"><svg viewBox="0 0 176 237" preserveAspectRatio="none" aria-hidden="true"><path d="M22 10 H124 C154 10 166 27 166 52 C166 76 151 92 124 93 H176 V128 H0 V92 C0 72 14 58 39 58 H0 C0 28 14 10 22 10 Z"/><path d="M24 142 H132 C154 142 166 156 166 173 H126 C151 176 166 192 166 214 C166 229 156 237 135 237 H24 C10 237 0 224 0 207 V170 C0 154 10 142 24 142 Z"/></svg></div><div class="slot-code">MEX</div><div class="slot-number">4</div><div class="slot-name">Jesús<br>Gallardo</div></article>
+      <article class="slot mex5"><div class="slot-shape"><svg viewBox="0 0 176 237" preserveAspectRatio="none" aria-hidden="true"><path d="M22 10 H124 C154 10 166 27 166 52 C166 76 151 92 124 93 H176 V128 H0 V92 C0 72 14 58 39 58 H0 C0 28 14 10 22 10 Z"/><path d="M24 142 H132 C154 142 166 156 166 173 H126 C151 176 166 192 166 214 C166 229 156 237 135 237 H24 C10 237 0 224 0 207 V170 C0 154 10 142 24 142 Z"/></svg></div><div class="slot-code">MEX</div><div class="slot-number">5</div><div class="slot-name">Israel<br>Reyes</div></article>
+      <article class="slot mex6"><div class="slot-shape"><svg viewBox="0 0 176 237" preserveAspectRatio="none" aria-hidden="true"><path d="M22 10 H124 C154 10 166 27 166 52 C166 76 151 92 124 93 H176 V128 H0 V92 C0 72 14 58 39 58 H0 C0 28 14 10 22 10 Z"/><path d="M24 142 H132 C154 142 166 156 166 173 H126 C151 176 166 192 166 214 C166 229 156 237 135 237 H24 C10 237 0 224 0 207 V170 C0 154 10 142 24 142 Z"/></svg></div><div class="slot-code">MEX</div><div class="slot-number">6</div><div class="slot-name">Edson<br>Álvarez</div></article>
+      <article class="slot mex7"><div class="slot-shape"><svg viewBox="0 0 176 237" preserveAspectRatio="none" aria-hidden="true"><path d="M22 10 H124 C154 10 166 27 166 52 C166 76 151 92 124 93 H176 V128 H0 V92 C0 72 14 58 39 58 H0 C0 28 14 10 22 10 Z"/><path d="M24 142 H132 C154 142 166 156 166 173 H126 C151 176 166 192 166 214 C166 229 156 237 135 237 H24 C10 237 0 224 0 207 V170 C0 154 10 142 24 142 Z"/></svg></div><div class="slot-code">MEX</div><div class="slot-number">7</div><div class="slot-name">Marcel<br>Ruiz</div></article>
+      <article class="slot mex8"><div class="slot-shape"><svg viewBox="0 0 176 237" preserveAspectRatio="none" aria-hidden="true"><path d="M22 10 H124 C154 10 166 27 166 52 C166 76 151 92 124 93 H176 V128 H0 V92 C0 72 14 58 39 58 H0 C0 28 14 10 22 10 Z"/><path d="M24 142 H132 C154 142 166 156 166 173 H126 C151 176 166 192 166 214 C166 229 156 237 135 237 H24 C10 237 0 224 0 207 V170 C0 154 10 142 24 142 Z"/></svg></div><div class="slot-code">MEX</div><div class="slot-number">8</div><div class="slot-name">Hirving<br>Lozano</div></article>
+      <article class="slot mex9"><div class="slot-shape"><svg viewBox="0 0 176 237" preserveAspectRatio="none" aria-hidden="true"><path d="M22 10 H124 C154 10 166 27 166 52 C166 76 151 92 124 93 H176 V128 H0 V92 C0 72 14 58 39 58 H0 C0 28 14 10 22 10 Z"/><path d="M24 142 H132 C154 142 166 156 166 173 H126 C151 176 166 192 166 214 C166 229 156 237 135 237 H24 C10 237 0 224 0 207 V170 C0 154 10 142 24 142 Z"/></svg></div><div class="slot-code">MEX</div><div class="slot-number">9</div><div class="slot-name">Raúl<br>Jiménez</div></article>
+      <article class="slot mex10"><div class="slot-shape"><svg viewBox="0 0 176 237" preserveAspectRatio="none" aria-hidden="true"><path d="M22 10 H124 C154 10 166 27 166 52 C166 76 151 92 124 93 H176 V128 H0 V92 C0 72 14 58 39 58 H0 C0 28 14 10 22 10 Z"/><path d="M24 142 H132 C154 142 166 156 166 173 H126 C151 176 166 192 166 214 C166 229 156 237 135 237 H24 C10 237 0 224 0 207 V170 C0 154 10 142 24 142 Z"/></svg></div><div class="slot-code">MEX</div><div class="slot-number">10</div><div class="slot-name">Alexis<br>Vega</div></article>
+      <article class="slot mex11"><div class="slot-shape"><svg viewBox="0 0 176 237" preserveAspectRatio="none" aria-hidden="true"><path d="M22 10 H124 C154 10 166 27 166 52 C166 76 151 92 124 93 H176 V128 H0 V92 C0 72 14 58 39 58 H0 C0 28 14 10 22 10 Z"/><path d="M24 142 H132 C154 142 166 156 166 173 H126 C151 176 166 192 166 214 C166 229 156 237 135 237 H24 C10 237 0 224 0 207 V170 C0 154 10 142 24 142 Z"/></svg></div><div class="slot-code">MEX</div><div class="slot-number">11</div><div class="slot-name">Roberto<br>Alvarado</div></article>
+
+      <aside class="group-box">
+        <div class="group-title">GROUP A</div>
+        <div class="flags-grid">
+          <div class="country-row"><div class="country-code">MEX</div><img class="flag-img" src="https://flagcdn.com/w80/mx.png" alt="México"></div>
+          <div class="country-row"><div class="country-code">RSA</div><img class="flag-img" src="https://flagcdn.com/w80/za.png" alt="Sudáfrica"></div>
+          <div class="country-row"><div class="country-code">KOR</div><img class="flag-img" src="https://flagcdn.com/w80/kr.png" alt="Corea del Sur"></div>
+          <div class="country-row"><div class="country-code">CZE</div><img class="flag-img" src="https://flagcdn.com/w80/cz.png" alt="República Checa"></div>
+        </div>
+        <!-- <div class="repro">Reproducción Autorizada por el Instituto Nacional de Antropología e Historia.</div> -->
+      </aside>
+
+      <div class="fold"></div>
+      <div class="paper-texture"></div>
+    </section>
+  </main>
+</body>
+</html>

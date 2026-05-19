@@ -1,0 +1,437 @@
+/* =========================================
+   Swipe / Drag Navigation
+   ========================================= */
+
+/* Contenedor principal con perspectiva 3D */
+#app {
+  perspective: 1200px;
+  overflow: hidden;
+}
+
+.album-shell {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* ===== Overlay de dirección ===== */
+.swipe-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5vw;
+  transition: opacity 0.15s ease;
+}
+
+.swipe-overlay-left,
+.swipe-overlay-right,
+.swipe-overlay-up,
+.swipe-overlay-down {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transition: all 0.2s ease;
+  position: absolute;
+}
+
+.swipe-overlay-left { left: 5vw; top: 50%; transform: translateY(-50%) scale(0.8); }
+.swipe-overlay-right { right: 5vw; top: 50%; transform: translateY(-50%) scale(0.8); }
+.swipe-overlay-up { top: 5vh; left: 50%; transform: translateX(-50%) scale(0.8); }
+.swipe-overlay-down { bottom: 5vh; left: 50%; transform: translateX(-50%) scale(0.8); }
+
+.swipe-overlay-active-left .swipe-overlay-left {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+
+.swipe-overlay-active-right .swipe-overlay-right {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+
+.swipe-overlay-active-up .swipe-overlay-up {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+.swipe-overlay-active-down .swipe-overlay-down {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+.swipe-arrow {
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+  animation: swipe-arrow-pulse 1s ease-in-out infinite;
+}
+
+.swipe-label {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: clamp(0.8rem, 1.5vw, 1.2rem);
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes swipe-arrow-pulse {
+  0%, 100% { transform: translateX(0); opacity: 0.8; }
+  50% { transform: translateX(var(--swipe-dir, 8px)); opacity: 1; }
+}
+
+.swipe-overlay-left .swipe-arrow {
+  --swipe-dir: -8px;
+}
+
+.swipe-overlay-right .swipe-arrow {
+  --swipe-dir: 8px;
+}
+
+/* ===== Tutorial de bienvenida ===== */
+.swipe-tutorial {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: tutorial-fade-in 0.5s ease;
+}
+
+.swipe-tutorial-hide {
+  animation: tutorial-fade-out 0.5s ease forwards;
+}
+
+@keyframes tutorial-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes tutorial-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; pointer-events: none; }
+}
+
+.swipe-tutorial-content {
+  background: linear-gradient(145deg, #1a3a2f 0%, #0d241c 100%);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: clamp(24px, 4vw, 48px);
+  max-width: 520px;
+  width: 90%;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.swipe-tutorial-hands {
+  display: flex;
+  justify-content: center;
+  gap: clamp(24px, 5vw, 48px);
+  margin-bottom: 24px;
+}
+
+.swipe-hand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.swipe-hand svg {
+  width: clamp(48px, 8vw, 72px);
+  height: clamp(48px, 8vw, 72px);
+  color: #7dd87d;
+}
+
+.swipe-hand-left svg {
+  animation: swipe-hand-left 2s ease-in-out infinite;
+}
+
+.swipe-hand-right svg {
+  animation: swipe-hand-right 2s ease-in-out infinite;
+}
+
+.swipe-hand-up svg {
+  animation: swipe-hand-up 2s ease-in-out infinite;
+}
+
+.swipe-hand-down svg {
+  animation: swipe-hand-down 2s ease-in-out infinite;
+}
+
+.swipe-hand-horizontal svg {
+  animation: swipe-hand-horizontal 2s ease-in-out infinite;
+}
+
+@keyframes swipe-hand-left {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-20px); }
+  50% { transform: translateX(0); }
+  75% { transform: translateX(-10px); }
+}
+
+@keyframes swipe-hand-right {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(20px); }
+  50% { transform: translateX(0); }
+  75% { transform: translateX(10px); }
+}
+
+@keyframes swipe-hand-up {
+  0%, 100% { transform: translateY(0); }
+  25% { transform: translateY(-20px); }
+  50% { transform: translateY(0); }
+  75% { transform: translateY(-10px); }
+}
+
+@keyframes swipe-hand-down {
+  0%, 100% { transform: translateY(0); }
+  25% { transform: translateY(20px); }
+  50% { transform: translateY(0); }
+  75% { transform: translateY(10px); }
+}
+
+@keyframes swipe-hand-horizontal {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-15px); }
+  50% { transform: translateX(15px); }
+  75% { transform: translateX(0); }
+}
+
+.swipe-hand-text {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(0.7rem, 1.2vw, 0.9rem);
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.4;
+}
+
+.swipe-tutorial-text h2 {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  margin: 0 0 12px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.swipe-tutorial-text p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  margin: 0 0 8px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.swipe-tutorial-hint {
+  font-size: clamp(0.75rem, 1.2vw, 0.9rem) !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+  margin-top: 16px !important;
+}
+
+.swipe-tutorial-btn {
+  margin-top: 24px;
+  padding: 12px 36px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: clamp(1rem, 1.8vw, 1.3rem);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: linear-gradient(135deg, #e30613 0%, #b5121b 100%);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(227, 6, 19, 0.4);
+  transition: all 0.2s ease;
+}
+
+.swipe-tutorial-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(227, 6, 19, 0.5);
+}
+
+.swipe-tutorial-btn:active {
+  transform: translateY(0);
+}
+
+/* ===== Indicador de página (dots) ===== */
+.swipe-page-indicator {
+  position: fixed;
+  bottom: clamp(12px, 2vw, 20px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 90;
+  display: flex;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+}
+
+.swipe-page-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.swipe-page-dot.active {
+  background: #fff;
+  transform: scale(1.3);
+}
+
+/* ===== Cursor durante drag ===== */
+.album-shell {
+  cursor: grab;
+}
+
+.album-shell:active {
+  cursor: grabbing;
+}
+
+/* ===== Móvil: desactivar 3D y cursor grab (el JS gestiona todo) ===== */
+@media (max-width: 1100px) {
+  #app {
+    perspective: none;
+  }
+
+  .album-shell {
+    transform-style: flat;
+    cursor: default;
+  }
+
+  .album-shell:active {
+    cursor: default;
+  }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1100px) {
+  .swipe-tutorial-hands {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .swipe-hand {
+    flex-direction: row;
+    text-align: left;
+  }
+  
+  .swipe-overlay {
+    padding: 0 3vw;
+  }
+  
+  .swipe-arrow {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+  }
+  
+  .swipe-label {
+    font-size: clamp(0.6rem, 1.2vw, 0.9rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .swipe-tutorial-content {
+    padding: 24px 20px;
+    border-radius: 16px;
+  }
+  
+  .swipe-tutorial-hands {
+    gap: 12px;
+  }
+  
+  .swipe-hand svg {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .swipe-hand-text {
+    font-size: 0.75rem;
+  }
+  
+  .swipe-tutorial-text h2 {
+    font-size: 1.3rem;
+  }
+  
+  .swipe-tutorial-text p {
+    font-size: 0.85rem;
+  }
+  
+  .swipe-tutorial-btn {
+    padding: 10px 28px;
+    font-size: 1rem;
+  }
+  
+  .swipe-page-indicator {
+    bottom: 8px;
+    padding: 6px 12px;
+    gap: 6px;
+  }
+  
+  .swipe-page-dot {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+/* ===== Overlay "vuelve al modo vertical" (album pages en landscape móvil) ===== */
+@media (max-width: 1100px) {
+  .swipe-landscape-warning {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    background: rgba(7, 10, 20, 0.97);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    text-align: center;
+    padding: 32px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .swipe-landscape-warning.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .swipe-landscape-warning-icon {
+    font-size: 4rem;
+    display: block;
+    animation: swipe-rotate-back 1.6s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  @keyframes swipe-rotate-back {
+    0%, 100% { transform: rotate(-90deg); }
+    35%, 65%  { transform: rotate(0deg);  }
+  }
+
+  .swipe-landscape-warning-title {
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: 1.3rem;
+    color: #f1d66a;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .swipe-landscape-warning-sub {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.5;
+  }
+}

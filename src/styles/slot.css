@@ -1,0 +1,272 @@
+.slot {
+  position: absolute;
+  z-index: 22;
+  width: 10.82%;
+  aspect-ratio: 176 / 237;
+  background: var(--slot-green);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.25),
+    0 8px 18px rgba(0,0,0,.28),
+    0 2px 4px rgba(0,0,0,.18);
+  overflow: visible;
+  color: #006150;
+}
+
+/* El clip del contenido visual del slot (no afecta al botón que sobresale) */
+.slot-flip-front,
+.slot-flip-back,
+.slot-inner {
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.slot.gold {
+  background: var(--slot-gold);
+  box-shadow:
+    inset 0 0 0 2px rgba(255,215,0,.35),
+    0 8px 18px rgba(0,0,0,.28),
+    0 2px 4px rgba(0,0,0,.18);
+}
+
+.slot::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,.12) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(0deg, rgba(0,0,0,.05) 0 1px, transparent 1px 4px);
+  opacity: .28;
+  z-index: 1;
+}
+
+/* Contenedor interno con las dos tarjetas */
+.slot-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 8% 6% 7% 6%;
+  gap: 6%;
+}
+
+/* Cada tarjeta (top y bottom) */
+.slot-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slot-card-top {
+  flex: 1.35;
+}
+
+.slot-card-bottom {
+  flex: 1;
+}
+
+/* SVG de forma blanca */
+.slot-card-shape {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,.08));
+}
+
+/* Contenido sobre la tarjeta */
+.slot-card-content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 0 1px rgba(255,255,255,.32);
+}
+
+/* Tarjeta superior: codigo arriba, numero abajo */
+.slot-card-content-top {
+  padding-top: 4%;
+  padding-bottom: 6%;
+  justify-content: flex-start;
+}
+
+.slot-code {
+  font-size: clamp(.65rem, 1.4vw, 1.4rem);
+  line-height: 1;
+  margin-bottom: 2%;
+}
+
+.slot-number {
+  font-size: clamp(.85rem, 1.7vw, 1.7rem);
+  line-height: 1;
+}
+
+/* Tarjeta inferior: nombre centrado */
+.slot-card-content-bottom {
+  padding: 6% 12%;
+  justify-content: center;
+}
+
+.slot-name {
+  font-size: clamp(.42rem, 1.0vw, 1.0rem);
+  line-height: 1.15;
+}
+
+/* Imagen del cromo pegado en el slot */
+.slot-sticker {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* ── Flip del cromo ─────────────────────────────────── */
+.slot-flip-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  perspective: 600px;
+}
+
+.slot-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slot-flip-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.slot-flip-front,
+.slot-flip-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.slot-flip-back {
+  transform: rotateY(180deg);
+  background: rgba(0, 0, 0, 0.82);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4%;
+}
+
+.slot-flip-code {
+  color: rgba(255,255,255,0.5);
+  font-size: clamp(.5rem, 1.1vw, 1rem);
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.slot-flip-name {
+  color: #fff;
+  font-size: clamp(.7rem, 1.5vw, 1.4rem);
+  font-weight: 900;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 0 8%;
+}
+
+/* Botón-punto para voltear — sobresale de la esquina del slot */
+.slot-flip-btn {
+  position: absolute;
+  width: clamp(13px, 1.5vw, 19px);
+  height: clamp(13px, 1.5vw, 19px);
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid rgba(255,255,255,0.9);
+  cursor: pointer;
+  z-index: 10;
+  padding: 0;
+  touch-action: manipulation;
+  box-shadow:
+    0 0 0 0 rgba(255,255,255,0.7),
+    0 2px 6px rgba(0,0,0,.5);
+  animation: flip-btn-pulse 2.2s ease-in-out infinite;
+  transition: transform 0.15s ease;
+}
+
+@keyframes flip-btn-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.7), 0 2px 6px rgba(0,0,0,.5); }
+  50%       { box-shadow: 0 0 0 4px rgba(255,255,255,0), 0 2px 6px rgba(0,0,0,.5); }
+}
+
+.slot-flip-btn--bottom-left { bottom: -5%; left: -5%; }
+.slot-flip-btn--top-right   { top: -5%; right: -5%; bottom: auto; left: auto; }
+.slot-flip-btn--top-left    { top: -5%; left: -5%; bottom: auto; }
+
+.slot-flip-btn:hover {
+  transform: scale(1.25);
+  animation: none;
+  box-shadow: 0 0 8px rgba(255,255,255,0.9), 0 2px 6px rgba(0,0,0,.5);
+}
+
+.slot-flip-btn:active {
+  transform: scale(0.9);
+}
+
+/* Mobile: agrandar el área táctil del botón de flip */
+@media (max-width: 1100px) {
+  .slot-flip-btn {
+    width: 28px;
+    height: 28px;
+    border-width: 2px;
+  }
+  .slot-flip-btn--bottom-left { bottom: -10px; left: -10px; }
+  .slot-flip-btn--top-right   { top: -10px; right: -10px; }
+  .slot-flip-btn--top-left    { top: -10px; left: -10px; }
+}
+
+/* Fondo decorativo con forma de 2 detras de los slots izquierda */
+.slot-decor-left {
+    position: absolute;
+    left: 15%;
+    top: 58%;
+    width: 33%;
+    height: 42%;
+    z-index: 1;
+    pointer-events: none;
+    opacity: .55;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,.15));
+}
+
+/* Móvil: fuente Arial */
+@media (max-width: 1100px) {
+  .slot,
+  .slot-card-content {
+    font-family: Arial, Helvetica, sans-serif !important;
+  }
+  
+  .slot-name {
+    font-size: clamp(.5rem, 1.2vw, 1.1rem);
+  }
+  
+  .slot-code {
+    font-size: clamp(.7rem, 1.6vw, 1.5rem);
+  }
+  
+  .slot-number {
+    font-size: clamp(.9rem, 2vw, 1.8rem);
+  }
+}

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1647 955"
+     preserveAspectRatio="xMidYMid slice">
+
+  <style>
+    .bg-layer { stroke: none; }
+  </style>
+
+  <!-- Fondo izquierda -->
+  <rect class="bg-layer" x="0" y="0" width="823.5" height="955" fill="var(--bg-left-base)"/>
+
+  <!-- Fondo derecha -->
+  <rect class="bg-layer" x="823.5" y="0" width="823.5" height="955" fill="var(--bg-right-base)"/>
+
+  <!-- Curva roja superior (del SVG automático, path limpio) -->
+  <path class="bg-layer" fill="var(--bg-top-red)"
+        d="M 360 0 L 434 59 L 526 110 L 628 148 L 731 171 L 818 178 L 1588 178 L 1585 101 L 1567 0 Z" />
+
+  <!-- Curva blanca (agregada manualmente proporcional) -->
+  <path class="bg-layer" fill="var(--bg-white-swoosh)"
+        d="M -45 0 L -45 200 L 380 200 A 430 160 0 0 0 810 40 L 810 0 Z" />
+
+  <!-- Curva crema (agregada manualmente proporcional) -->
+  <path class="bg-layer" fill="var(--bg-cream-swoosh)"
+        d="M -30 150 L -30 310 L 420 310 A 450 75 0 0 0 870 235 L 870 150 Z" />
+
+  <!-- Curva verde grande (del SVG automático) -->
+  <path class="bg-layer" fill="var(--bg-green-swoosh)"
+        d="M 1588 180 L 786 181 L 626 212 L 489 270 L 317 397 L 195 555 L 117 744 L 97 855 L 95 954 L 234 954 L 242 765 L 279 709 L 345 675 L 235 673 L 239 635 L 286 564 L 361 533 L 669 533 L 742 564 L 785 625 L 790 704 L 761 762 L 688 810 L 791 810 L 793 954 L 872 954 L 857 896 L 859 725 L 885 664 L 931 623 L 994 604 L 1298 604 L 1359 623 L 1412 665 L 1485 562 L 1546 433 L 1579 302 Z" />
+
+  <!-- Forma inferior izquierda (del SVG automático) -->
+  <path class="bg-layer" fill="var(--bg-shape-left)"
+        d="M 236 954 L 316 954 L 352 942 L 448 855 L 483 831 L 519 816 L 544 811 L 663 811 L 691 806 L 720 794 L 742 779 L 772 744 L 786 712 L 791 673 L 368 673 L 334 679 L 310 689 L 287 704 L 267 724 L 253 745 L 241 774 L 236 802 Z" />
+
+  <!-- Forma inferior derecha (del SVG automático, fill-rule evenodd simplificado) -->
+  <path class="bg-layer" fill="var(--bg-pink-light)"
+        d="M 1590 180 L 1588 246 L 1579 314 L 1546 438 L 1523 494 L 1487 562 L 1409 670 L 1427 711 L 1431 748 L 1330 749 L 1327 753 L 1376 777 L 1412 818 L 1425 847 L 1431 875 L 1427 928 L 1589 928 L 1590 954 L 1646 954 L 1646 180 Z" />
+
+  <!-- Forma derecha verde (del SVG automático) -->
+  <path class="bg-layer" fill="var(--bg-right-green)"
+        d="M 870 693 L 859 735 L 859 903 L 873 954 L 1415 954 L 1428 915 L 1430 883 L 1424 849 L 1411 819 L 1397 799 L 1367 772 L 1337 757 L 1310 750 L 1311 747 L 1430 747 L 1424 706 L 1407 670 L 1378 638 L 1344 617 L 1303 606 L 982 607 L 946 617 L 915 635 L 889 661 Z" />
+
+  <!-- Bloque verde derecha arriba (del SVG automático) -->
+  <path class="bg-layer" fill="var(--bg-right-green-block)"
+        d="M 1569 0 L 1573 16 L 1573 20 L 1575 25 L 1578 45 L 1579 46 L 1582 70 L 1583 71 L 1583 77 L 1584 78 L 1585 93 L 1586 94 L 1587 112 L 1588 113 L 1588 126 L 1589 127 L 1589 141 L 1590 142 L 1590 178 L 1646 178 L 1646 0 Z" />
+
+  <!-- Bloque rosa derecha abajo (agregado manualmente proporcional) -->
+  <rect class="bg-layer" x="1555" y="178" width="92" height="777" fill="var(--bg-right-pink-block)"/>
+
+  <!-- Barra inferior (del SVG automático) -->
+  <path class="bg-layer" fill="var(--bg-bottom-bar)"
+        d="M 1417 952 L 1417 954 L 1588 954 L 1588 930 L 1426 930 L 1423 940 L 1421 943 L 1421 945 Z" />
+
+  <!-- Spark / estrella (simplificada) -->
+  <polygon class="bg-layer" fill="rgba(255,255,255,0.62)"
+           points="1605,880 1612,895 1628,902 1612,909 1605,924 1598,909 1582,902 1598,895" />
+
+</svg>

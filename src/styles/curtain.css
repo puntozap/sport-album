@@ -1,0 +1,227 @@
+/* =========================================
+   Country Curtain - Efecto telón entre países
+   ========================================= */
+
+.country-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* =========================================
+   Simulator Curtain - Cortina genérica
+   ========================================= */
+
+.simulator-curtain .curtain-bg {
+  background: radial-gradient(circle at 30% 25%, #F1D66A 0%, #D4AF37 35%, #0b1020 100%);
+}
+
+.curtain-sim-badge {
+  display: grid;
+  place-items: center;
+  width: clamp(74px, 16vw, 108px);
+  height: clamp(74px, 16vw, 108px);
+  border-radius: 50%;
+  border: 3px solid rgba(241,214,106,0.55);
+  background: rgba(0,0,0,0.22);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.28);
+}
+
+.curtain-sim-icon {
+  font-size: clamp(1.6rem, 5vw, 2.6rem);
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,0.35));
+  animation: curtain-trophy-bob 1.2s ease-in-out infinite;
+}
+
+.curtain-sim-trophy {
+  font-size: clamp(2.2rem, 7vw, 3.8rem);
+  opacity: 0.9;
+  filter: drop-shadow(0 14px 28px rgba(0,0,0,0.45));
+  animation: curtain-trophy-swing 1.4s ease-in-out infinite;
+}
+
+@keyframes curtain-trophy-bob {
+  0%, 100% { transform: translateY(0) rotate(-6deg); }
+  50% { transform: translateY(-6px) rotate(6deg); }
+}
+
+@keyframes curtain-trophy-swing {
+  0%, 100% { transform: translateX(0) rotate(-10deg) scale(1); }
+  50% { transform: translateX(10px) rotate(10deg) scale(1.03); }
+}
+
+/* Fondo que se expande desde el centro */
+.curtain-bg {
+  position: absolute;
+  inset: 0;
+  transform: scale(0);
+  border-radius: 50%;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.country-curtain.curtain-in .curtain-bg {
+  transform: scale(2.5);
+  border-radius: 0;
+}
+
+.country-curtain.curtain-out .curtain-bg {
+  transform: scale(2.5) translateY(-100%);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Contenido */
+.curtain-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  opacity: 0;
+  transform: translateY(30px) scale(0.9);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.country-curtain.curtain-in .curtain-content {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: 0.2s;
+}
+
+.country-curtain.curtain-out .curtain-content {
+  opacity: 0;
+  transform: translateY(-20px) scale(0.95);
+  transition: all 0.3s ease;
+}
+
+/* Badge del grupo */
+.curtain-group-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: clamp(70px, 15vw, 100px);
+  height: clamp(70px, 15vw, 100px);
+  border: 3px solid;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.2);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  margin-bottom: 8px;
+}
+
+.curtain-group-label {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(0.5rem, 1.2vw, 0.75rem);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.curtain-group-letter {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  line-height: 1;
+}
+
+/* Bandera */
+.curtain-flag {
+  width: clamp(120px, 25vw, 200px);
+  height: clamp(80px, 16vw, 133px);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 
+    0 20px 60px rgba(0,0,0,0.3),
+    0 0 0 4px rgba(255,255,255,0.1);
+  transform: rotate(-5deg);
+  animation: curtain-flag-wave 2s ease-in-out infinite;
+}
+
+.curtain-flag img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes curtain-flag-wave {
+  0%, 100% { transform: rotate(-5deg) translateY(0); }
+  50% { transform: rotate(-3deg) translateY(-5px); }
+}
+
+/* Texto */
+.curtain-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+
+.curtain-we {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: clamp(1.2rem, 4vw, 2rem);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.curtain-name {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: clamp(2rem, 8vw, 4.5rem);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+/* Código FIFA */
+.curtain-code {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: clamp(0.9rem, 2.5vw, 1.4rem);
+  letter-spacing: 0.3em;
+  opacity: 0.7;
+  margin-top: 8px;
+}
+
+/* Partículas decorativas */
+.curtain-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.curtain-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 50%;
+  animation: curtain-particle-float 3s ease-in-out infinite;
+}
+
+@keyframes curtain-particle-float {
+  0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-20vh) rotate(720deg); opacity: 0; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .curtain-flag {
+    width: 100px;
+    height: 67px;
+  }
+  
+  .curtain-content {
+    gap: 16px;
+  }
+}

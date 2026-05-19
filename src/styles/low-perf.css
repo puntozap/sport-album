@@ -1,0 +1,60 @@
+/* ══════════════════════════════════════════════
+   Modo bajo rendimiento — clase añadida por JS
+   al <html> cuando FPS < 30 durante la carga
+   ══════════════════════════════════════════════ */
+
+/* ── Desactivar backdrop-filter ── */
+.low-perf .fixture-backdrop,
+.low-perf .bp-edit-backdrop,
+.low-perf .fa-modal-overlay,
+.low-perf .bp-confirm-overlay {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background: rgba(0, 0, 0, 0.82) !important;
+}
+
+/* ── Botones flotantes: sin blur de fondo ── */
+.low-perf .fa-btn {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* ── Detener animaciones de pulso ── */
+.low-perf .fa-btn-lang,
+.low-perf .fa-btn-info {
+  animation: none !important;
+}
+
+/* ── Pantalla de bienvenida: sin drop-shadow en trofeo ── */
+.low-perf .lw-step-trophy {
+  filter: none !important;
+}
+
+/* ── Estrellas de la bienvenida: desactivar twinkle ── */
+.low-perf .lw-star {
+  animation: none !important;
+  opacity: 0.4;
+}
+
+/* ── Curtain/telón: transición más rápida ── */
+.low-perf .country-curtain {
+  transition-duration: 0.15s !important;
+}
+
+/* ── Modales: sin transform animado, aparición directa ── */
+.low-perf .fa-modal-card,
+.low-perf .bp-edit-card,
+.low-perf .bp-confirm-box {
+  transition: none !important;
+  transform: none !important;
+}
+
+/* ── Cromos: sin sombras complejas ── */
+.low-perf .slot {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3) !important;
+}
+
+/* ── Botones de simulación: sin hover animation ── */
+.low-perf .fa-btn:hover {
+  animation: none !important;
+}
