@@ -7,7 +7,10 @@ export function GroupBox({ group, onFixtureClick, onSimulatorClick }) {
   const flagsHtml = group.countries.map(c => `
     <div class="flag-card">
       <span class="flag-card-code">${c.code}</span>
-      <img class="flag-card-img" src="https://flagcdn.com/w80/${c.flag}.png" alt="${c.name}">
+      ${c.flag
+        ? `<img class="flag-card-img" src="https://flagcdn.com/w80/${c.flag}.png" alt="${c.name}">`
+        : `<div class="flag-card-text">${c.name}</div>`
+      }
     </div>
   `).join('');
 
@@ -24,13 +27,12 @@ export function GroupBox({ group, onFixtureClick, onSimulatorClick }) {
     <div class="group-box-inner">
       <div class="group-header-row">
         <div class="group-title">${groupLabel}</div>
-        <button class="group-fixture-btn" title="${t('matches_of', { team: '' }).trim()}">
-          ⚽
-        </button>
-        <button class="group-simulator-btn" title="${t('simulator')}">
-          <span>🧮</span>
-          <span>${t('simulator').toUpperCase()}</span>
-        </button>
+        ${onFixtureClick ? `<button class="group-fixture-btn" title="${t('matches_of', { team: '' }).trim()}">📅</button>` : ''}
+        ${onSimulatorClick ? `
+          <button class="group-simulator-btn" title="${t('simulator')}">
+            <span>🧮</span>
+            <span>${t('simulator').toUpperCase()}</span>
+          </button>` : ''}
       </div>
       <div class="flags-grid">
         ${flagsHtml}
@@ -40,23 +42,18 @@ export function GroupBox({ group, onFixtureClick, onSimulatorClick }) {
 
   // Botón de partidos (modal)
   const fixtureBtn = el.querySelector('.group-fixture-btn');
-  if (onFixtureClick) {
+  if (fixtureBtn && onFixtureClick) {
     fixtureBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       onFixtureClick();
     });
   }
 
-  // Botón simulador (cortina/panel)
   const simulatorBtn = el.querySelector('.group-simulator-btn');
-  if (onSimulatorClick) {
+  if (simulatorBtn && onSimulatorClick) {
     simulatorBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       onSimulatorClick();
-    });
-  } else {
-    simulatorBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
     });
   }
 

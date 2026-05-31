@@ -14,7 +14,7 @@ import os
 from pathlib import Path
 
 # ── Configuración FTP ─────────────────────────────────────────────
-FTP_HOST       = "albumfifa2026.chanzia.com"   # o la IP del servidor
+FTP_HOST       = "sportalbum.chanzia.com"   # o la IP del servidor
 FTP_USER       = ""                             # tu usuario FTP
 FTP_PASS       = ""                             # tu contraseña FTP
 FTP_REMOTE_DIR = "/public_html"                 # carpeta raíz en el servidor

@@ -7,7 +7,23 @@
       "Bash(npx vite *)",
       "Bash(dir \"c:\\\\laragon\\\\www\\\\album-panini\\\\cromos_extraidos\" /b)",
       "Bash(dir c:\\\\laragon\\\\www\\\\album-panini /b)",
-      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\laragon\\\\www\\\\album-panini\\\\public\\\\assets\\\\client\")"
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\laragon\\\\www\\\\album-panini\\\\public\\\\assets\\\\client\")",
+      "Bash(dir \"c:\\\\laragon\\\\www\\\\album-panini\\\\public\\\\empresas\")",
+      "PowerShell(head -20)",
+      "PowerShell(Get-ChildItem \"c:\\\\laragon\\\\www\\\\album-panini\\\\public\\\\empresas\\\\bridge.sc\\\\cromos\" -Recurse -File | Select-Object -First 20 | ForEach-Object { $_.FullName })",
+      "PowerShell(Get-ChildItem \"c:\\\\laragon\\\\www\\\\album-panini\\\\public\\\\empresas\\\\bridge.sc\\\\cromos\\\\TEAA\" -File | ForEach-Object { $_.Name } | Sort-Object)",
+      "PowerShell(Get-ChildItem \"c:\\\\laragon\\\\www\\\\album-panini\\\\public\\\\empresas\\\\bridge.sc\\\\cromos\\\\TEAB\" -File | ForEach-Object { $_.Name } | Sort-Object)",
+      "Bash(node -e ' *)",
+      "Read(//tmp/**)",
+      "Bash(npm create *)",
+      "Bash(rm c:/laragon/www/cromozone/src/counter.js)",
+      "Bash(rm c:/laragon/www/cromozone/public/vite.svg)",
+      "Bash(Get-ChildItem -Path \"c:\\\\laragon\\\\www\\\\album-panini\\\\src\" -Recurse -File)",
+      "Bash(Select-Object FullName)",
+      "Bash(xargs grep -l \"TradeRoom\\\\|trade.*Room\")"
+    ],
+    "additionalDirectories": [
+      "c:\\laragon\\www\\cromozone"
     ]
   }
 }

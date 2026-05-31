@@ -1,0 +1,24 @@
+{
+    "3a62d474f9fd41be92b0262a995747b0": {
+        "id": "3a62d474f9fd41be92b0262a995747b0",
+        "stickers": [
+            {
+                "countryId": "mexico",
+                "slotIndex": 1
+            }
+        ],
+        "status": "accepted",
+        "createdAt": "2026-05-29T17:47:22+00:00"
+    },
+    "4a070df8557c81279886baa42c35db96": {
+        "id": "4a070df8557c81279886baa42c35db96",
+        "stickers": [
+            {
+                "countryId": "portugal",
+                "slotIndex": 6
+            }
+        ],
+        "status": "pending",
+        "createdAt": "2026-05-29T17:52:42+00:00"
+    }
+}

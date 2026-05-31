@@ -3,93 +3,93 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
-    <loc>https://albumfifa2026.chanzia.com/</loc>
+    <loc>https://sportalbum.chanzia.com/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://albumfifa2026.chanzia.com/simulation</loc>
+    <loc>https://sportalbum.chanzia.com/simulation</loc>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://albumfifa2026.chanzia.com/trade</loc>
+    <loc>https://sportalbum.chanzia.com/trade</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- GROUP A -->
-  <url><loc>https://albumfifa2026.chanzia.com/mexico</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/southafrica</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/korearepublic</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/czechia</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/mexico</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/southafrica</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/korearepublic</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/czechia</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
 
   <!-- GROUP B -->
-  <url><loc>https://albumfifa2026.chanzia.com/canada</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/bosniaandherzegovina</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/qatar</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/switzerland</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/canada</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/bosniaandherzegovina</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/qatar</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/switzerland</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
 
   <!-- GROUP C -->
-  <url><loc>https://albumfifa2026.chanzia.com/brazil</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/morocco</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/haiti</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/scotland</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/brazil</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/morocco</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/haiti</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/scotland</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
 
   <!-- GROUP D -->
-  <url><loc>https://albumfifa2026.chanzia.com/unitedstates</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/paraguay</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/australia</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/turkiye</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/unitedstates</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/paraguay</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/australia</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/turkiye</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
 
   <!-- GROUP E -->
-  <url><loc>https://albumfifa2026.chanzia.com/germany</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/curacao</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/cotedivoire</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/ecuador</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/germany</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/curacao</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/cotedivoire</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/ecuador</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
 
   <!-- GROUP F -->
-  <url><loc>https://albumfifa2026.chanzia.com/netherlands</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/japan</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/sweden</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/tunisia</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/netherlands</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/japan</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/sweden</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/tunisia</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
 
   <!-- GROUP G -->
-  <url><loc>https://albumfifa2026.chanzia.com/belgium</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/egypt</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/iran</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/newzealand</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/belgium</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/egypt</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/iran</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/newzealand</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
 
   <!-- GROUP H -->
-  <url><loc>https://albumfifa2026.chanzia.com/spain</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/capeverde</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/saudiarabia</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/uruguay</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/spain</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/capeverde</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/saudiarabia</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/uruguay</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
 
   <!-- GROUP I -->
-  <url><loc>https://albumfifa2026.chanzia.com/france</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/senegal</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/iraq</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/norway</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/france</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/senegal</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/iraq</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/norway</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
 
   <!-- GROUP J -->
-  <url><loc>https://albumfifa2026.chanzia.com/argentina</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/algeria</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/austria</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/jordan</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/argentina</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/algeria</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/austria</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/jordan</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
 
   <!-- GROUP K -->
-  <url><loc>https://albumfifa2026.chanzia.com/portugal</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/drcongo</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/uzbekistan</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/colombia</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/portugal</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/drcongo</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/uzbekistan</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/colombia</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
 
   <!-- GROUP L -->
-  <url><loc>https://albumfifa2026.chanzia.com/england</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/croatia</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/ghana</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://albumfifa2026.chanzia.com/panama</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/england</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/croatia</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/ghana</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sportalbum.chanzia.com/panama</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
 
 </urlset>

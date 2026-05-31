@@ -1,0 +1,122 @@
+{
+  "albumId": "demo",
+  "name": "Álbum Demo Empresa 2025",
+  "stickerCount": 15,
+  "groups": [
+    {
+      "id": "ventas",
+      "name": "Ventas",
+      "letter": "A",
+      "colors": {
+        "primary":   "#1a56db",
+        "secondary": "#ffffff",
+        "accent":    "#f59e0b",
+        "sticker":   "#e0e7ff",
+        "groupBox":  "#1e3a8a"
+      },
+      "entities": [
+        {
+          "id": "ventas-norte",
+          "name": "Zona Norte",
+          "code": "VNO",
+          "colors": {
+            "primary":   "#1a56db",
+            "secondary": "#ffffff",
+            "accent":    "#f59e0b",
+            "sticker":   "#e0e7ff",
+            "groupBox":  "#1e3a8a"
+          },
+          "stickers": [
+            { "slot": 0,  "name": "Zona Norte",       "type": "holograma" },
+            { "slot": 1,  "name": "Juan Pérez" },
+            { "slot": 2,  "name": "María García" },
+            { "slot": 3,  "name": "Carlos López" },
+            { "slot": 4,  "name": "Ana Martínez" },
+            { "slot": 5,  "name": "Luis Rodríguez" },
+            { "slot": 6,  "name": "Sofia Torres" },
+            { "slot": 7,  "name": "Roberto Sánchez" },
+            { "slot": 8,  "name": "Elena Díaz" },
+            { "slot": 9,  "name": "Miguel Hernández" },
+            { "slot": 10, "name": "Laura Jiménez" },
+            { "slot": 11, "name": "David González" },
+            { "slot": 12, "name": "Patricia Morales" },
+            { "slot": 13, "name": "Andrés Fuentes" },
+            { "slot": 14, "name": "Gloria Campos" }
+          ]
+        },
+        {
+          "id": "ventas-sur",
+          "name": "Zona Sur",
+          "code": "VSU",
+          "colors": {
+            "primary":   "#0e7490",
+            "secondary": "#ffffff",
+            "accent":    "#fbbf24",
+            "sticker":   "#cffafe",
+            "groupBox":  "#164e63"
+          },
+          "stickers": [
+            { "slot": 0,  "name": "Zona Sur",         "type": "holograma" },
+            { "slot": 1,  "name": "Fernando Ruiz" },
+            { "slot": 2,  "name": "Carmen Vargas" },
+            { "slot": 3,  "name": "Andrés Castro" },
+            { "slot": 4,  "name": "Natalia Romero" },
+            { "slot": 5,  "name": "Pablo Ortega" },
+            { "slot": 6,  "name": "Valeria Reyes" },
+            { "slot": 7,  "name": "Héctor Mendoza" },
+            { "slot": 8,  "name": "Isabela Cruz" },
+            { "slot": 9,  "name": "Ricardo Silva" },
+            { "slot": 10, "name": "Claudia Flores" },
+            { "slot": 11, "name": "Alejandro Vega" },
+            { "slot": 12, "name": "Daniela Ríos" },
+            { "slot": 13, "name": "Felipe Montoya" },
+            { "slot": 14, "name": "Sara Ibáñez" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "operaciones",
+      "name": "Operaciones",
+      "letter": "B",
+      "colors": {
+        "primary":   "#7c3aed",
+        "secondary": "#ffffff",
+        "accent":    "#fbbf24",
+        "sticker":   "#ede9fe",
+        "groupBox":  "#4c1d95"
+      },
+      "entities": [
+        {
+          "id": "logistica",
+          "name": "Logística",
+          "code": "LOG",
+          "colors": {
+            "primary":   "#7c3aed",
+            "secondary": "#ffffff",
+            "accent":    "#fbbf24",
+            "sticker":   "#ede9fe",
+            "groupBox":  "#4c1d95"
+          },
+          "stickers": [
+            { "slot": 0,  "name": "Logística",        "type": "holograma" },
+            { "slot": 1,  "name": "Marco Navarro" },
+            { "slot": 2,  "name": "Beatriz Campos" },
+            { "slot": 3,  "name": "Diego Serrano" },
+            { "slot": 4,  "name": "Alicia Peña" },
+            { "slot": 5,  "name": "Oscar Medina" },
+            { "slot": 6,  "name": "Miriam Aguilar" },
+            { "slot": 7,  "name": "Rubén Guerrero" },
+            { "slot": 8,  "name": "Verónica Núñez" },
+            { "slot": 9,  "name": "Ernesto Ramos" },
+            { "slot": 10, "name": "Silvia Mora" },
+            { "slot": 11, "name": "Jaime Delgado" },
+            { "slot": 12, "name": "Rocío Ibáñez" },
+            { "slot": 13, "name": "Tomás Guerrero" },
+            { "slot": 14, "name": "Natalia Peña" }
+          ]
+        }
+      ]
+    }
+  ]
+}

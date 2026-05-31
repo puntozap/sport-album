@@ -6,7 +6,7 @@ Ejecuta: python scripts/test_players_api.py
 import requests
 import json
 
-BASE_URL     = "https://albumfifa2026.chanzia.com/api/manage-players.php"
+BASE_URL     = "https://sportalbum.chanzia.com/api/manage-players.php"
 UPLOAD_TOKEN = "xK9#mP2$qR7nL4vT8wY1"
 HEADERS      = {"X-Upload-Token": UPLOAD_TOKEN}
 
@@ -50,7 +50,7 @@ except Exception as e:
 # 4. Leer players-override.json directamente
 print("\n[4] GET /api/players-override.json (lo que ve el frontend) ...")
 try:
-    r = requests.get("https://albumfifa2026.chanzia.com/api/players-override.json", timeout=10)
+    r = requests.get("https://sportalbum.chanzia.com/api/players-override.json", timeout=10)
     print(f"    HTTP {r.status_code}")
     print(f"    Contenido: {r.text[:300]}")
 except Exception as e:

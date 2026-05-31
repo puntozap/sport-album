@@ -15,7 +15,7 @@ import json
 import requests
 
 # ── Configuración ──────────────────────────────────────────────────
-BASE_URL     = "https://albumfifa2026.chanzia.com/api/manage-cromo"
+BASE_URL     = "https://sportalbum.chanzia.com/api/manage-cromo"
 UPLOAD_TOKEN = "xK9#mP2$qR7nL4vT8wY1"
 # ──────────────────────────────────────────────────────────────────
 

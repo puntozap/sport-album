@@ -1,5 +1,6 @@
 import '../styles/sticker-tray.css';
 import { countries } from '../data/countries.js';
+import { isEmpresaMode, getEmpresaEntities } from '../data/albumContext.js';
 import { collectionStore } from '../data/collectionStore.js';
 import { router, getCompanySlug } from '../router.js';
 import { Slot } from './Slot.js';
@@ -16,8 +17,13 @@ window.addEventListener('routechange', () => { armedStickerKey = null; setArmedC
 
 const stickerReveal = initStickerReveal();
 
-const countryMap = {};
-countries.forEach(c => { countryMap[c.id] = c; });
+// Construido lazy para respetar el modo activo al momento de usar la bandeja
+function buildCountryMap() {
+  const map = {};
+  const entities = isEmpresaMode() ? getEmpresaEntities() : countries;
+  entities.forEach(c => { map[c.id] = c; });
+  return map;
+}
 
 // ── API pública ─────────────────────────────────────────────────────────────
 
@@ -66,6 +72,7 @@ function renderTray(pending) {
   `;
   const row = trayEl.querySelector('.st-tray-row');
 
+  const countryMap = buildCountryMap();
   pending.forEach(({ countryId, slotIndex }) => {
     const country = countryMap[countryId];
     if (!country) return;
@@ -81,9 +88,13 @@ function renderTray(pending) {
   maybeShowTrayTutorial();
   requestAnimationFrame(() => trayEl.classList.add('st-tray-visible'));
 
-  // Estado colapsado (principalmente móvil)
-  const savedCollapsed = localStorage.getItem(TRAY_COLLAPSED_KEY) === '1';
-  if (savedCollapsed) setTrayCollapsed(true);
+  // En móvil: colapsado por defecto si no hay preferencia guardada
+  const hasSaved = localStorage.getItem(TRAY_COLLAPSED_KEY) !== null;
+  const isMobileScreen = window.innerWidth < 900;
+  const shouldCollapse = hasSaved
+    ? localStorage.getItem(TRAY_COLLAPSED_KEY) === '1'
+    : isMobileScreen;
+  if (shouldCollapse) setTrayCollapsed(true);
 
   const toggleBtn = trayEl.querySelector('.st-tray-toggle');
   const label = trayEl.querySelector('.st-tray-label');
@@ -103,13 +114,29 @@ function buildCard({ countryId, slotIndex, slot, country }) {
   card.dataset.slotIndex = slotIndex;
   card.title = `${country.name} · ${slot.name.replace(/\n/, ' ')}`;
 
+  const flagHtml = country.federation?.flag
+    ? `<img class="st-card-flag" src="https://flagcdn.com/w40/${country.federation?.flag}.png" alt="" draggable="false">`
+    : '';
   card.innerHTML = `
     <div class="st-card-img-wrap">
       <img class="st-card-img" src="${slot.stickerUrl}" alt="${slot.name}" draggable="false">
-      <img class="st-card-flag" src="https://flagcdn.com/w40/${country.federation.flag}.png" alt="" draggable="false">
+      ${flagHtml}
     </div>
     <div class="st-card-label">${country.code} <span>${slotIndex}</span></div>
   `;
+
+  const IMG_EXTS = ['jpg', 'jpeg', 'png', 'webp'];
+  const cardImg = card.querySelector('.st-card-img');
+  cardImg.onerror = () => {
+    const src = cardImg.getAttribute('src') || '';
+    const ext = src.split('.').pop().split('?')[0].toLowerCase();
+    const nextIdx = IMG_EXTS.indexOf(ext) + 1;
+    if (nextIdx > 0 && nextIdx < IMG_EXTS.length) {
+      cardImg.src = src.replace(/\.[^.?]+(\?.*)?$/, '.' + IMG_EXTS[nextIdx]);
+    } else {
+      cardImg.removeAttribute('src');
+    }
+  };
 
   attachTapInteraction(card, { countryId, slotIndex, slot, country });
   return card;
@@ -428,7 +455,7 @@ function placeStickerInSlot(slotEl, sticker) {
     btnCorner: slotData.btnCorner,
     stickerUrl: slotData.stickerUrl,
     countryName: country.name,
-    flag: country.federation.flag,
+    flag: country.federation?.flag || null,
     onStickerClick: (data) => stickerReveal.show(data),
   });
 

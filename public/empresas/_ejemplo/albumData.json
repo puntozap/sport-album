@@ -1,0 +1,50 @@
+{
+  "albumId": "mi-empresa",
+  "name": "Álbum Mi Empresa 2025",
+  "stickerCount": 15,
+  "groups": [
+    {
+      "id": "grupo-a",
+      "name": "Nombre del Grupo A",
+      "letter": "A",
+      "colors": {
+        "primary":   "#1a56db",
+        "secondary": "#ffffff",
+        "accent":    "#f59e0b",
+        "sticker":   "#e0e7ff",
+        "groupBox":  "#1e3a8a"
+      },
+      "entities": [
+        {
+          "id": "entidad-1",
+          "name": "Nombre Entidad 1",
+          "code": "ENT",
+          "colors": {
+            "primary":   "#1a56db",
+            "secondary": "#ffffff",
+            "accent":    "#f59e0b",
+            "sticker":   "#e0e7ff",
+            "groupBox":  "#1e3a8a"
+          },
+          "stickers": [
+            { "slot": 0,  "name": "Nombre Entidad 1", "type": "holograma" },
+            { "slot": 1,  "name": "Persona 1" },
+            { "slot": 2,  "name": "Persona 2" },
+            { "slot": 3,  "name": "Persona 3" },
+            { "slot": 4,  "name": "Persona 4" },
+            { "slot": 5,  "name": "Persona 5" },
+            { "slot": 6,  "name": "Persona 6" },
+            { "slot": 7,  "name": "Persona 7" },
+            { "slot": 8,  "name": "Persona 8" },
+            { "slot": 9,  "name": "Persona 9" },
+            { "slot": 10, "name": "Persona 10" },
+            { "slot": 11, "name": "Persona 11" },
+            { "slot": 12, "name": "Persona 12" },
+            { "slot": 13, "name": "Persona 13" },
+            { "slot": 14, "name": "Persona 14" }
+          ]
+        }
+      ]
+    }
+  ]
+}

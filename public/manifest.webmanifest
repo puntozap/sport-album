@@ -1,7 +1,7 @@
 {
-  "name": "Álbum Mundial 2026",
-  "short_name": "Álbum 2026",
-  "description": "Álbum interactivo del Mundial 2026 — cromos, grupos y simulador de eliminatorias",
+  "name": "Álbum de Figuritas 2026",
+  "short_name": "Figuritas 2026",
+  "description": "Álbum virtual de figuritas 2026. Colecciona cromos, abre sobres, pega figuritas e intercambia repetidos.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -9,6 +9,13 @@
   "background_color": "#080c18",
   "theme_color": "#d4af37",
   "lang": "es",
+  "related_applications": [
+    {
+      "platform": "webapp",
+      "url": "https://sportalbum.chanzia.com/manifest.webmanifest"
+    }
+  ],
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "/assets/icons/icon-192.png",

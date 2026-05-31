@@ -26,7 +26,8 @@ const dict = {
 
     // Country curtain
     curtain_group_label: 'GROUP',
-    curtain_we_are: 'WE ARE',
+    curtain_we_are: "Because it's'",
+    curtain_we_are_empresa: 'EQUIPO',
 
     // Simulator curtain
     simulator: 'SIMULATOR',
@@ -86,15 +87,15 @@ const dict = {
     // Floating actions / Credits
     change_language: 'Language',
     credits_btn: 'Info',
-    credits_title: 'FIFA WORLD CUP 2026',
+    credits_title: 'ÁLBUM DE FIGURITAS',
     credits_subtitle: 'PANINI ALBUM',
     credits_made: 'Digital experience created for fans.',
     credits_business_title: '🏢 For your business',
     credits_business_text: 'Want a custom album like this for your clients? Share it, fill in the stickers, simulate the tournament.',
     credits_contact: '💬 Contact on WhatsApp',
-    credits_contact_msg: "Hello! I just watched your YouTube video about the FIFA World Cup 2026 Panini Album and it blew my mind! I would love to know more about getting a custom version for my business or event. Let's talk!",
+    credits_contact_msg: "Hello! I just watched your YouTube video about the 2026 sticker album and it blew my mind! I would love to know more about getting a custom version for my business or event. Let's talk!",
     credits_share_title: '📲 Share this album',
-    credits_share_text: 'Check out this FIFA 2026 album!',
+    credits_share_text: 'Check out this 2026 sticker album!',
     credits_close: 'Close',
     language_reset_confirm: 'This will reload the page to change the language.',
 
@@ -112,10 +113,11 @@ const dict = {
     swipe_help_desktop:
       'Swipe left/right to change country.'
     ,
-    unofficial_title: 'THE UNOFFICIAL FIFA ALBUM',
-    unofficial_sub: 'PUNTOZAP · LINKS',
+    unofficial_title: 'STICKER ALBUM',
+    unofficial_sub: 'NON-PROFIT · FAN PROJECT',
     rotate_title: 'Rotate your device',
     rotate_sub: 'This section looks best in landscape mode',
+    rotate_btn: '🔄 Rotate screen',
     rotate_back_title: 'Rotate back to portrait',
     rotate_back_sub: 'Tilt your device upright to continue browsing'
   },
@@ -142,7 +144,8 @@ const dict = {
 
     // Country curtain
     curtain_group_label: 'GRUPO',
-    curtain_we_are: 'SOMOS',
+    curtain_we_are: 'Porque esto es',
+    curtain_we_are_empresa: 'EQUIPO',
 
     // Simulator curtain
     simulator: 'SIMULADOR',
@@ -202,7 +205,7 @@ const dict = {
     // Floating actions / Credits
     change_language: 'Idioma',
     credits_btn: 'Info',
-    credits_title: 'FIFA WORLD CUP 2026',
+    credits_title: 'ÁLBUM DE FIGURITAS',
     credits_subtitle: 'ÁLBUM PANINI',
     credits_made: 'Experiencia digital creada para los fans.',
     credits_business_title: '🏢 Para tu negocio',
@@ -210,7 +213,7 @@ const dict = {
     credits_contact: '💬 Contáctanos por WhatsApp',
     credits_contact_msg: "Hola! Acabo de ver tu video de YouTube sobre el Album Panini del Mundial 2026 y quede impresionado/a. Me interesa saber como tener algo asi para mi negocio o evento. Cuentame mas!",
     credits_share_title: '📲 Comparte este álbum',
-    credits_share_text: '¡Mira este álbum FIFA 2026!',
+    credits_share_text: '¡Mira este álbum de figuritas 2026!',
     credits_close: 'Cerrar',
     language_reset_confirm: 'Se recargará la página para cambiar el idioma.',
 
@@ -228,10 +231,11 @@ const dict = {
     swipe_help_desktop:
       'Desliza a los lados para cambiar de país'
     ,
-    unofficial_title: 'EL ÁLBUM NO OFICIAL FIFA',
-    unofficial_sub: 'PUNTOZAP · ENLACES',
+    unofficial_title: 'ÁLBUM DE FIGURITAS',
+    unofficial_sub: 'SIN ÁNIMO DE LUCRO · PROYECTO FAN',
     rotate_title: 'Gira tu dispositivo',
     rotate_sub: 'Esta sección se ve mejor en horizontal',
+    rotate_btn: '🔄 Girar pantalla',
     rotate_back_title: 'Vuelve al modo vertical',
     rotate_back_sub: 'Gira tu dispositivo para seguir disfrutando del álbum'
   }

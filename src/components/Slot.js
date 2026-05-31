@@ -28,7 +28,15 @@ export function Slot({ code, countryId, number, name, type, pos, btnCorner, stic
     stickerImg.className = 'slot-sticker';
     stickerImg.alt = `${code} ${number}`;
 
+    const IMG_EXTS = ['jpg', 'jpeg', 'png', 'webp'];
     stickerImg.onerror = () => {
+      const src = stickerImg.getAttribute('src') || '';
+      const ext = src.split('.').pop().split('?')[0].toLowerCase();
+      const nextIdx = IMG_EXTS.indexOf(ext) + 1;
+      if (nextIdx > 0 && nextIdx < IMG_EXTS.length) {
+        stickerImg.src = src.replace(/\.[^.?]+(\?.*)?$/, '.' + IMG_EXTS[nextIdx]);
+        return;
+      }
       markStickerFailed(stickerUrl);
       wrapper.remove();
       renderPlaceholder(el, code, number, name);

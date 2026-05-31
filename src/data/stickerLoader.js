@@ -25,6 +25,23 @@ export function hasStickers(countryId) {
 }
 
 /**
+ * Devuelve todos los slots disponibles para un país en el mercado.
+ * A diferencia de country.slots (limitado a 12 del álbum), esto incluye
+ * todos los slots que tengan URL en el stickerMap.
+ */
+export function getAllTradeSlots(countryId, countryCode) {
+  const list = resolvedMap[countryId];
+  if (!list) return [];
+  return list
+    .map((url, idx) => {
+      if (!url) return null;
+      const normalized = (!url.startsWith('http') && !url.startsWith('/')) ? '/' + url : url;
+      return { number: idx, stickerUrl: normalized, name: `${countryCode} ${idx}` };
+    })
+    .filter(Boolean);
+}
+
+/**
  * Descarga el manifiesto de cromos desde n8n.
  * Devuelve el mapa JSON si tuvo éxito, null si falla o está desactivado.
  * No lanza errores — fallo silencioso con fallback al JSON local.

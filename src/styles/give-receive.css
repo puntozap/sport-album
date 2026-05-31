@@ -1,0 +1,519 @@
+/* ─── Give / Receive — Regalar cromos en físico ─────────────────────────────── */
+
+/* Ocultar sticker tray cuando GivePage está activa */
+.st-tray--hidden { display: none !important; }
+
+/* ── Overlay base ── */
+.gr-overlay,
+.rv-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  background: #070f0a;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: inherit;
+}
+
+/* ── Header ── */
+.gr-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 1px solid rgba(212,175,55,0.15);
+  flex-shrink: 0;
+}
+
+.gr-header-back {
+  background: none;
+  border: none;
+  color: #d4af37;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+  border-radius: 6px;
+}
+
+.gr-header-back:active { background: rgba(212,175,55,0.1); }
+
+.gr-header-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  flex: 1;
+}
+
+/* ── Steps ── */
+.gr-step { display: none; flex: 1; flex-direction: column; overflow: hidden; min-height: 0; }
+.gr-step.active { display: flex; }
+
+/* ── Buscador ── */
+.gr-search-wrap {
+  flex-shrink: 0;
+  padding: 10px 14px 6px;
+}
+
+.gr-search {
+  width: 100%;
+  box-sizing: border-box;
+  background: #132018;
+  border: 1px solid rgba(212,175,55,0.18);
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.gr-search::placeholder { color: rgba(255,255,255,0.32); }
+.gr-search:focus { border-color: rgba(212,175,55,0.5); }
+
+/* ── Contenedor de grupos (scrollable) ── */
+.gr-groups {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  overscroll-behavior: contain;
+}
+
+.gr-no-results {
+  padding: 32px 16px;
+  text-align: center;
+  color: rgba(255,255,255,0.35);
+  font-size: 14px;
+}
+
+/* ── Bloque de país ── */
+.gr-country-block { margin-bottom: 10px; }
+
+.gr-country-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 2px 14px 5px;
+}
+
+.gr-country-code {
+  font-size: 11px;
+  font-weight: 800;
+  color: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.07);
+  padding: 2px 6px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.gr-country-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gr-country-count {
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  flex-shrink: 0;
+}
+
+.gr-country-sel {
+  font-size: 11px;
+  font-weight: 800;
+  color: #d4af37;
+  flex-shrink: 0;
+}
+
+/* ── Fila horizontal de cromos por equipo ── */
+.gr-stickers-row {
+  display: flex;
+  gap: 8px;
+  padding: 0 14px 4px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  touch-action: auto;
+  scrollbar-width: none;
+}
+
+.gr-stickers-row::-webkit-scrollbar { display: none; }
+
+/* ── Card de cromo ── */
+.gr-card {
+  flex-shrink: 0;
+  width: 68px;
+  height: 9em;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  border: 2px solid rgba(255,255,255,0.08);
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  background: #0e1f12;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  user-select: none;
+}
+
+.gr-card--selected {
+  border-color: #d4af37;
+  box-shadow: 0 0 12px rgba(212,175,55,0.4);
+}
+
+.gr-card img {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+.gr-card-code {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  text-align: center;
+  padding: 4px 2px;
+  background: #071510;
+  letter-spacing: 0.3px;
+}
+
+.gr-card-check {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 20px;
+  height: 20px;
+  background: #d4af37;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: #000;
+  font-weight: 800;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.gr-card--selected .gr-card-check { opacity: 1; }
+
+.gr-count-badge {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  background: rgba(0,0,0,0.72);
+  color: #d4af37;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 5px;
+}
+
+/* ── Footer / CTA ── */
+.gr-footer {
+  padding: 14px 16px;
+  border-top: 1px solid rgba(212,175,55,0.12);
+  flex-shrink: 0;
+}
+
+.gr-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  background: linear-gradient(135deg, #d4af37, #b8972e);
+  color: #000;
+  transition: opacity 0.18s, transform 0.1s;
+  letter-spacing: 0.2px;
+}
+
+.gr-btn:disabled {
+  background: #1c2a1e;
+  color: #4a5a4d;
+  cursor: not-allowed;
+}
+
+.gr-btn:not(:disabled):active { transform: scale(0.97); }
+
+/* ── Paso QR ── */
+.gr-qr-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 24px;
+  gap: 18px;
+  overflow-y: auto;
+}
+
+.gr-qr-box {
+  background: #fff;
+  border-radius: 16px;
+  padding: 10px;
+  box-shadow: 0 0 40px rgba(212,175,55,0.18);
+}
+
+.gr-qr-box img {
+  width: 220px;
+  height: 220px;
+  display: block;
+  border-radius: 8px;
+}
+
+.gr-qr-label {
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+  text-align: center;
+  max-width: 280px;
+  line-height: 1.5;
+}
+
+.gr-stickers-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  max-width: 300px;
+}
+
+.gr-stickers-preview img {
+  width: 38px;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid rgba(212,175,55,0.25);
+}
+
+.gr-waiting {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255,255,255,0.5);
+  font-size: 14px;
+}
+
+.gr-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255,255,255,0.15);
+  border-top-color: #d4af37;
+  border-radius: 50%;
+  animation: gr-spin 0.8s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes gr-spin { to { transform: rotate(360deg); } }
+
+/* ── Paso éxito (emisor) ── */
+.gr-success {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  gap: 14px;
+  text-align: center;
+}
+
+.gr-success-icon { font-size: 64px; line-height: 1; }
+
+.gr-success-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.gr-success-sub {
+  font-size: 14px;
+  color: rgba(255,255,255,0.55);
+  max-width: 280px;
+  line-height: 1.5;
+}
+
+.gr-reward-badge {
+  background: linear-gradient(135deg, #d4af37, #b8972e);
+  color: #000;
+  font-weight: 800;
+  font-size: 14px;
+  padding: 10px 22px;
+  border-radius: 20px;
+  margin-top: 4px;
+}
+
+/* ── Estado vacío ── */
+.gr-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 32px;
+  text-align: center;
+}
+
+.gr-empty-icon { font-size: 48px; }
+.gr-empty-title { font-size: 18px; font-weight: 700; color: #fff; }
+.gr-empty-sub { font-size: 14px; color: rgba(255,255,255,0.45); max-width: 260px; line-height: 1.5; }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   ReceivePage
+   ════════════════════════════════════════════════════════════════════════════ */
+
+.rv-header {
+  padding: 20px 16px 14px;
+  text-align: center;
+  border-bottom: 1px solid rgba(212,175,55,0.12);
+  flex-shrink: 0;
+}
+
+.rv-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.rv-subtitle {
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  margin-top: 4px;
+}
+
+.rv-stickers {
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: flex;
+  align-items: flex-start;
+  padding: 16px;
+  gap: 10px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(212,175,55,0.3) transparent;
+}
+
+.rv-card {
+  flex-shrink: 0;
+  width: 80px;
+  border-radius: 8px;
+  border: 2px solid rgba(212,175,55,0.2);
+  overflow: hidden;
+  background: #0e1f12;
+}
+
+.rv-card img {
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  display: block;
+}
+
+.rv-card-code {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  text-align: center;
+  padding: 4px 2px;
+  background: #071510;
+}
+
+.rv-info {
+  padding: 10px 16px 0;
+  text-align: center;
+  color: rgba(255,255,255,0.45);
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.rv-footer {
+  padding: 14px 16px;
+  border-top: 1px solid rgba(212,175,55,0.12);
+  flex-shrink: 0;
+}
+
+.rv-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #fff;
+  transition: opacity 0.18s, transform 0.1s;
+}
+
+.rv-btn:disabled {
+  background: #1c2a1e;
+  color: #4a5a4d;
+  cursor: not-allowed;
+}
+
+.rv-btn:not(:disabled):active { transform: scale(0.97); }
+
+/* ── Loader ── */
+.rv-loader {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rv-loader-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(255,255,255,0.1);
+  border-top-color: #d4af37;
+  border-radius: 50%;
+  animation: gr-spin 0.8s linear infinite;
+}
+
+/* ── Éxito receptor ── */
+.rv-success {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.rv-success-icon { font-size: 64px; line-height: 1; }
+.rv-success-title { font-size: 22px; font-weight: 800; color: #fff; }
+.rv-success-sub { font-size: 14px; color: rgba(255,255,255,0.55); max-width: 280px; line-height: 1.5; }
+
+/* ── Error / ya aceptado ── */
+.rv-error {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.rv-error-icon { font-size: 48px; }
+.rv-error-title { font-size: 18px; font-weight: 700; color: #ef4444; }
+.rv-error-sub { font-size: 14px; color: rgba(255,255,255,0.45); max-width: 260px; line-height: 1.5; }

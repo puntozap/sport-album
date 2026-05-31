@@ -17,9 +17,10 @@
 const fs = require('fs');
 const path = require('path');
 
-const GROUPS_DIR = path.join(__dirname, 'cromos_extraidos', 'grupos');
-const OUTPUT_FILE = path.join(__dirname, 'src', 'data', 'stickerMap.json');
-const SLOTS_PER_TEAM = 12;
+const ROOT = path.resolve(__dirname, '..', '..');
+const GROUPS_DIR = path.join(ROOT, 'cromos_extraidos', 'grupos');
+const OUTPUT_FILE = path.join(ROOT, 'src', 'data', 'stickerMap.json');
+const SLOTS_PER_TEAM = 12; // 12 del álbum + 8 extra solo para el mercado
 
 // Orden de equipos por grupo (sacado de teamsData.json)
 const groupOrder = {

@@ -44,7 +44,7 @@ function inlineBuildPlugin() {
         const cssPath = path.join(distDir, 'assets', cssFile);
         if (fs.existsSync(cssPath)) {
           const css = fs.readFileSync(cssPath, 'utf-8');
-          html = html.replace(cssMatch[0], `<style>${css}</style>`);
+          html = html.replace(cssMatch[0], () => `<style>${css}</style>`);
           fs.unlinkSync(cssPath);
           console.log(`[inline-build] CSS inline: ${cssFile}`);
         }
@@ -63,7 +63,9 @@ function inlineBuildPlugin() {
           // Quitar el script del head
           html = html.replace(jsMatch[0], '');
           // Insertar antes de </body>
-          html = html.replace('</body>', `<script>${js}</script>\n  </body>`);
+          // IMPORTANT: use a function to avoid $ pattern substitution in the replacement string
+          // (minified JS may contain $& which String.replace() would expand to the matched text)
+          html = html.replace('</body>', () => `<script>${js}</script>\n  </body>`);
           fs.unlinkSync(jsPath);
           console.log(`[inline-build] JS inline (al final de <body>): ${jsFile}`);
         }
@@ -89,7 +91,11 @@ function inlineBuildPlugin() {
         }
       }
 
-      // 5. Guardar HTML final
+      // 5. Agregar meta cache-busting (evita cache del HTML en navegadores)
+      const buildTime = Date.now();
+      html = html.replace('<head>', `<head>\n    <meta name="build-time" content="${buildTime}">`);
+
+      // 6. Guardar HTML final
       fs.writeFileSync(htmlPath, html);
       console.log('[inline-build] ✅ dist/index.html ahora es autocontenido');
       console.log('[inline-build]    Puedes abrirlo directo con doble click');

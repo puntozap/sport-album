@@ -178,6 +178,7 @@
 }
 .fa-menu-card-badge--pack  { background: rgba(255,255,255,0.2); color: #fff; }
 .fa-menu-card-badge--trade { background: #f59e0b; color: #000; }
+.fa-menu-card-badge--blog  { background: #ef4444; color: #fff; }
 
 /* Colores temáticos por card */
 .fa-menu-card--pack  { border-color: rgba(108,63,197,0.4);  background: rgba(108,63,197,0.12); }

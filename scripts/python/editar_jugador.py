@@ -21,7 +21,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 
 # ── Configuración ──────────────────────────────────────────────────
-BASE_URL     = "https://albumfifa2026.chanzia.com/api/manage-players"
+BASE_URL     = "https://sportalbum.chanzia.com/api/manage-players"
 UPLOAD_TOKEN = "xK9#mP2$qR7nL4vT8wY1"
 # ──────────────────────────────────────────────────────────────────
 

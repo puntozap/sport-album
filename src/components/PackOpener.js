@@ -1,5 +1,6 @@
 import '../styles/pack-opener.css';
 import { countries } from '../data/countries.js';
+import { isEmpresaMode, getEmpresaEntities } from '../data/albumContext.js';
 import { collectionStore } from '../data/collectionStore.js';
 import { getLang } from '../i18n.js';
 
@@ -7,7 +8,8 @@ const STICKERS_PER_PACK = 5;
 
 function buildPool() {
   const pool = [];
-  countries.forEach(c => {
+  const entities = isEmpresaMode() ? getEmpresaEntities() : countries;
+  entities.forEach(c => {
     c.slots.forEach(slot => {
       if (slot.stickerUrl) pool.push({ countryId: c.id, slotIndex: slot.number, slot, country: c });
     });
@@ -34,14 +36,15 @@ export function openPackModal({ onClose, onOpened } = {}) {
   overlay.addEventListener('touchmove',  e => { e.stopPropagation(); e.preventDefault(); }, { passive: false });
   overlay.addEventListener('pointerdown', e => e.stopPropagation());
 
+  const empresaMode = isEmpresaMode();
   overlay.innerHTML = `
     <div class="po-card">
       <div class="po-step po-step-pack" data-step="pack">
         <div class="po-title">${es ? '¡Abre tu sobre!' : 'Open your pack!'}</div>
         <div class="po-pack-graphic">
           <div class="po-pack-inner">
-            <div class="po-pack-logo">⚽</div>
-            <div class="po-pack-brand">FIFA WORLD CUP 2026™</div>
+            <div class="po-pack-logo">${empresaMode ? '🎴' : '⚽'}</div>
+            <div class="po-pack-brand">${empresaMode ? (es ? 'ÁLBUM EMPRESARIAL' : 'COMPANY ALBUM') : (es ? 'ÁLBUM DE FIGURITAS' : 'STICKER ALBUM')}</div>
             <div class="po-pack-divider"></div>
             <div class="po-pack-count">5 ${es ? 'CROMOS OFICIALES' : 'OFFICIAL STICKERS'}</div>
           </div>
@@ -63,6 +66,28 @@ export function openPackModal({ onClose, onOpened } = {}) {
     setTimeout(() => { overlay.remove(); if (onClose) onClose(); }, 300);
   }
 
+  // ── Generar y guardar cromos ANTES de cualquier interacción ─────────────────
+  // Si el usuario cierra la app después de consumir el sobre pero antes de
+  // tocar "¡Abrir sobre!", los cromos ya están en localStorage y no se pierden.
+  const pool       = buildPool();
+  const picks      = pickRandom(pool, STICKERS_PER_PACK);
+  const pendingNow = collectionStore.getPendingPack();
+  const inPending  = (c, s) => pendingNow.some(p => p.countryId === c && p.slotIndex === s);
+
+  const preStates = picks.map(pick => ({
+    pick,
+    isDupe: collectionStore.has(pick.countryId, pick.slotIndex) || inPending(pick.countryId, pick.slotIndex)
+  }));
+
+  // Guardar cromos nuevos en pending inmediatamente
+  const safeNew = preStates.filter(s => !s.isDupe)
+    .map(s => ({ countryId: s.pick.countryId, slotIndex: s.pick.slotIndex }));
+  if (safeNew.length > 0) collectionStore.savePendingPack(safeNew);
+
+  // Registrar repetidos inmediatamente
+  preStates.filter(s => s.isDupe)
+    .forEach(s => collectionStore.addDuplicate(s.pick.countryId, s.pick.slotIndex));
+
   overlay.querySelector('.po-btn-open').addEventListener('click', () => {
     if (onOpened) { try { onOpened(); } catch {} }
     const packStep   = overlay.querySelector('[data-step="pack"]');
@@ -71,27 +96,20 @@ export function openPackModal({ onClose, onOpened } = {}) {
     setTimeout(() => {
       packStep.classList.add('hidden');
       revealStep.classList.remove('hidden');
-      startReveal(revealStep);
+      startReveal(revealStep, picks, preStates);
     }, 500);
   });
 
-  function startReveal(revealStep) {
-    const pool   = buildPool();
-    const picks  = pickRandom(pool, STICKERS_PER_PACK);
-    const grid   = revealStep.querySelector('.po-cards-grid');
-    const hint   = revealStep.querySelector('.po-hint-text');
+  function startReveal(revealStep, picks, preStates) {
+    const grid    = revealStep.querySelector('.po-cards-grid');
+    const hint    = revealStep.querySelector('.po-hint-text');
     const doneBtn = revealStep.querySelector('.po-btn-done');
 
-    const pending   = []; // cromos nuevos pendientes de ir a la bandeja
-    let sentCount   = 0;  // cuántos ya volaron a la bandeja
-
-    // Cromos ya en posesión: pegados en álbum O esperando en la bandeja
-    const pendingNow = collectionStore.getPendingPack();
-    const inPending  = (c, s) => pendingNow.some(p => p.countryId === c && p.slotIndex === s);
+    const pending   = [];
+    let sentCount   = 0;
 
     const cardStates = picks.map((pick, i) => {
-      const isDupe = collectionStore.has(pick.countryId, pick.slotIndex)
-                  || inPending(pick.countryId, pick.slotIndex);
+      const isDupe = preStates[i].isDupe;
 
       const wrapper = document.createElement('div');
       wrapper.className = 'po-card-flip';
@@ -99,13 +117,13 @@ export function openPackModal({ onClose, onOpened } = {}) {
       wrapper.innerHTML = `
         <div class="po-card-inner">
           <div class="po-card-back">
-            <span class="po-card-back-icon">⚽</span>
+            <span class="po-card-back-icon">${empresaMode ? '🎴' : '⚽'}</span>
             <span class="po-card-back-hint">${es ? 'Toca' : 'Tap'}</span>
           </div>
           <div class="po-card-front">
             <div class="po-reveal-img-wrap">
               <img src="${pick.slot.stickerUrl}" alt="${pick.slot.name}" class="po-reveal-img">
-              <img src="https://flagcdn.com/w40/${pick.country.federation.flag}.png" class="po-reveal-flag">
+              ${pick.country.federation?.flag ? `<img src="https://flagcdn.com/w40/${pick.country.federation?.flag}.png" class="po-reveal-flag">` : ''}
             </div>
             <div class="po-reveal-name">${pick.slot.name.replace(/\n/,' ')}</div>
             <div class="po-badge ${isDupe ? 'po-badge-dupe' : 'po-badge-new'}">
@@ -117,20 +135,26 @@ export function openPackModal({ onClose, onOpened } = {}) {
       `;
       grid.appendChild(wrapper);
 
+      // Fallback de extensión para imágenes empresa (jpg → jpeg → png → webp)
+      if (empresaMode) {
+        const revealImg = wrapper.querySelector('.po-reveal-img');
+        if (revealImg) {
+          const IMG_EXTS = ['jpg', 'jpeg', 'png', 'webp'];
+          revealImg.onerror = () => {
+            const src = revealImg.getAttribute('src') || '';
+            const ext = src.split('.').pop().split('?')[0].toLowerCase();
+            const nextIdx = IMG_EXTS.indexOf(ext) + 1;
+            if (nextIdx > 0 && nextIdx < IMG_EXTS.length) {
+              revealImg.src = src.replace(/\.[^.?]+(\?.*)?$/, '.' + IMG_EXTS[nextIdx]);
+            }
+          };
+        }
+      }
+
       return { wrapper, pick, isDupe, flipped: false, sent: false };
     });
 
-    // Guardar cromos nuevos en pending inmediatamente
-    const safeNew = cardStates
-      .filter(s => !s.isDupe)
-      .map(s => ({ countryId: s.pick.countryId, slotIndex: s.pick.slotIndex }));
-    if (safeNew.length > 0) collectionStore.savePendingPack(safeNew);
-
-    // Registrar repetidos en el store de duplicados inmediatamente,
-    // independiente de si están pegados o en la bandeja.
-    cardStates
-      .filter(s => s.isDupe)
-      .forEach(s => collectionStore.addDuplicate(s.pick.countryId, s.pick.slotIndex));
+    // Cromos ya guardados al abrir el modal — nada que hacer aquí.
 
     function updateHint() {
       const notFlipped = cardStates.filter(s => !s.flipped).length;

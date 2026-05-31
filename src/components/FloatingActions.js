@@ -1,10 +1,17 @@
 import { t, getLang } from '../i18n.js';
+import { showParamountModal } from './ParamountPage.js';
+import { showBlogModal, getNewBlogPostsCount } from './BlogPage.js';
 import { CLIENT, clientLogoHtml } from '../config/client.js';
 import { countries } from '../data/countries.js';
+import { isEmpresaMode } from '../data/albumContext.js';
 import { router } from '../router.js';
 import { collectionStore } from '../data/collectionStore.js';
 import { openPackModal } from './PackOpener.js';
 import { refreshStickerTray } from './StickerTray.js';
+import { triggerInstall, canInstall } from './PWAInstall.js';
+import { showPerfilModal } from './TradePage.js';
+import { showNoPacksModal } from './NoPacksModal.js';
+import { openMusicManager, isMusicActive, stopMusic } from './MusicPlayer.js';
 
 // ── Modal de países con cromos faltantes ────────────────────────────────────
 function buildMissingModal() {
@@ -60,7 +67,7 @@ function buildMissingModal() {
     entries.forEach(e => {
       const meta = e.meta;
       const name = meta ? meta.name : e.id;
-      const flag = meta ? meta.federation.flag : '';
+      const flag = meta ? meta.federation?.flag : '';
 
       const row = document.createElement('div');
       row.className = 'fa-missing-row';
@@ -107,7 +114,7 @@ function buildMissingModal() {
 }
 
 const WHATSAPP_NUMBER = '584247647893';
-const ALBUM_URL       = 'https://albumfifa2026.chanzia.com';
+const ALBUM_URL       = 'https://sportalbum.chanzia.com';
 
 function buildCreditsModal() {
   const lang = getLang();
@@ -211,8 +218,8 @@ function buildMenuModal({ es, onPack, onPackTick }) {
       <button class="fa-modal-close" aria-label="Cerrar">✕</button>
 
       <div class="fa-menu-modal-header">
-        <div class="fa-menu-modal-ball">⚽</div>
-        <div class="fa-menu-modal-title">FIFA WORLD CUP 2026™</div>
+        <div class="fa-menu-modal-ball">${isEmpresaMode() ? '🎴' : '⚽'}</div>
+        <div class="fa-menu-modal-title">${isEmpresaMode() ? 'LIBRITO DE FIGURITAS' : 'ÁLBUM DE FIGURITAS'}</div>
         <div class="fa-menu-modal-progress-wrap">
           <div class="fa-menu-modal-progress-bar">
             <div class="fa-menu-modal-progress-fill" style="width:${pct}%"></div>
@@ -232,10 +239,18 @@ function buildMenuModal({ es, onPack, onPackTick }) {
 
         <button class="fa-menu-card fa-menu-card--trade">
           <span class="fa-menu-card-icon">🔄</span>
-          <span class="fa-menu-card-label">${es ? 'Intercambiar' : 'Trade'}</span>
+          <span class="fa-menu-card-label">${es ? 'Mis repetidas' : 'My dupes'}</span>
           <span class="fa-menu-card-sub">${dupeCount > 0 ? (es ? `${dupeCount} repetida${dupeCount !== 1 ? 's' : ''}` : `${dupeCount} duplicate${dupeCount !== 1 ? 's' : ''}`) : (es ? 'Sin repetidas' : 'No dupes')}</span>
           ${dupeCount > 0 ? `<span class="fa-menu-card-badge fa-menu-card-badge--trade">${dupeCount}</span>` : ''}
         </button>
+
+        <!-- MERCADO DESACTIVADO TEMPORALMENTE
+        <button class="fa-menu-card fa-menu-card--mercado">
+          <span class="fa-menu-card-icon">🌐</span>
+          <span class="fa-menu-card-label">${es ? 'Mercado' : 'Market'}</span>
+          <span class="fa-menu-card-sub">${es ? 'Intercambios con otras personas' : 'Trade with others'}</span>
+        </button>
+        -->
 
         <button class="fa-menu-card fa-menu-card--missing">
           <span class="fa-menu-card-icon">🔍</span>
@@ -249,15 +264,53 @@ function buildMenuModal({ es, onPack, onPackTick }) {
           <span class="fa-menu-card-sub">${es ? 'Créditos y más' : 'Credits & more'}</span>
         </button>
 
+        <button class="fa-menu-card fa-menu-card--share">
+          <span class="fa-menu-card-icon">📤</span>
+          <span class="fa-menu-card-label">${es ? 'Compartir' : 'Share'}</span>
+          <span class="fa-menu-card-sub">${es ? 'QR · WhatsApp · Link' : 'QR · WhatsApp · Link'}</span>
+        </button>
+
+        <button class="fa-menu-card fa-menu-card--blog">
+          <span class="fa-menu-card-icon">📰</span>
+          <span class="fa-menu-card-label">${es ? 'Blog' : 'Blog'}</span>
+          <span class="fa-menu-card-sub">${es ? 'Noticias y novedades' : 'News & updates'}</span>
+          <span class="fa-menu-card-badge fa-menu-card-badge--blog" id="fa-blog-badge" style="display:none"></span>
+        </button>
+
+        <button class="fa-menu-card fa-menu-card--music">
+          <span class="fa-menu-card-icon">${isMusicActive() ? '⏹' : '🎵'}</span>
+          <span class="fa-menu-card-label">${isMusicActive() ? (es ? 'Detener música' : 'Stop music') : (es ? 'Música' : 'Music')}</span>
+          <span class="fa-menu-card-sub">${isMusicActive() ? (es ? 'Toca para parar' : 'Tap to stop') : (es ? 'Playlists de YouTube' : 'YouTube playlists')}</span>
+        </button>
+
+        <button class="fa-menu-card fa-menu-card--paramount">
+          <span class="fa-menu-card-icon">📺</span>
+          <span class="fa-menu-card-label">${es ? 'Ver partidos' : 'Watch matches'}</span>
+          <span class="fa-menu-card-sub">104 partidos · Paramount+</span>
+        </button>
+
         <button class="fa-menu-card fa-menu-card--lang">
           <span class="fa-menu-card-icon">🌐</span>
           <span class="fa-menu-card-label">${es ? 'Idioma' : 'Language'}</span>
           <span class="fa-menu-card-sub">${es ? 'Cambiar a English' : 'Switch to Español'}</span>
         </button>
 
+        ${canInstall() ? `
+        <button class="fa-menu-card fa-menu-card--install">
+          <span class="fa-menu-card-icon">📲</span>
+          <span class="fa-menu-card-label">${es ? 'Instalar app' : 'Install app'}</span>
+          <span class="fa-menu-card-sub">${es ? 'Funciona sin internet' : 'Works offline'}</span>
+        </button>` : ''}
+
+        <button class="fa-menu-card fa-menu-card--perfil">
+          <span class="fa-menu-card-icon">👤</span>
+          <span class="fa-menu-card-label">${es ? 'Mi perfil' : 'My profile'}</span>
+          <span class="fa-menu-card-sub">${localStorage.getItem('trade_my_name') || (es ? 'Nombre y teléfono' : 'Name & phone')}</span>
+        </button>
+
       </div>
 
-      <div class="fa-menu-modal-footer">⚽ FIFA WORLD CUP 2026™ ALBUM</div>
+      <div class="fa-menu-modal-footer">${isEmpresaMode() ? '🎴 LIBRITO DE FIGURITAS · Álbum empresarial' : '⚽ ÁLBUM DE FIGURITAS · Sin ánimo de lucro · Hecho para fans'}</div>
     </div>
   `;
 
@@ -278,8 +331,18 @@ function buildMenuModal({ es, onPack, onPackTick }) {
 
   overlay.querySelector('.fa-menu-card--trade').addEventListener('click', () => {
     close();
-    setTimeout(() => router.navigate('/trade'), 200);
+    setTimeout(() => router.navigate('/give'), 200);
   });
+
+  overlay.querySelector('.fa-menu-card--share').addEventListener('click', () => {
+    close();
+    setTimeout(() => router.navigate('/share'), 200);
+  });
+
+  // overlay.querySelector('.fa-menu-card--mercado').addEventListener('click', () => {
+  //   close();
+  //   setTimeout(() => router.navigate('/mercado'), 200);
+  // });
 
   overlay.querySelector('.fa-menu-card--missing').addEventListener('click', () => {
     close();
@@ -291,9 +354,47 @@ function buildMenuModal({ es, onPack, onPackTick }) {
     setTimeout(() => buildCreditsModal(), 200);
   });
 
+  overlay.querySelector('.fa-menu-card--blog').addEventListener('click', () => {
+    close();
+    setTimeout(() => showBlogModal(), 200);
+  });
+
+  // Badge de posts nuevos — carga asíncrona
+  getNewBlogPostsCount().then(count => {
+    const badge = overlay.querySelector('#fa-blog-badge');
+    if (badge && count > 0) {
+      badge.textContent = count;
+      badge.style.display = '';
+    }
+  });
+
+  overlay.querySelector('.fa-menu-card--paramount').addEventListener('click', () => {
+    close();
+    setTimeout(() => showParamountModal(), 200);
+  });
+
   overlay.querySelector('.fa-menu-card--lang').addEventListener('click', () => {
     localStorage.removeItem('lang');
     window.location.reload();
+  });
+
+  overlay.querySelector('.fa-menu-card--install')?.addEventListener('click', () => {
+    close();
+    setTimeout(() => triggerInstall(), 200);
+  });
+
+  overlay.querySelector('.fa-menu-card--perfil')?.addEventListener('click', () => {
+    close();
+    setTimeout(() => showPerfilModal(), 200);
+  });
+
+  overlay.querySelector('.fa-menu-card--music')?.addEventListener('click', () => {
+    close();
+    if (isMusicActive()) {
+      stopMusic();
+    } else {
+      setTimeout(() => openMusicManager(), 200);
+    }
   });
 
   document.body.appendChild(overlay);
@@ -399,6 +500,7 @@ export function createFloatingActions() {
           if (refreshPackUi()) clearInterval(packTick);
         }, 1000);
       }
+      setTimeout(() => showNoPacksModal(), 800);
     } else {
       const badge = btnPack.querySelector('.fa-pack-count');
       if (badge) badge.textContent = left;

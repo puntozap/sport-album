@@ -32,14 +32,16 @@ from google.oauth2.credentials import Credentials
 
 
 # ── Configuración ─────────────────────────────────────────────
-SERVER_URL = "https://albumfifa2026.chanzia.com/api/upload-cromo"
+SERVER_URL = "https://sportalbum.chanzia.com/api/upload-cromo"
 UPLOAD_TOKEN = "xK9#mP2$qR7nL4vT8wY1"
 
 # Necesita permiso de escritura para subir a Drive
 SCOPES = ["https://www.googleapis.com/auth/drive.file"]
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CROMOS_BASE = os.path.join(ROOT, "cromos_extraidos")
+BASE_DIR = Path(r"C:\laragon\www\album-panini")
+
+CROMOS_BASE = os.path.join(BASE_DIR, "cromos_extraidos")
 CREDENTIALS_FILE = os.path.join(ROOT, "credentials.json")
 
 # Ojo: este proyecto también usa token.json para Google Sheets.

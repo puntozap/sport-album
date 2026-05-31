@@ -1,0 +1,88 @@
+.nopacks-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(0, 0, 0, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.26s ease;
+}
+.nopacks-overlay--active { opacity: 1; }
+
+.nopacks-card {
+  background: #0e0f1a;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 2rem 1.75rem;
+  max-width: 340px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  transform: translateY(10px);
+  transition: transform 0.26s ease;
+}
+.nopacks-overlay--active .nopacks-card { transform: translateY(0); }
+
+.nopacks-icon {
+  font-size: 3rem;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.nopacks-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.nopacks-sub {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+  margin-top: 0.5rem;
+}
+
+.nopacks-timer {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #60b4ff;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.nopacks-btn-notif {
+  margin-top: 1rem;
+  width: 100%;
+  padding: 0.85rem 1rem;
+  background: #0064ff;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s, opacity 0.18s;
+}
+.nopacks-btn-notif:hover:not(:disabled) { background: #004ecc; }
+.nopacks-btn-notif:disabled { opacity: 0.6; cursor: default; }
+
+.nopacks-btn-close {
+  width: 100%;
+  padding: 0.65rem;
+  background: transparent;
+  color: rgba(255,255,255,0.4);
+  border: none;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: color 0.18s;
+}
+.nopacks-btn-close:hover { color: rgba(255,255,255,0.75); }

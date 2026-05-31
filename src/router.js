@@ -60,7 +60,9 @@ function isModalOpen() {
     document.querySelector('.po-overlay.po-active') ||
     document.querySelector('.fa-modal-overlay.fa-modal-active') ||
     document.querySelector('.fixture-overlay') ||
-    document.querySelector('.sticker-reveal-overlay.sticker-reveal-active')
+    document.querySelector('.sticker-reveal-overlay.sticker-reveal-active') ||
+    document.querySelector('.gr-overlay') ||
+    document.querySelector('.rv-overlay')
   );
 }
 

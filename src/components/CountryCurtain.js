@@ -6,6 +6,7 @@
 import { getCountryById } from '../data/countries.js';
 import { t } from '../i18n.js';
 import { CLIENT, clientLogoHtml } from '../config/client.js';
+import { isEmpresaMode } from '../data/albumContext.js';
 
 const SHOW_DURATION = 900;  // ms mínimo mostrando el contenido antes de desvanecer
 const MAX_WAIT = 4000;      // nunca esperar más de esto aunque las imágenes no carguen
@@ -37,10 +38,10 @@ export function showCountryCurtain(countryId, onComplete, readyPromise = Promise
         <span class="curtain-group-letter" style="color: #fff">${groupLetter}</span>
       </div>
       <div class="curtain-flag">
-        <img src="https://flagcdn.com/w320/${country.federation.flag}.png" alt="${country.name}">
+        <img src="https://flagcdn.com/w320/${country.federation?.flag || 'un'}.png" alt="${country.name}">
       </div>
       <div class="curtain-text">
-        <span class="curtain-we" style="color: ${secondaryColor}">${t('curtain_we_are')}</span>
+        <span class="curtain-we" style="color: ${secondaryColor}">${isEmpresaMode() ? t('curtain_we_are_empresa') : t('curtain_we_are')}</span>
         <span class="curtain-name" style="color: #fff">${country.name.toUpperCase()}</span>
       </div>
       <div class="curtain-code" style="color: ${secondaryColor}">${country.code}</div>

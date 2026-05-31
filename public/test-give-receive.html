@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Give/Receive</title>
+  <style>
+    body { font-family: system-ui; padding: 20px; background: #1a1a2e; color: #fff; }
+    button { padding: 12px 20px; margin: 8px 0; border-radius: 8px; border: none; cursor: pointer; font-size: 14px; }
+    .primary { background: #d4af37; color: #000; font-weight: bold; }
+    .secondary { background: #333; color: #fff; }
+    .success { background: #22c55e; color: #fff; }
+    .error { background: #ef4444; color: #fff; }
+    pre { background: #0f0f23; padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 12px; }
+    .section { margin: 20px 0; padding: 16px; background: #16213e; border-radius: 12px; }
+    h2 { margin-top: 0; color: #d4af37; }
+    input { padding: 10px; border-radius: 6px; border: 1px solid #444; background: #0f0f23; color: #fff; width: 300px; }
+    #qr-img { width: 200px; height: 200px; background: #fff; padding: 10px; border-radius: 12px; margin: 10px 0; }
+  </style>
+</head>
+<body>
+  <h1>🧪 Test: Sistema de Regalo de Cromos (Give/Receive)</h1>
+
+  <div class="section">
+    <h2>Paso 0: Configurar Mock API</h2>
+    <p>La API mock está en: <code>/api/mock-transfer.php</code></p>
+    <button class="secondary" onclick="testMockApi()">Probar conexión con Mock API</button>
+    <div id="mock-result"></div>
+  </div>
+
+  <div class="section">
+    <h2>🎁 Paso 1: Emisor - Crear Transferencia</h2>
+    <p>Simula que el emisor selecciona cromos y genera un QR.</p>
+    <button class="primary" onclick="createTransfer()">Crear Transferencia (2 cromos de prueba)</button>
+    <div id="create-result"></div>
+    <div id="qr-section" style="display:none;">
+      <p>QR generado:</p>
+      <img id="qr-img" src="" alt="QR">
+      <p>URL: <code id="qr-url"></code></p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>📥 Paso 2: Receptor - Consultar Estado</h2>
+    <p>El receptor escanea el QR y consulta los cromos.</p>
+    <input type="text" id="transfer-id" placeholder="Pega el ID de transferencia aquí">
+    <br><br>
+    <button class="primary" onclick="checkStatus()">Consultar Estado</button>
+    <div id="status-result"></div>
+  </div>
+
+  <div class="section">
+    <h2>✅ Paso 3: Receptor - Aceptar Cromos</h2>
+    <p>El receptor acepta y los cromos van a su bandeja.</p>
+    <button class="success" onclick="acceptTransfer()">Aceptar Transferencia</button>
+    <div id="accept-result"></div>
+  </div>
+
+  <div class="section">
+    <h2>🔄 Paso 4: Emisor - Verificar Aceptación</h2>
+    <p>El emisor hace polling y detecta que fue aceptado.</p>
+    <button class="primary" onclick="pollStatus()">Verificar Estado (Polling)</button>
+    <div id="poll-result"></div>
+  </div>
+
+  <script>
+    const MOCK_URL = '/api/mock-transfer.php';
+    let currentTransferId = null;
+
+    async function testMockApi() {
+      const div = document.getElementById('mock-result');
+      try {
+        const r = await fetch(MOCK_URL + '?action=transferStatus&id=test');
+        const data = await r.json();
+        div.innerHTML = '<p style="color:#22c55e">✅ Mock API responde: ' + JSON.stringify(data) + '</p>';
+      } catch (e) {
+        div.innerHTML = '<p style="color:#ef4444">❌ Error: ' + e.message + '</p>';
+      }
+    }
+
+    async function createTransfer() {
+      const div = document.getElementById('create-result');
+      const stickers = [
+        { countryId: 'mexico', slotIndex: 1 },
+        { countryId: 'mexico', slotIndex: 2 }
+      ];
+      try {
+        const r = await fetch(MOCK_URL + '?action=createTransfer&data=' + encodeURIComponent(JSON.stringify(stickers)));
+        const data = await r.json();
+        currentTransferId = data.id;
+        div.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+        
+        // Generar QR
+        const receiveUrl = window.location.origin + '/album-panini/#/receive/' + data.id;
+        const qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' + encodeURIComponent(receiveUrl);
+        document.getElementById('qr-img').src = qrUrl;
+        document.getElementById('qr-url').textContent = receiveUrl;
+        document.getElementById('qr-section').style.display = 'block';
+        document.getElementById('transfer-id').value = data.id;
+      } catch (e) {
+        div.innerHTML = '<p style="color:#ef4444">❌ Error: ' + e.message + '</p>';
+      }
+    }
+
+    async function checkStatus() {
+      const id = document.getElementById('transfer-id').value;
+      const div = document.getElementById('status-result');
+      if (!id) { div.innerHTML = '<p style="color:#ef4444">❌ Ingresa un ID</p>'; return; }
+      try {
+        const r = await fetch(MOCK_URL + '?action=transferStatus&id=' + encodeURIComponent(id));
+        const data = await r.json();
+        div.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+      } catch (e) {
+        div.innerHTML = '<p style="color:#ef4444">❌ Error: ' + e.message + '</p>';
+      }
+    }
+
+    async function acceptTransfer() {
+      const id = document.getElementById('transfer-id').value;
+      const div = document.getElementById('accept-result');
+      if (!id) { div.innerHTML = '<p style="color:#ef4444">❌ Ingresa un ID</p>'; return; }
+      try {
+        const r = await fetch(MOCK_URL + '?action=acceptTransfer&id=' + encodeURIComponent(id));
+        const data = await r.json();
+        div.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+      } catch (e) {
+        div.innerHTML = '<p style="color:#ef4444">❌ Error: ' + e.message + '</p>';
+      }
+    }
+
+    async function pollStatus() {
+      const id = document.getElementById('transfer-id').value || currentTransferId;
+      const div = document.getElementById('poll-result');
+      if (!id) { div.innerHTML = '<p style="color:#ef4444">❌ No hay ID de transferencia</p>'; return; }
+      try {
+        const r = await fetch(MOCK_URL + '?action=transferStatus&id=' + encodeURIComponent(id));
+        const data = await r.json();
+        const isAccepted = data.status === 'accepted';
+        div.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>' +
+          (isAccepted ? '<p style="color:#22c55e">🎉 ¡Transferencia aceptada!</p>' : 
+                        '<p style="color:#d4af37">⏳ Aún pendiente...</p>');
+      } catch (e) {
+        div.innerHTML = '<p style="color:#ef4444">❌ Error: ' + e.message + '</p>';
+      }
+    }
+  </script>
+</body>
+</html>

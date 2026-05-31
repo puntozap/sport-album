@@ -4,6 +4,7 @@
  */
 
 import { CLIENT, clientLogoHtml, stampStyle } from '../config/client.js';
+import { isEmpresaMode } from '../data/albumContext.js';
 
 const PARTICLE_COUNT = 60;
 const REVEAL_DURATION = 800;
@@ -67,7 +68,7 @@ export function initStickerReveal() {
             <img src="https://flagcdn.com/w160/${flag}.png" alt="${countryName}">
           </div>
           <div class="sticker-reveal-country">
-            <span class="sticker-reveal-we" style="color: ${accentColor}">WE ARE</span>
+            <span class="sticker-reveal-we" style="color: ${accentColor}">${isEmpresaMode() ? 'EQUIPO' : 'WE ARE'}</span>
             <span class="sticker-reveal-name">${countryName.toUpperCase()}</span>
           </div>
           <div class="sticker-reveal-code">${countryCode}</div>

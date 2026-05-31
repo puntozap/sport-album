@@ -565,23 +565,54 @@ export function BracketPage({ previousCountryId }) {
     <div class="bp-rotate-icon">📱</div>
     <div class="bp-rotate-title">${t('rotate_title')}</div>
     <div class="bp-rotate-sub">${t('rotate_sub')}</div>
+    <button class="bp-rotate-btn">${t('rotate_btn')}</button>
   `;
   document.body.appendChild(rotateOverlay);
 
   let panController = null;
+  let forcedLandscape = false;
+
+  function applyForcedLandscape() {
+    forcedLandscape = true;
+    const W = window.innerWidth;
+    const H = window.innerHeight;
+    // Rotar album-page y su shell directamente con medidas exactas
+    // rotate(90deg) translate(0, -W) mapea el elemento W×H al espacio portrait
+    const albumPage  = wrapper.parentElement;
+    const albumShell = albumPage?.parentElement;
+    if (albumShell) {
+      albumShell.style.cssText = `position:fixed;top:0;left:0;width:${H}px;height:${W}px;overflow:hidden;min-width:unset;transform:none;`;
+    }
+    if (albumPage) {
+      albumPage.style.cssText = `position:fixed;top:0;left:0;width:${H}px;height:${W}px;aspect-ratio:unset;transform-origin:top left;transform:rotate(90deg) translate(0px,${-W}px);overflow:hidden;`;
+    }
+    rotateOverlay.classList.remove('bp-rotate-visible');
+    if (!panController) panController = initBracketPan(wrapper, contentEl, header);
+  }
+
+  rotateOverlay.querySelector('.bp-rotate-btn').addEventListener('click', async () => {
+    // 1. Intentar fullscreen + lock nativo
+    try {
+      if (document.fullscreenEnabled && !document.fullscreenElement) {
+        await document.documentElement.requestFullscreen();
+      }
+      await screen.orientation.lock('landscape');
+      return; // el resize/orientationchange ocultará el overlay
+    } catch (_) {}
+    // 2. Fallback: rotación JS sobre album-page
+    applyForcedLandscape();
+  });
 
   function isPortrait() {
     return window.innerWidth <= 1100 && window.innerWidth < window.innerHeight;
   }
 
   function checkOrientation() {
+    if (forcedLandscape) return;
     if (isPortrait()) {
-      // Portrait móvil → mostrar overlay, destruir pan
       rotateOverlay.classList.add('bp-rotate-visible');
       if (panController) { panController.destroy(); panController = null; }
-      screen.orientation?.lock?.('landscape').catch(() => {});
     } else {
-      // Landscape o desktop → ocultar overlay, activar pan
       rotateOverlay.classList.remove('bp-rotate-visible');
       if (!panController && window.innerWidth <= 1100) {
         panController = initBracketPan(wrapper, contentEl, header);
@@ -591,31 +622,25 @@ export function BracketPage({ previousCountryId }) {
 
   checkOrientation();
   window.addEventListener('resize', checkOrientation);
+  window.addEventListener('orientationchange', checkOrientation);
 
   function goBack() {
     window.removeEventListener('resize', checkOrientation);
+    window.removeEventListener('orientationchange', checkOrientation);
     if (panController) { panController.destroy(); panController = null; }
     try { unsubUser(); } catch {}
     try { unsubServer(); } catch {}
     try { unsubKO(); } catch {}
-
-    const isMobile = window.innerWidth <= 1100;
-    if (isMobile) {
-      // Show "rotate back to portrait" prompt, then navigate
-      rotateOverlay.querySelector('.bp-rotate-icon').textContent = '📱';
-      rotateOverlay.querySelector('.bp-rotate-title').textContent = t('rotate_back_title');
-      rotateOverlay.querySelector('.bp-rotate-sub').textContent   = t('rotate_back_sub');
-      rotateOverlay.classList.add('bp-rotate-visible');
-      screen.orientation?.unlock?.();
-      setTimeout(() => {
-        rotateOverlay.remove();
-        router.navigate(previousCountryId ? `/${previousCountryId}` : '/mexico');
-      }, 1800);
-    } else {
-      screen.orientation?.unlock?.();
-      rotateOverlay.remove();
-      router.navigate(previousCountryId ? `/${previousCountryId}` : '/mexico');
+    screen.orientation?.unlock?.();
+    // Limpiar estilos inline si se usó rotación forzada
+    if (forcedLandscape) {
+      const albumPage  = wrapper.parentElement;
+      const albumShell = albumPage?.parentElement;
+      if (albumPage)  albumPage.style.cssText  = '';
+      if (albumShell) albumShell.style.cssText = '';
     }
+    rotateOverlay.remove();
+    router.navigate(previousCountryId ? `/${previousCountryId}` : '/mexico');
   }
 
   header.querySelector('.bp-back-btn').addEventListener('click', goBack);

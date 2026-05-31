@@ -5,7 +5,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { generate } = require('./generate-sticker-map.cjs');
+const { generate } = require('./scripts/node/generate-sticker-map.cjs');
 
 const WATCH_DIR = path.resolve(__dirname, 'cromos_extraidos', 'grupos');
 const OUTPUT_FILE = path.resolve(__dirname, 'src', 'data', 'stickerMap.json');

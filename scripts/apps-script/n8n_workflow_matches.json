@@ -70,7 +70,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "https://albumfifa2026.chanzia.com/api/manage-matches",
+        "url": "https://sportalbum.chanzia.com/api/manage-matches",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [

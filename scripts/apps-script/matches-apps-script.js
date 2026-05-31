@@ -15,7 +15,7 @@
  * "Partidos", el servidor se actualiza automáticamente.
  */
 
-const SERVER_URL   = 'https://albumfifa2026.chanzia.com/api/manage-matches';
+const SERVER_URL   = 'https://sportalbum.chanzia.com/api/manage-matches';
 const UPLOAD_TOKEN = 'xK9#mP2$qR7nL4vT8wY1';
 const SHEET_NAME   = 'Partidos';
 

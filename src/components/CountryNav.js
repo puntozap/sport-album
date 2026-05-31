@@ -3,23 +3,38 @@ import { router } from '../router.js';
 import '../styles/country-nav.css';
 import { t } from '../i18n.js';
 
-export function CountryNav({ currentId }) {
+export function CountryNav({ currentId, entities = null }) {
   const nav = document.createElement('nav');
   nav.className = 'country-nav';
   nav.setAttribute('aria-label', t('country_nav_aria'));
 
-  countries.forEach(country => {
+  // Si se pasan entidades empresa, se usan en lugar de países FIFA
+  const items = entities || countries;
+  const isEmpresa = !!entities;
+
+  items.forEach(item => {
     const btn = document.createElement('div');
-    btn.className = 'country-nav-item' + (country.id === currentId ? ' active' : '');
-    btn.dataset.id = country.id;
+    btn.className = 'country-nav-item' + (item.id === currentId ? ' active' : '');
+    btn.dataset.id = item.id;
     btn.setAttribute('role', 'button');
-    btn.setAttribute('aria-label', country.name);
-    btn.innerHTML = `
-      <div class="country-nav-circle">
-        <img src="https://flagcdn.com/w80/${country.federation.flag}.png" alt="${country.name}" loading="lazy">
-      </div>
-      <span class="country-nav-code">${country.code}</span>
-    `;
+    btn.setAttribute('aria-label', item.name);
+
+    if (isEmpresa) {
+      // Sin banderas: mostrar iniciales o código de la entidad
+      btn.innerHTML = `
+        <div class="country-nav-circle country-nav-circle--text">
+          <span>${item.code}</span>
+        </div>
+        <span class="country-nav-code">${item.code}</span>
+      `;
+    } else {
+      btn.innerHTML = `
+        <div class="country-nav-circle">
+          <img src="https://flagcdn.com/w80/${item.federation?.flag || 'un'}.png" alt="${item.name}" loading="lazy">
+        </div>
+        <span class="country-nav-code">${item.code}</span>
+      `;
+    }
     nav.appendChild(btn);
   });
 

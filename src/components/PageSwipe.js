@@ -9,6 +9,16 @@ import { router } from '../router.js';
 import { t } from '../i18n.js';
 
 const SWIPE_THRESHOLD = 60;
+
+// Selector for all full-screen overlays/modals — touch and mouse events skip these
+const MODAL_SELECTOR = [
+  '.fixture-overlay', '.sticker-reveal-overlay', '.po-overlay',
+  '.fa-modal-overlay', '.st-tray', '.gr-overlay', '.rv-overlay',
+  '.blog-overlay', '.pp-overlay', '.wn-overlay',
+  '.mnm-overlay', '.nopacks-overlay',
+  '.trade-overlay', '.tm-overlay', '.tr-registro-overlay',
+  '.lw-overlay', '.bp-confirm-overlay', '.bp-rotate-overlay',
+].join(', ');
 const VERTICAL_RATIO = 1.8;
 const SNAP_DURATION = 300;
 const ALBUM_RATIO = 1629 / 907;
@@ -194,7 +204,7 @@ export function initPageSwipe({ appRoot, allIds, getCurrentId }) {
   function onMouseDown(e) {
     if (isMobile()) return;
     // Modals / overlays handle their own interaction — don't interfere (avoid "F5" feeling by navigation)
-    if (e.target.closest('.fixture-overlay, .sticker-reveal-overlay, .po-overlay, .fa-modal-overlay, .st-tray')) return;
+    if (e.target.closest(MODAL_SELECTOR)) return;
     if (e.target.closest('button, a, input')) return;
     isDragging = true;
     dragStartX = e.clientX;
@@ -228,7 +238,7 @@ export function initPageSwipe({ appRoot, allIds, getCurrentId }) {
 
   function onKeyDown(e) {
     if (isBracketPage()) return;
-    if (document.querySelector('.fixture-overlay, .sticker-reveal-overlay, .po-overlay, .fa-modal-overlay')) return;
+    if (document.querySelector(MODAL_SELECTOR)) return;
     if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); goPrev(); }
     else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); goNext(); }
   }
@@ -337,8 +347,10 @@ export function initPageSwipe({ appRoot, allIds, getCurrentId }) {
   function onMobTouchStart(e) {
     // En simulación el bracket maneja su propio scroll — no interferir
     if (currentId === 'simulation') return;
+    // Share page tiene su propio scroll — no interferir
+    if (document.getElementById('share-page')) return;
     // Modals handle their own touch — don't interfere
-    if (e.target.closest('.fixture-overlay, .sticker-reveal-overlay, .po-overlay, .fa-modal-overlay, .st-tray')) return;
+    if (e.target.closest(MODAL_SELECTOR)) return;
     // Country nav handles its own scroll — don't interfere
     if (e.target.closest('.country-nav')) return;
     if (e.target.closest('button, a, input')) return;
@@ -377,7 +389,8 @@ export function initPageSwipe({ appRoot, allIds, getCurrentId }) {
 
   function onMobTouchMove(e) {
     if (currentId === 'simulation') return;
-    if (e.target.closest('.fixture-overlay, .sticker-reveal-overlay, .po-overlay, .fa-modal-overlay, .st-tray')) return;
+    if (document.getElementById('share-page')) return;
+    if (e.target.closest(MODAL_SELECTOR)) return;
     if (e.target.closest('.country-nav')) return;
     e.preventDefault(); // evita scroll y zoom nativo del browser
 
@@ -432,6 +445,7 @@ export function initPageSwipe({ appRoot, allIds, getCurrentId }) {
 
   function onMobTouchEnd(e) {
     if (currentId === 'simulation') return;
+    if (document.getElementById('share-page')) return;
     const wasOne = activePointers.size === 1;
     const wasPinching = isPinching;
 
@@ -440,7 +454,7 @@ export function initPageSwipe({ appRoot, allIds, getCurrentId }) {
     }
 
     // Si el touchend ocurre dentro de un modal/overlay, solo limpiar tracking y salir.
-    if (e.target.closest('.fixture-overlay, .sticker-reveal-overlay, .po-overlay, .fa-modal-overlay, .st-tray')) {
+    if (e.target.closest(MODAL_SELECTOR)) {
       if (activePointers.size === 0) isPinching = false;
       return;
     }

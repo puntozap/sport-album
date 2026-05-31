@@ -29,8 +29,8 @@ export function createDesktopBackground() {
           <path d="${SHAPE_2}" fill="#ffffff"/>
         </svg>
       </div>
-      <div class="dbg-title">WORLD CUP 2026</div>
-      <div class="dbg-sub">OFFICIAL ALBUM</div>
+      <div class="dbg-title">ÁLBUM DE FIGURITAS</div>
+      <div class="dbg-sub">SIN ÁNIMO DE LUCRO</div>
     </div>
   `;
 

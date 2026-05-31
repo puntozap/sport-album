@@ -59,6 +59,123 @@
   display: block;
 }
 
+/* ── Botón "Abrir sobre" inline — solo mobile ── */
+.cp-mobile-pack-btn {
+  display: none;
+}
+
+@keyframes cp-pack-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(241,214,106,0.7), 0 2px 10px rgba(0,0,0,0.4); transform: scale(1); }
+  50%  { box-shadow: 0 0 0 8px rgba(241,214,106,0), 0 4px 18px rgba(241,214,106,0.35); transform: scale(1.04); }
+  100% { box-shadow: 0 0 0 0 rgba(241,214,106,0), 0 2px 10px rgba(0,0,0,0.4); transform: scale(1); }
+}
+
+@keyframes cp-pack-shine {
+  0%   { left: -60%; }
+  100% { left: 130%; }
+}
+
+@media (max-width: 1100px) {
+  .cp-mobile-pack-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    position: absolute;
+    left: 5.3%;
+    top: 17%;
+    z-index: 24;
+    background: linear-gradient(135deg, #1e4a8a, #0f2a55);
+    color: #f1d66a;
+    border: 2px solid rgba(241, 214, 106, 0.8);
+    border-radius: 20px;
+    padding: 5px 14px 5px 10px;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: clamp(0.7rem, 2.2vw, 1rem);
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: cp-pack-pulse 2s ease-in-out infinite;
+  }
+
+  /* Destello que cruza el botón */
+  .cp-mobile-pack-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+    transform: skewX(-20deg);
+    animation: cp-pack-shine 2.4s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .cp-mobile-pack-btn--disabled {
+    opacity: 0.4;
+    cursor: default;
+    border-color: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.4);
+    animation: none;
+  }
+
+  .cp-mobile-pack-btn--disabled::before {
+    display: none;
+  }
+
+  .cp-mobile-pack-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1d66a;
+    color: #000;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    font-weight: 900;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  /* Fila contenedora: sobre + música */
+  .cp-mobile-btn-row {
+    position: absolute;
+    left: 5.3%;
+    top: 17%;
+    z-index: 24;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* Mover el btn de sobre: sin position absolute propio */
+  .cp-mobile-btn-row .cp-mobile-pack-btn {
+    position: static;
+    left: auto;
+    top: auto;
+  }
+
+  /* Botón 🎵 */
+  .cp-mobile-music-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 2px solid rgba(241,214,106,0.6);
+    background: rgba(15,42,85,0.85);
+    font-size: 16px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .cp-mobile-music-btn:active { transform: scale(0.92); }
+}
+
 .group-box {
   position: absolute;
   left: 54%;
@@ -68,6 +185,11 @@
   z-index: 24;
   color: white;
   filter: drop-shadow(0 8px 20px rgba(0,0,0,.28)) drop-shadow(0 2px 4px rgba(0,0,0,.15));
+}
+
+/* En modo empresa, el GroupBox va detras de los slots (z-index 22) */
+.empresa-album .group-box {
+  z-index: 20;
 }
 
 .group-box-shape {
@@ -141,6 +263,26 @@
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+/* Modo empresa: nombre de entidad en lugar de bandera */
+.flag-card-text {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.38rem, 0.7vw, 0.72rem);
+  color: rgba(255,255,255,0.9);
+  background: rgba(0,0,0,0.35);
+  text-align: center;
+  line-height: 1.1;
+  white-space: normal;
+  word-break: break-word;
 }
 
 /* ===== MÓVIL: fuente Arial y banderas más grandes ===== */

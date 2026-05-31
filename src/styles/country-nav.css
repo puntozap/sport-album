@@ -83,6 +83,24 @@
   transform: scale(0.88);
 }
 
+/* Círculo de texto para modo empresa (sin bandera) */
+.country-nav-circle--text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.country-nav-circle--text span {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 800;
+  font-size: clamp(0.42rem, 0.7vw, 0.72rem);
+  color: #fff;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
 /* Mobile: slightly bigger touch targets */
 @media (max-width: 1100px) {
   .country-nav {

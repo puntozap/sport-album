@@ -1,5 +1,6 @@
 import { setLang } from '../i18n.js';
 import { CLIENT, clientLogoHtml } from '../config/client.js';
+import { isEmpresaMode } from '../data/albumContext.js';
 
 export function showLanguageWelcome(onDone) {
 
@@ -25,8 +26,8 @@ export function showLanguageWelcome(onDone) {
       <div class="lw-step lw-step-trophy">🏆</div>
 
       <div class="lw-step lw-step-event">
-        <span class="lw-event-line lw-event-top">FIFA WORLD CUP</span>
-        <span class="lw-event-year">2026</span>
+        <span class="lw-event-line lw-event-top">${isEmpresaMode() ? 'LIBRITO DE' : 'FIFA WORLD CUP'}</span>
+        <span class="lw-event-year">${isEmpresaMode() ? 'FIGURITAS' : '2026'}</span>
       </div>
 
       <div class="lw-step lw-step-prompt">

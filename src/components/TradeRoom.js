@@ -4,6 +4,7 @@ import { collectionStore } from '../data/collectionStore.js';
 import { countries } from '../data/countries.js';
 import { router } from '../router.js';
 import { refreshStickerTray, armSticker } from './StickerTray.js';
+import { releaseStickersInFlight } from './TradePage.js';
 
 const countryMap = {};
 countries.forEach(c => { countryMap[c.id] = c; });
@@ -167,6 +168,7 @@ export function TradeRoom({ tradeId }) {
             (data.ofrece || []).forEach(s => {
               collectionStore.removeDuplicate(s.countryId, s.slotIndex);
             });
+            releaseStickersInFlight(tradeId);
             renderRoom({ ...data, estado: 'completado', match });
             showCompletionCelebration(res.newStickers || []);
           }

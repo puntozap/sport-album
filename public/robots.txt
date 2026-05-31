@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://albumfifa2026.chanzia.com/sitemap.xml
+Sitemap: https://sportalbum.chanzia.com/sitemap.xml
 
 # Block build artifacts and API internals
 Disallow: /api/
