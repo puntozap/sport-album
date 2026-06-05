@@ -38,7 +38,10 @@ export function showCountryCurtain(countryId, onComplete, readyPromise = Promise
         <span class="curtain-group-letter" style="color: #fff">${groupLetter}</span>
       </div>
       <div class="curtain-flag">
-        <img src="https://flagcdn.com/w320/${country.federation?.flag || 'un'}.png" alt="${country.name}">
+        ${isEmpresaMode() && CLIENT.logoUrl
+          ? `<img src="${CLIENT.logoUrl}" alt="${country.name}" style="object-fit:contain;max-height:120px;background:transparent">`
+          : `<img src="https://flagcdn.com/w320/${country.federation?.flag || 'un'}.png" alt="${country.name}">`
+        }
       </div>
       <div class="curtain-text">
         <span class="curtain-we" style="color: ${secondaryColor}">${isEmpresaMode() ? t('curtain_we_are_empresa') : t('curtain_we_are')}</span>

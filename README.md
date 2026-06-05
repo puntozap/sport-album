@@ -220,6 +220,89 @@ El plugin `vite-plugin-sticker-map.js` vigila cambios en las carpetas de cromos 
 
 ---
 
+## Crear un álbum empresarial (nuevo equipo/empresa)
+
+### Paso 0 — Crear el Google Sheet de configuración
+
+```bash
+# Setup (solo la primera vez):
+pip install google-auth google-auth-oauthlib google-api-python-client
+# Pon credentials.json en la raíz del proyecto (Google Cloud Console → OAuth 2.0)
+
+python scripts/python/create_empresa_sheet.py
+
+# O con argumentos:
+python scripts/python/create_empresa_sheet.py mi-empresa "Mi Empresa S.A."
+```
+
+Crea automáticamente el spreadsheet en Google Drive con 4 hojas:
+- **Config** — albumId, nombre, colores, URLs del servidor
+- **Grupos** — grupos con colores temáticos
+- **Paises** — entidades/equipos de cada grupo
+- **Slots** — jugadores e `image_url` de cada cromo
+
+Al terminar imprime la URL del sheet y los pasos para desplegar el Apps Script.
+
+---
+
+### Paso 1 — Crear la estructura local del álbum
+
+```bash
+python scripts/python/crear_empresa.py
+```
+
+Wizard interactivo que pregunta nombre, slug, grupos y entidades.  
+Genera automáticamente:
+- `public/empresas/{slug}/config.json`
+- `public/empresas/{slug}/albumData.json`
+- `public/empresas/{slug}/cromos/{entity-id}/` (carpetas vacías)
+
+---
+
+### Paso 2 — Asignar imágenes a los slots
+
+```bash
+python scripts/python/setear_cromos.py
+```
+
+Toma las fotos de una carpeta y las copia a los slots en orden.  
+- Orden **alfabético** si los archivos no tienen prefijo numérico  
+- Orden **por número** si los archivos se llaman `00_juan.jpg`, `01_maria.jpg`...
+
+---
+
+### Paso 3 — (Opcional) Editar nombres de jugadores
+
+```bash
+python scripts/python/editar_jugador.py
+```
+
+Permite corregir o actualizar los nombres via la API del servidor.
+
+---
+
+### Paso 4 — Subir al servidor
+
+```bash
+python scripts/python/upload_empresa_cromos.py
+
+# O directamente con argumentos:
+python scripts/python/upload_empresa_cromos.py {slug}
+python scripts/python/upload_empresa_cromos.py {slug} {entity-id}
+```
+
+Lee `config.json` de la empresa para saber la URL y el token de upload.
+
+---
+
+### Resumen rápido
+
+```
+create_empresa_sheet.py  →  crear_empresa.py  →  setear_cromos.py  →  upload_empresa_cromos.py
+```
+
+---
+
 ## Scripts disponibles
 
 ```bash

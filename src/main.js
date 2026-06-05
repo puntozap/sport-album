@@ -30,7 +30,7 @@ import { initPerfMonitor } from './utils/perfMonitor.js';
 import { initI18n } from './i18n.js';
 import { showLanguageWelcome } from './components/LanguageWelcome.js';
 import { createNeonBackground } from './components/NeonBackground.js';
-import { createDesktopBackground } from './components/DesktopBackground.js';
+import { createDesktopBackground, updateDesktopBackground } from './components/DesktopBackground.js';
 import { CLIENT, loadCompanyConfig } from './config/client.js';
 import { setCompanySlug } from './router.js';
 import { fetchStickerMap } from './data/stickerLoader.js';
@@ -47,26 +47,43 @@ async function start() {
   const gated = await initAppGate();
   if (gated) return;
 
-  // ── Detectar empresa en la URL ──────────────────────────────
-  // Si la URL es /isacell/mexico, el primer segmento "isacell" es la empresa.
-  // Intentamos cargar /empresas/isacell/config.json — si existe, activamos branding.
-  const segments = window.location.pathname.split('/').filter(Boolean);
-  const RESERVED = ['simulation', '404', 'api', 'assets', 'empresas'];
-  const potentialSlug = segments[0];
+  // ── Detectar empresa ────────────────────────────────────────
+  // Prioridad 1: meta tag empresa-slug en index.html (instalación dedicada).
+  //   Rutas limpias: /{entityId} sin slug en la URL.
+  // Prioridad 2: primer segmento de la URL (modo multi-tenant legado / FIFA).
+  let companySlug = null;
+  let slugInUrl   = false;
 
-  if (potentialSlug && !RESERVED.includes(potentialSlug)) {
-    const loaded = await loadCompanyConfig(potentialSlug);
-    if (loaded) {
-      setCompanySlug(potentialSlug);
-      // Intentar cargar el álbum empresarial; si no existe, el modo se queda en 'fifa'
-      const isEmpresa = await loadEmpresaAlbum(potentialSlug);
-      if (isEmpresa) document.body.classList.add('empresa-album');
+  const metaSlug = document.querySelector('meta[name="empresa-slug"]')?.content?.trim();
+  if (metaSlug) {
+    companySlug = metaSlug;
+  } else {
+    const segments = window.location.pathname.split('/').filter(Boolean);
+    const RESERVED = ['simulation', '404', 'api', 'assets', 'empresas'];
+    const potentialSlug = segments[0];
+    if (potentialSlug && !RESERVED.includes(potentialSlug)) {
+      companySlug = potentialSlug;
+      slugInUrl   = true;
     }
   }
 
-  // ── Aplicar color primario al root ──────────────────────────
-  if (CLIENT.active && CLIENT.primaryColor) {
-    document.documentElement.style.setProperty('--client-color', CLIENT.primaryColor);
+  // ── UI base: fondo inmediato (antes de cualquier await lento) ──
+  createNeonBackground();
+  createDesktopBackground();
+
+  if (companySlug) {
+    const loaded = await loadCompanyConfig(companySlug);
+    if (loaded) {
+      if (CLIENT.primaryColor) {
+        document.documentElement.style.setProperty('--client-color', CLIENT.primaryColor);
+      }
+      if (slugInUrl) setCompanySlug(companySlug);
+      const isEmpresa = await loadEmpresaAlbum(companySlug);
+      if (isEmpresa) {
+        document.body.classList.add('empresa-album');
+        updateDesktopBackground();
+      }
+    }
   }
 
   // ── Service Worker ──────────────────────────────────────────
@@ -78,10 +95,6 @@ async function start() {
 
   // ── Cromos remotos (n8n + Drive) ────────────────────────────
   fetchStickerMap().then(map => { if (map) patchStickerUrls(map); });
-
-  // ── UI ───────────────────────────────────────────────────────
-  createNeonBackground();
-  createDesktopBackground();
   initPerfMonitor();
   initPushNotifications();
 

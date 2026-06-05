@@ -1,6 +1,7 @@
 import { getAllTeams } from './teamsLoader.js';
 import { getFederationName } from './federationNames.js';
 import { getStickerUrl } from './stickerLoader.js';
+import { getEmpresaEntities } from './albumContext.js';
 
 // Posiciones estandar de slots (mismo layout para todos los paises)
 // Ajustadas al mockup del album Panini
@@ -95,7 +96,10 @@ teams.forEach(t => {
 export const countries = teams.map(buildCountry);
 
 export function getCountryById(id) {
-  return countries.find(c => c.id === id);
+  const fifa = countries.find(c => c.id === id);
+  if (fifa) return fifa;
+  // Fallback: entidades de empresa (albumContext no importa countries → sin ciclo)
+  return (getEmpresaEntities() || []).find(e => e.id === id) || null;
 }
 
 /**

@@ -65,7 +65,10 @@ export function initStickerReveal() {
 
         <div class="sticker-reveal-header">
           <div class="sticker-reveal-flag">
-            <img src="https://flagcdn.com/w160/${flag}.png" alt="${countryName}">
+            ${isEmpresaMode() && CLIENT.logoUrl
+              ? `<img src="${CLIENT.logoUrl}" alt="${countryName}" style="object-fit:contain;background:transparent">`
+              : `<img src="https://flagcdn.com/w160/${flag}.png" alt="${countryName}">`
+            }
           </div>
           <div class="sticker-reveal-country">
             <span class="sticker-reveal-we" style="color: ${accentColor}">${isEmpresaMode() ? 'EQUIPO' : 'WE ARE'}</span>

@@ -1,4 +1,5 @@
 import { setEmpresaAlbum } from './albumContext.js';
+import { CLIENT } from '../config/client.js';
 
 const IMG_EXTS = ['jpg', 'jpeg', 'png', 'webp'];
 
@@ -146,13 +147,20 @@ async function buildEntitySlots(entity, companySlug, stickerCount) {
   const positions = getPositions(stickerCount);
   const stickerMap = new Map((entity.stickers || []).map(s => [s.slot, s]));
 
+  // Si todos los stickers con imageUrl están presentes, saltamos el manifest
+  const useSheetsImages = (entity.stickers || []).some(s => s.imageUrl);
+
   const slots = [];
   for (let idx = 0; idx < positions.length; idx++) {
     const pos = positions[idx];
     const sticker = stickerMap.get(idx);
     const isSpecial = idx === 0;
-    const name = sticker?.name || (isSpecial ? entity.name : `${entity.code || '?'}
-${idx}`);
+    const name = sticker?.name || (isSpecial ? entity.name : `${entity.code || '?'} ${idx}`);
+
+    // Prioridad: imageUrl del sheet → archivo local vía manifest
+    const stickerUrl = (useSheetsImages && sticker?.imageUrl)
+      ? sticker.imageUrl
+      : await buildStickerUrl(companySlug, entity.id, idx);
 
     slots.push({
       number: idx,
@@ -161,7 +169,7 @@ ${idx}`);
       type: isSpecial ? 'gold' : 'normal',
       pos,
       btnCorner: pos.btnCorner || 'bottom-left',
-      stickerUrl: await buildStickerUrl(companySlug, entity.id, idx)
+      stickerUrl,
     });
   }
   return slots;
@@ -202,11 +210,38 @@ function buildEntity(rawEntity, group, companySlug, stickerCount, pageIndex, slo
   };
 }
 
-export async function loadEmpresaAlbum(companySlug) {
+/**
+ * Carga el albumData desde Apps Script (sheetsUrl en CLIENT) o JSON local.
+ * CLIENT ya tiene los datos del config.json cargado por loadCompanyConfig.
+ */
+async function fetchAlbumData(companySlug) {
+  const sheetsUrl = CLIENT.sheetsUrl;
+
+  if (sheetsUrl && sheetsUrl.startsWith('https://script.google.com')) {
+    try {
+      const url = `${sheetsUrl}${sheetsUrl.includes('?') ? '&' : '?'}t=${Date.now()}`;
+      const res = await fetch(url, { cache: 'no-store', redirect: 'follow' });
+      if (res.ok) {
+        const data = await res.json();
+        if (data && Array.isArray(data.groups)) return data;
+      }
+    } catch (_) {}
+  }
+
+  // Fallback: JSON local
   try {
     const res = await fetch(`/empresas/${companySlug}/albumData.json`, { cache: 'no-store' });
-    if (!res.ok) return false;
-    const data = await res.json();
+    if (!res.ok) return null;
+    return await res.json();
+  } catch (_) {
+    return null;
+  }
+}
+
+export async function loadEmpresaAlbum(companySlug) {
+  try {
+    const data = await fetchAlbumData(companySlug);
+    if (!data) return false;
 
     // stickerCount puede ser global (album) o por entidad; entidad tiene prioridad
     const defaultCount = data.stickerCount || 15;
@@ -231,6 +266,9 @@ export async function loadEmpresaAlbum(companySlug) {
         entities.push(buildEntity(rawEntity, group, companySlug, count, pageIndex++, slots));
       }
     }
+
+    // Aplicar campos extra del Sheet a CLIENT (shareUrl, freePlay, etc.)
+    if (data.shareUrl) CLIENT.shareUrl = data.shareUrl;
 
     setEmpresaAlbum({ meta: data, entities, groups });
     return true;

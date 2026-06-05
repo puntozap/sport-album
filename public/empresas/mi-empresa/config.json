@@ -1,0 +1,12 @@
+{
+  "albumId": "mi-empresa",
+  "name": "Mi Empresa S.A.",
+  "primaryColor": "#1a56db",
+  "logoUrl": "",
+  "sheetsUrl": "https://script.google.com/macros/s/AKfycbyL4v9DhSTac1nXNSuQPS1JtLjBqaZJWdCytfkGszQ2gAie_aQRQ_FGYGGG5S0hektT/exec",
+  "stamp": {
+    "corner": "bottom-right",
+    "logoHeight": 32,
+    "padding": 8
+  }
+}

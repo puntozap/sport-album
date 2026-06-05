@@ -2,8 +2,14 @@ import '../styles/share-page.css';
 import { router, getCompanySlug } from '../router.js';
 import { isEmpresaMode, getEmpresaEntities } from '../data/albumContext.js';
 import { getLang } from '../i18n.js';
+import { CLIENT } from '../config/client.js';
 
 const BASE_URL = 'https://sportalbum.chanzia.com';
+
+function getBaseUrl() {
+  if (CLIENT.shareUrl) return CLIENT.shareUrl.replace(/\/share\/?$/, '');
+  return BASE_URL;
+}
 
 // ── Generador de imagen historia para Instagram (1080×1920) ──────────────────
 
@@ -168,13 +174,16 @@ const DOTS = [
 ];
 
 function getShareUrl() {
+  const base = getBaseUrl();
   const slug = getCompanySlug();
-  if (isEmpresaMode() && slug) {
+  if (isEmpresaMode()) {
+    // Instalación dedicada (sin slug en URL): apuntar a la raíz
+    if (!slug) return base;
     const entities = getEmpresaEntities();
     const first = entities[0];
-    return first ? `${BASE_URL}/${slug}/${first.id}` : `${BASE_URL}/${slug}`;
+    return first ? `${base}/${slug}/${first.id}` : `${base}/${slug}`;
   }
-  return BASE_URL;
+  return base;
 }
 
 function buildConfetti(container) {

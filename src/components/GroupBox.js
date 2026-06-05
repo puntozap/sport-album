@@ -1,4 +1,5 @@
 import { t } from '../i18n.js';
+import { CLIENT } from '../config/client.js';
 
 export function GroupBox({ group, onFixtureClick, onSimulatorClick }) {
   const el = document.createElement('aside');
@@ -25,7 +26,7 @@ export function GroupBox({ group, onFixtureClick, onSimulatorClick }) {
       <path d="${BOTTOM_PATH}" fill="var(--group-bg, #73b165)" />
     </svg>
     <div class="group-box-inner">
-      <div class="group-header-row">
+<div class="group-header-row">
         <div class="group-title">${groupLabel}</div>
         ${onFixtureClick ? `<button class="group-fixture-btn" title="${t('matches_of', { team: '' }).trim()}">📅</button>` : ''}
         ${onSimulatorClick ? `

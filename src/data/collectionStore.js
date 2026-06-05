@@ -1,18 +1,32 @@
-const COLLECTION_KEY = 'wc2026_collection';
-const LAST_PACK_KEY  = 'wc2026_last_pack';
-const PENDING_KEY    = 'wc2026_pending';
-const DUPLICATES_KEY = 'wc2026_duplicates';
+import { isFreePlay } from './albumContext.js';
 
 // Ventana de sobres: cada 4 horas se genera una nueva cuota aleatoria (3..10)
 const PACK_WINDOW_MS = 4 * 60 * 60 * 1000;
+const DEMO_MAX_PACKS = 5;
+
+// Namespace dinámico: en empresa usa el albumId del meta tag, en FIFA usa 'wc2026'
+function _ns() {
+  const slug = document.querySelector('meta[name="empresa-slug"]')?.content?.trim();
+  return slug || 'wc2026';
+}
+
+function _keys() {
+  const ns = _ns();
+  return {
+    collection: `${ns}_collection`,
+    lastPack:   `${ns}_last_pack`,
+    pending:    `${ns}_pending`,
+    duplicates: `${ns}_duplicates`,
+  };
+}
 
 function _load() {
-  try { return JSON.parse(localStorage.getItem(COLLECTION_KEY)) || {}; }
+  try { return JSON.parse(localStorage.getItem(_keys().collection)) || {}; }
   catch { return {}; }
 }
 
 function _save(data) {
-  localStorage.setItem(COLLECTION_KEY, JSON.stringify(data));
+  localStorage.setItem(_keys().collection, JSON.stringify(data));
 }
 
 function stickerKey(countryId, slotIndex) {
@@ -74,7 +88,7 @@ export const collectionStore = {
     return this._getWindowQuota();
     const today = new Date().toISOString().slice(0, 10);
     let quota = null;
-    try { quota = JSON.parse(localStorage.getItem(LAST_PACK_KEY)); } catch {}
+    try { quota = JSON.parse(localStorage.getItem(_keys().lastPack)); } catch {}
 
     if (!quota || quota.date !== today) {
       // Nuevo día → generar cuota aleatoria entre 3 y 10
@@ -83,7 +97,7 @@ export const collectionStore = {
         allowed: Math.floor(Math.random() * 8) + 3, // 3..10
         used: 0
       };
-      localStorage.setItem(LAST_PACK_KEY, JSON.stringify(quota));
+      localStorage.setItem(_keys().lastPack, JSON.stringify(quota));
     }
     return { ...quota, remaining: quota.allowed - quota.used };
   },
@@ -94,7 +108,7 @@ export const collectionStore = {
     const windowStart = Math.floor(now / PACK_WINDOW_MS) * PACK_WINDOW_MS;
 
     let stored = null;
-    try { stored = JSON.parse(localStorage.getItem(LAST_PACK_KEY)); } catch {}
+    try { stored = JSON.parse(localStorage.getItem(_keys().lastPack)); } catch {}
 
     // Normalizar: si no coincide la ventana, generar nueva cuota
     if (!stored || stored.windowStart !== windowStart) {
@@ -103,34 +117,45 @@ export const collectionStore = {
         allowed: Math.floor(Math.random() * 8) + 3, // 3..10
         used: 0,
       };
-      localStorage.setItem(LAST_PACK_KEY, JSON.stringify(stored));
+      localStorage.setItem(_keys().lastPack, JSON.stringify(stored));
     }
 
     const remaining = Math.max(0, Number(stored.allowed || 0) - Number(stored.used || 0));
     return { ...stored, remaining };
   },
 
-  canOpenPack() {
-    return this._getWindowQuota().remaining > 0;
+  // ── Demo mode: contador total de sobres (máx DEMO_MAX_PACKS) ──────────────
+  _getDemoUsed() {
+    try { return parseInt(localStorage.getItem(_keys().lastPack + '_demo') || '0'); }
+    catch { return 0; }
   },
 
-  // Cuántos sobres quedan en esta ventana de 4h
+  canOpenPack() {
+    if (isFreePlay()) return this._getWindowQuota().remaining > 0;
+    return this._getDemoUsed() < DEMO_MAX_PACKS;
+  },
+
   packsRemaining() {
-    return this._getWindowQuota().remaining;
+    if (isFreePlay()) return this._getWindowQuota().remaining;
+    return Math.max(0, DEMO_MAX_PACKS - this._getDemoUsed());
   },
 
   markPackOpened() {
-    const q = this._getWindowQuota();
-    const next = {
-      windowStart: q.windowStart,
-      allowed: q.allowed,
-      used: Math.min(Number(q.used || 0) + 1, Number(q.allowed || 0)),
-    };
-    localStorage.setItem(LAST_PACK_KEY, JSON.stringify(next));
+    if (isFreePlay()) {
+      const q = this._getWindowQuota();
+      localStorage.setItem(_keys().lastPack, JSON.stringify({
+        windowStart: q.windowStart,
+        allowed: q.allowed,
+        used: Math.min(Number(q.used || 0) + 1, Number(q.allowed || 0)),
+      }));
+    } else {
+      const used = this._getDemoUsed();
+      localStorage.setItem(_keys().lastPack + '_demo', String(Math.min(used + 1, DEMO_MAX_PACKS)));
+    }
   },
 
-  // ms hasta la próxima ventana (nuevo set de 3..10 sobres)
   msUntilNextPack() {
+    if (!isFreePlay()) return 0; // demo: no hay recarga automática
     const now = Date.now();
     const nextWindow = (Math.floor(now / PACK_WINDOW_MS) * PACK_WINDOW_MS) + PACK_WINDOW_MS;
     return Math.max(0, nextWindow - now);
@@ -154,11 +179,11 @@ export const collectionStore = {
 
     existing.forEach(add);
     (stickers || []).forEach(add);
-    localStorage.setItem(PENDING_KEY, JSON.stringify(merged));
+    localStorage.setItem(_keys().pending, JSON.stringify(merged));
   },
 
   getPendingPack() {
-    try { return JSON.parse(localStorage.getItem(PENDING_KEY)) || []; }
+    try { return JSON.parse(localStorage.getItem(_keys().pending)) || []; }
     catch { return []; }
   },
 
@@ -167,19 +192,19 @@ export const collectionStore = {
     const i = p.findIndex(s => s.countryId === countryId && s.slotIndex === slotIndex);
     if (i !== -1) {
       p.splice(i, 1);
-      localStorage.setItem(PENDING_KEY, JSON.stringify(p));
+      localStorage.setItem(_keys().pending, JSON.stringify(p));
     }
   },
 
   clearPendingPack() {
-    localStorage.removeItem(PENDING_KEY);
+    localStorage.removeItem(_keys().pending);
   },
 
   // ── Duplicados disponibles para intercambio ─────────────────────────────
   // Store separado: no afecta el progreso del álbum ni la colección.
 
   _loadDupes() {
-    try { return JSON.parse(localStorage.getItem(DUPLICATES_KEY)) || {}; } catch { return {}; }
+    try { return JSON.parse(localStorage.getItem(_keys().duplicates)) || {}; } catch { return {}; }
   },
 
   // Registra un cromo como duplicado disponible para intercambio
@@ -187,7 +212,7 @@ export const collectionStore = {
     const data = this._loadDupes();
     const key  = stickerKey(countryId, slotIndex);
     data[key]  = (data[key] || 0) + 1;
-    localStorage.setItem(DUPLICATES_KEY, JSON.stringify(data));
+    localStorage.setItem(_keys().duplicates, JSON.stringify(data));
   },
 
   // Quita un duplicado (cuando se intercambia)
@@ -197,7 +222,7 @@ export const collectionStore = {
     if (!data[key]) return;
     data[key]--;
     if (data[key] <= 0) delete data[key];
-    localStorage.setItem(DUPLICATES_KEY, JSON.stringify(data));
+    localStorage.setItem(_keys().duplicates, JSON.stringify(data));
   },
 
   // Devuelve [{ countryId, slotIndex, count }] de cromos disponibles para intercambio

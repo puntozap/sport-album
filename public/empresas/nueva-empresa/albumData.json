@@ -1,0 +1,113 @@
+{
+  "albumId": "nueva-empresa",
+  "name": "Nueva Empresa",
+  "stickerCount": 12,
+  "groups": [
+    {
+      "id": "grupo-a",
+      "name": "Grupo A",
+      "letter": "A",
+      "colors": {
+        "primary": "#1a56db",
+        "secondary": "#ffffff",
+        "accent": "#f59e0b",
+        "sticker": "#e0e7ff",
+        "groupBox": "#1e3a8a"
+      },
+      "entities": [
+        {
+          "id": "equipo-alpha",
+          "name": "Equipo Alpha",
+          "code": "ALP",
+          "colors": {
+            "primary": "#1a56db",
+            "secondary": "#ffffff",
+            "accent": "#f59e0b",
+            "sticker": "#e0e7ff",
+            "groupBox": "#1e3a8a"
+          },
+          "stickers": [
+            { "slot": 0,  "name": "Equipo Alpha", "type": "holograma" },
+            { "slot": 1,  "name": "Ana García" },
+            { "slot": 2,  "name": "Luis Pérez" },
+            { "slot": 3,  "name": "María López" },
+            { "slot": 4,  "name": "Carlos Ruiz" },
+            { "slot": 5,  "name": "Laura Díaz" },
+            { "slot": 6,  "name": "Jorge Mora" },
+            { "slot": 7,  "name": "Sofia Vega" },
+            { "slot": 8,  "name": "Pablo Cruz" },
+            { "slot": 9,  "name": "Valeria Ríos" },
+            { "slot": 10, "name": "Marcos Leal" },
+            { "slot": 11, "name": "Diana Soto" }
+          ]
+        },
+        {
+          "id": "equipo-beta",
+          "name": "Equipo Beta",
+          "code": "BET",
+          "colors": {
+            "primary": "#0e7490",
+            "secondary": "#ffffff",
+            "accent": "#fbbf24",
+            "sticker": "#cffafe",
+            "groupBox": "#164e63"
+          },
+          "stickers": [
+            { "slot": 0,  "name": "Equipo Beta", "type": "holograma" },
+            { "slot": 1,  "name": "Fernando Ruiz" },
+            { "slot": 2,  "name": "Carmen Vargas" },
+            { "slot": 3,  "name": "Andrés Castro" },
+            { "slot": 4,  "name": "Natalia Romero" },
+            { "slot": 5,  "name": "Pablo Ortega" },
+            { "slot": 6,  "name": "Valeria Reyes" },
+            { "slot": 7,  "name": "Héctor Mendoza" },
+            { "slot": 8,  "name": "Isabela Cruz" },
+            { "slot": 9,  "name": "Ricardo Silva" },
+            { "slot": 10, "name": "Claudia Flores" },
+            { "slot": 11, "name": "Alejandro Vega" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "grupo-b",
+      "name": "Grupo B",
+      "letter": "B",
+      "colors": {
+        "primary": "#7c3aed",
+        "secondary": "#ffffff",
+        "accent": "#fbbf24",
+        "sticker": "#ede9fe",
+        "groupBox": "#4c1d95"
+      },
+      "entities": [
+        {
+          "id": "equipo-gamma",
+          "name": "Equipo Gamma",
+          "code": "GAM",
+          "colors": {
+            "primary": "#7c3aed",
+            "secondary": "#ffffff",
+            "accent": "#fbbf24",
+            "sticker": "#ede9fe",
+            "groupBox": "#4c1d95"
+          },
+          "stickers": [
+            { "slot": 0,  "name": "Equipo Gamma", "type": "holograma" },
+            { "slot": 1,  "name": "Marco Navarro" },
+            { "slot": 2,  "name": "Beatriz Campos" },
+            { "slot": 3,  "name": "Diego Serrano" },
+            { "slot": 4,  "name": "Alicia Peña" },
+            { "slot": 5,  "name": "Oscar Medina" },
+            { "slot": 6,  "name": "Miriam Aguilar" },
+            { "slot": 7,  "name": "Rubén Guerrero" },
+            { "slot": 8,  "name": "Verónica Núñez" },
+            { "slot": 9,  "name": "Ernesto Ramos" },
+            { "slot": 10, "name": "Silvia Mora" },
+            { "slot": 11, "name": "Jaime Delgado" }
+          ]
+        }
+      ]
+    }
+  ]
+}

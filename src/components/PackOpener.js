@@ -4,7 +4,7 @@ import { isEmpresaMode, getEmpresaEntities } from '../data/albumContext.js';
 import { collectionStore } from '../data/collectionStore.js';
 import { getLang } from '../i18n.js';
 
-const STICKERS_PER_PACK = 5;
+const STICKERS_PER_PACK = 3;
 
 function buildPool() {
   const pool = [];

@@ -23,6 +23,7 @@ define('UPLOAD_TOKEN', 'xK9#mP2$qR7nL4vT8wY1');
 
 // Rutas base
 $CROMOS_DIR    = realpath(__DIR__ . '/../cromos_extraidos') ?: (__DIR__ . '/../cromos_extraidos');
+$PUBLIC_DIR    = realpath(__DIR__ . '/..') ?: (__DIR__ . '/..');
 $MANIFEST_FILE = __DIR__ . '/drive-manifest.json';
 
 // ── CORS ─────────────────────────────────────────────────────
@@ -50,19 +51,84 @@ function saveManifest($file, $manifest) {
     file_put_contents($file, json_encode($manifest, JSON_PRETTY_PRINT));
 }
 
-// ── Validar path ──────────────────────────────────────────────
-function validPath($raw) {
+// ── Validar path FIFA (cromos_extraidos) ──────────────────────
+function validPathFifa($raw) {
     $p = ltrim(str_replace('\\', '/', $raw), '/');
-    // Solo permite: grupos/{letra}/{numero}/{slot}.png
     if (!preg_match('/^grupos\/[a-z]+\/\d+\/\d{2}\.png$/i', $p)) return false;
     return $p;
 }
 
-$action = $_POST['action'] ?? 'upload';
-$fileId = trim($_POST['fileId'] ?? '');
+// ── Validar path empresa (/empresas/{slug}/cromos/{id}/{slot}.ext) ─
+function validPathEmpresa($raw) {
+    $p = ltrim(str_replace('\\', '/', $raw), '/');
+    // Seguridad: sin traversal, sin espacios
+    if (strpos($p, '..') !== false || strpos($p, ' ') !== false) return false;
+    // Debe empezar con empresas/ y terminar en imagen
+    if (!preg_match('/^empresas\/.+\/cromos\/.+\/\d{2}\.(webp|png|jpg|jpeg)$/i', $p)) return false;
+    return $p;
+}
 
+$action     = $_POST['action'] ?? 'upload';
+$fileId     = trim($_POST['fileId'] ?? '');
+$serverPath = trim($_POST['serverPath'] ?? ''); // ruta empresa: /empresas/slug/cromos/.../00.webp
+
+// ── Ruta empresa: no necesita fileId ──────────────────────────
+if ($serverPath) {
+    $cleanPath = validPathEmpresa($serverPath);
+    if (!$cleanPath) {
+        http_response_code(400);
+        echo json_encode(['error' => 'serverPath inválido. Formato: /empresas/{slug}/cromos/{equipo}/{slot}.ext']);
+        exit;
+    }
+
+    $uploadedFile = $_FILES['file'] ?? null;
+    if (!$uploadedFile || $uploadedFile['error'] !== UPLOAD_ERR_OK) {
+        http_response_code(400); echo json_encode(['error' => 'Archivo no recibido']); exit;
+    }
+
+    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+    $mime  = finfo_file($finfo, $uploadedFile['tmp_name']);
+    finfo_close($finfo);
+    $allowed = ['image/webp', 'image/png', 'image/jpeg'];
+    if (!in_array($mime, $allowed)) {
+        http_response_code(400); echo json_encode(['error' => 'Formato no soportado. Usa webp, png o jpg']); exit;
+    }
+
+    $fullPath = $PUBLIC_DIR . '/' . $cleanPath;
+    $dir      = dirname($fullPath);
+
+    if (!is_dir($dir)) {
+        $mkdirOk = @mkdir($dir, 0775, true);
+        if (!$mkdirOk && !is_dir($dir)) {
+            http_response_code(500);
+            echo json_encode([
+                'error'    => 'No se pudo crear directorio',
+                'dir'      => $dir,
+                'public'   => $PUBLIC_DIR,
+                'exists'   => is_dir(dirname($dir)),
+                'writable' => is_writable(dirname($dir)),
+            ]);
+            exit;
+        }
+    }
+
+    if (move_uploaded_file($uploadedFile['tmp_name'], $fullPath)) {
+        echo json_encode(['success' => true, 'path' => '/' . $cleanPath]);
+    } else {
+        http_response_code(500);
+        echo json_encode([
+            'error'    => 'No se pudo guardar',
+            'dir'      => $dir,
+            'exists'   => is_dir($dir),
+            'writable' => is_writable($dir),
+        ]);
+    }
+    exit;
+}
+
+// ── Ruta FIFA: requiere fileId ─────────────────────────────────
 if (!$fileId) {
-    http_response_code(400); echo json_encode(['error' => 'fileId requerido']); exit;
+    http_response_code(400); echo json_encode(['error' => 'fileId o serverPath requerido']); exit;
 }
 
 $manifest = loadManifest($MANIFEST_FILE);
@@ -86,7 +152,7 @@ if ($action === 'delete') {
 // ════════════════════════════════════════════════════════════
 //  ACCIÓN: upload (crear o renombrar)
 // ════════════════════════════════════════════════════════════
-$newPath = validPath($_POST['path'] ?? '');
+$newPath = validPathFifa($_POST['path'] ?? '');
 if (!$newPath) {
     http_response_code(400);
     echo json_encode(['error' => 'path inválido. Formato: grupos/a/1/00.png']);
@@ -103,7 +169,7 @@ $finfo = finfo_open(FILEINFO_MIME_TYPE);
 $mime  = finfo_file($finfo, $uploadedFile['tmp_name']);
 finfo_close($finfo);
 if ($mime !== 'image/png') {
-    http_response_code(400); echo json_encode(['error' => 'Solo PNG']); exit;
+    http_response_code(400); echo json_encode(['error' => 'Solo PNG (ruta FIFA)']); exit;
 }
 
 // Si el fileId ya tenía otra ruta → borrar el archivo viejo (fue renombrado en Drive)

@@ -2,7 +2,13 @@
   "permissions": {
     "allow": [
       "Bash(python -c ' *)",
-      "Bash(node -e \"const d = require\\('./src/data/teamsData.json'\\); d.teams.forEach\\(t => console.log\\(t.name\\)\\);\")"
+      "Bash(node -e \"const d = require\\('./src/data/teamsData.json'\\); d.teams.forEach\\(t => console.log\\(t.name\\)\\);\")",
+      "Bash(git checkout *)",
+      "Bash(netstat -ano)",
+      "Bash(findstr \"LISTENING\")",
+      "Bash(findstr \":5173\\\\|:3000\\\\|:8080\\\\|:80 \")",
+      "Bash(findstr \":80\")",
+      "Bash(python scripts/python/upload_empresa_cromos.py bridge._sc)"
     ],
     "additionalDirectories": [
       "c:\\Users\\LENOVO\\.claude\\projects\\c--laragon-www-album-panini\\memory"

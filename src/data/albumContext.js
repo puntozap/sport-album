@@ -2,13 +2,17 @@ let _albumType = 'fifa'; // 'fifa' | 'empresa'
 let _empresaEntities = [];
 let _empresaGroups = [];
 let _empresaMeta = null;
+let _freePlay = false; // false = demo (5 sobres), true = juego libre
 
 export function setEmpresaAlbum({ meta, entities, groups }) {
   _albumType = 'empresa';
   _empresaMeta = meta;
   _empresaEntities = entities;
   _empresaGroups = groups;
+  _freePlay = !!meta?.freePlay;
 }
+
+export function isFreePlay() { return _freePlay; }
 
 export function isEmpresaMode() { return _albumType === 'empresa'; }
 export function getEmpresaMeta() { return _empresaMeta; }

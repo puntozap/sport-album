@@ -1,0 +1,14 @@
+{
+  "albumId": "nueva-empresa",
+  "name": "Nueva Empresa",
+  "primaryColor": "#1a56db",
+  "logoUrl": "",
+  "sheetsUrl": "https://script.google.com/macros/s/AKfycbzxvuKOCV_1WHZte7LUGsjVyELzIJaTWfnYO_r57RR_Fy9mXp0QFSlAXa_jQAJgKToW/exec",
+  "serverUrl": "https://bridgesc.figurita.lat",
+  "uploadToken": "xK9#mP2$qR7nL4vT8wY1",
+  "stamp": {
+    "corner": "bottom-right",
+    "logoHeight": 32,
+    "padding": 8
+  }
+}

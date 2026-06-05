@@ -1,0 +1,16 @@
+{
+  "albumId": "bridge._sc",
+  "name": "Bridge SC",
+  "tagline": "Tu slogan aquí",
+  "primaryColor": "#1a56db",
+  "logoUrl": "/empresas/bridge._sc/logo.jpg",
+  "sheetsUrl": "https://script.google.com/macros/s/AKfycbxg0oVPFxlYoko4L2J4k5egKMvlsrGVxO10ySX_MNMjbhftX_J75GB5pk8MP5onNIvE/exec",
+  "shareUrl": "https://bridgesc.figurita.lat/share",
+  "serverUrl": "https://bridgesc.figurita.lat",
+  "uploadToken": "xK9#mP2$qR7nL4vT8wY1",
+  "stamp": {
+    "corner": "bottom-right",
+    "logoHeight": 32,
+    "padding": 8
+  }
+}

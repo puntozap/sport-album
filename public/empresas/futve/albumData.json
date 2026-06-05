@@ -1,0 +1,373 @@
+{
+  "albumId": "futve",
+  "name": "Álbum futve",
+  "freePlay": true,
+  "groups": [
+    {
+      "id": "tachira",
+      "name": "Tachira",
+      "letter": "T",
+      "colors": {
+        "primary":   "#1a1a1a",
+        "secondary": "#f5c518",
+        "accent":    "#f5c518",
+        "sticker":   "#1a1a1a",
+        "groupBox":  "#1a1a1a"
+      },
+      "entities": [
+        {
+          "id": "tachira",
+          "name": "tachira",
+          "code": "TAC",
+          "stickerCount": 12,
+          "colors": {
+            "primary":   "#1a1a1a",
+            "secondary": "#f5c518",
+            "accent":    "#f5c518",
+            "sticker":   "#1a1a1a",
+            "groupBox":  "#1a1a1a"
+          },
+          "stickers": [
+            {
+              "slot": 0,
+              "name": "tachira",
+              "type": "holograma"
+            },
+            {
+              "slot": 1,
+              "name": "Alejandro José Araque Peña",
+              "numero": "1",
+              "posicion": "Portero",
+              "image_url": "https://deportivotachira.com/wp-content/uploads/2024/11/ALEJANDRO-ARAQUE.png-400x400.avif",
+              "imagen_local": "tachira\\imagenes\\plantilla_de_jugadores\\alejandro_jose_araque_pena.avif"
+            },
+            {
+              "slot": 2,
+              "name": "Juan David Sánchez Contreras",
+              "numero": "02",
+              "posicion": "Defensa",
+              "image_url": "https://deportivotachira.com/wp-content/uploads/2024/11/02-JUAN-DAVID-SANCHEZ.png-400x400.avif",
+              "imagen_local": "tachira\\imagenes\\defensa\\juan_david_sanchez_contreras.avif"
+            },
+            {
+              "slot": 3,
+              "name": "Lautaro Cruz Lusnig",
+              "numero": "3",
+              "posicion": "Defensa",
+              "image_url": "https://deportivotachira.com/wp-content/uploads/2024/11/03-LAUTARO-LUSNIG.png-400x400.avif",
+              "imagen_local": "tachira\\imagenes\\defensa\\lautaro_cruz_lusnig.avif"
+            },
+            {
+              "slot": 4,
+              "name": "Guillermo Fratta Cabrera",
+              "numero": "4",
+              "posicion": "Defensa",
+              "image_url": "https://deportivotachira.com/wp-content/uploads/2024/11/04-GUILLERMO-FRATTA.png-400x400.avif",
+              "imagen_local": "tachira\\imagenes\\defensa\\guillermo_fratta_cabrera.avif"
+            },
+            {
+              "slot": 5,
+              "name": "Adrián Enrique Montañez Ibarguen",
+              "numero": "6",
+              "posicion": "Defensa",
+              "image_url": "https://deportivotachira.com/wp-content/uploads/2024/11/06-ADRIAN-MONTANEZ.png-400x400.avif",
+              "imagen_local": "tachira\\imagenes\\defensa\\adrian_enrique_montanez_ibarguen.avif"
+            },
+            {
+              "slot": 6,
+              "name": "Adalberto Peñaranda Maestre",
+              "numero": "7",
+              "posicion": "Delantero",
+              "image_url": "https://deportivotachira.com/wp-content/uploads/2024/11/07-ADALBERTO-PENARANDA.png-400x400.avif",
+              "imagen_local": "tachira\\imagenes\\delantero\\adalberto_penaranda_maestre.avif"
+            },
+            {
+              "slot": 7,
+              "name": "Jairo Damián Villalpando Modesto",
+              "numero": "8",
+              "posicion": "Mediocampo",
+              "image_url": "https://deportivotachira.com/wp-content/uploads/2024/11/08-JAIRO-VILLALPANDO.png-400x400.avif",
+              "imagen_local": "tachira\\imagenes\\mediocampo\\jairo_damian_villalpando_modesto.avif"
+            },
+            {
+              "slot": 8,
+              "name": "Carlos José Sosa Moreno (Copy)",
+              "numero": "10",
+              "posicion": "Mediocampo",
+              "image_url": "https://deportivotachira.com/wp-content/uploads/2024/11/10-CARLOS-SOSA.png-400x400.avif",
+              "imagen_local": "tachira\\imagenes\\mediocampo\\carlos_jose_sosa_moreno_copy.avif"
+            },
+            {
+              "slot": 9,
+              "name": "Carlos José Sosa Moreno",
+              "numero": "10",
+              "posicion": "Mediocampo",
+              "image_url": "https://deportivotachira.com/wp-content/uploads/2024/11/10-CARLOS-SOSA.png-400x400.avif",
+              "imagen_local": "tachira\\imagenes\\mediocampo\\carlos_jose_sosa_moreno.avif"
+            },
+            {
+              "slot": 10,
+              "name": "Carlos Sosa",
+              "numero": "10",
+              "posicion": "Mediocampo",
+              "image_url": "https://deportivotachira.com/wp-content/uploads/2024/11/10-CARLOS-SOSA.png-400x400.avif",
+              "imagen_local": "tachira\\imagenes\\mediocampo\\carlos_sosa.avif"
+            },
+            {
+              "slot": 11,
+              "name": "Luis González",
+              "numero": "11",
+              "posicion": "Mediocampo",
+              "image_url": "https://deportivotachira.com/wp-content/uploads/2024/11/11-LUIS-CARIACO-GONZALEZ.png-400x400.avif",
+              "imagen_local": "tachira\\imagenes\\mediocampo\\luis_gonzalez.avif"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "carabobo",
+      "name": "Carabobo",
+      "letter": "C",
+      "colors": {
+        "primary": "#dc2626",
+        "secondary": "#ffffff",
+        "accent": "#f59e0b",
+        "sticker": "#e0e7ff",
+        "groupBox": "#dc2626"
+      },
+      "entities": [
+        {
+          "id": "carabobo",
+          "name": "Carabobo",
+          "code": "CAR",
+          "stickerCount": 12,
+          "colors": {
+            "primary": "#1a56db",
+            "secondary": "#ffffff",
+            "accent": "#f59e0b",
+            "sticker": "#e0e7ff",
+            "groupBox": "#1a56db"
+          },
+          "stickers": [
+            {
+              "slot": 0,
+              "name": "Carabobo",
+              "type": "holograma"
+            },
+            {
+              "slot": 1,
+              "name": "Marcel Guaramato",
+              "numero": "2",
+              "posicion": null,
+              "image_url": "https://carabobofc.org/images/jugadores/GUARAMATO.jpg",
+              "imagen_local": "carabobo_fc\\imagenes\\defensas\\160_marcel_guaramato.jpg"
+            },
+            {
+              "slot": 2,
+              "name": "Jean Fuentes",
+              "numero": "3",
+              "posicion": null,
+              "image_url": "https://carabobofc.org/images/jugadores/JEANFUENTES.jpg",
+              "imagen_local": "carabobo_fc\\imagenes\\defensas\\201_jean_fuentes.jpg"
+            },
+            {
+              "slot": 3,
+              "name": "Leonardo Aponte",
+              "numero": "4",
+              "posicion": null,
+              "image_url": "https://carabobofc.org/images/jugadores/LEONARDOAPONTE.jpg",
+              "imagen_local": "carabobo_fc\\imagenes\\defensas\\156_leonardo_aponte.jpg"
+            },
+            {
+              "slot": 4,
+              "name": "Edson Castillo",
+              "numero": "5",
+              "posicion": null,
+              "image_url": "https://carabobofc.org/images/jugadores/EDSONCASTILLO.jpg",
+              "imagen_local": "carabobo_fc\\imagenes\\mediocampistas\\210_edson_castillo.jpg"
+            },
+            {
+              "slot": 5,
+              "name": "Abraham Bahachille",
+              "numero": "6",
+              "posicion": null,
+              "image_url": "https://carabobofc.org/images/jugadores/BAHACHILE.jpg",
+              "imagen_local": "carabobo_fc\\imagenes\\mediocampistas\\203_abraham_bahachille.jpg"
+            },
+            {
+              "slot": 6,
+              "name": "Edson Tortolero",
+              "numero": "7",
+              "posicion": null,
+              "image_url": "https://carabobofc.org/images/jugadores/EDSONTORTOLERO.jpg",
+              "imagen_local": "carabobo_fc\\imagenes\\extremos\\142_edson_tortolero.jpg"
+            },
+            {
+              "slot": 7,
+              "name": "Juan Camilo Pérez",
+              "numero": "8",
+              "posicion": null,
+              "image_url": "https://carabobofc.org/images/jugadores/JUANCAMILOPEREZ.jpg",
+              "imagen_local": "carabobo_fc\\imagenes\\mediocampistas\\144_juan_camilo_perez.jpg"
+            },
+            {
+              "slot": 8,
+              "name": "José Riasco",
+              "numero": "9",
+              "posicion": null,
+              "image_url": "https://carabobofc.org/images/jugadores/RIASCO.jpg",
+              "imagen_local": "carabobo_fc\\imagenes\\delanteros\\189_jose_riasco.jpg"
+            },
+            {
+              "slot": 9,
+              "name": "Yohandry Orozco",
+              "numero": "10",
+              "posicion": null,
+              "image_url": "https://carabobofc.org/images/jugadores/YOHANDRYOROZCO.jpg",
+              "imagen_local": "carabobo_fc\\imagenes\\extremos\\199_yohandry_orozco.jpg"
+            },
+            {
+              "slot": 10,
+              "name": "Angelo Lucena",
+              "numero": "11",
+              "posicion": null,
+              "image_url": "https://carabobofc.org/images/jugadores/ANGELOLUCENA.jpg",
+              "imagen_local": "carabobo_fc\\imagenes\\extremos\\195_angelo_lucena.jpg"
+            },
+            {
+              "slot": 11,
+              "name": "Keiber Roa",
+              "numero": "12",
+              "posicion": null,
+              "image_url": "https://carabobofc.org/images/jugadores/ROA.jpg",
+              "imagen_local": "carabobo_fc\\imagenes\\porteros\\215_keiber_roa.jpg"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ucv",
+      "name": "UCV",
+      "letter": "U",
+      "colors": {
+        "primary": "#db2777",
+        "secondary": "#ffffff",
+        "accent": "#f59e0b",
+        "sticker": "#e0e7ff",
+        "groupBox": "#db2777"
+      },
+      "entities": [
+        {
+          "id": "ucv",
+          "name": "UCV",
+          "code": "UCV",
+          "stickerCount": 12,
+          "colors": {
+            "primary": "#16a34a",
+            "secondary": "#ffffff",
+            "accent": "#f59e0b",
+            "sticker": "#e0e7ff",
+            "groupBox": "#16a34a"
+          },
+          "stickers": [
+            {
+              "slot": 0,
+              "name": "UCV",
+              "type": "holograma"
+            },
+            {
+              "slot": 1,
+              "name": "Lautaro Morales",
+              "numero": "1",
+              "posicion": "Portero",
+              "image_url": "https://ucvfcoficial.com/wp-content/uploads/2026/04/Lautaro-Morales-768x768.webp",
+              "imagen_local": "ucv\\imagenes\\porteros\\1_lautaro_morales.webp"
+            },
+            {
+              "slot": 2,
+              "name": "Kendrys Silva",
+              "numero": "2",
+              "posicion": "Defensor",
+              "image_url": "https://ucvfcoficial.com/wp-content/uploads/2026/03/ODU_2849-768x768.webp",
+              "imagen_local": "ucv\\imagenes\\defensores\\2_kendrys_silva.webp"
+            },
+            {
+              "slot": 3,
+              "name": "Rubén Ramírez",
+              "numero": "3",
+              "posicion": "Defensor",
+              "image_url": "https://ucvfcoficial.com/wp-content/uploads/2026/03/ODU_2988-768x768.webp",
+              "imagen_local": "ucv\\imagenes\\defensores\\3_ruben_ramirez.webp"
+            },
+            {
+              "slot": 4,
+              "name": "Williams Velázquez",
+              "numero": "4",
+              "posicion": "Defensor",
+              "image_url": "https://ucvfcoficial.com/wp-content/uploads/2026/03/ODU_2842-768x768.webp",
+              "imagen_local": "ucv\\imagenes\\defensores\\4_williams_velazquez.webp"
+            },
+            {
+              "slot": 5,
+              "name": "Adrián Martínez",
+              "numero": "5",
+              "posicion": "Defensor",
+              "image_url": "https://ucvfcoficial.com/wp-content/uploads/2026/03/ODU_3135-768x768.webp",
+              "imagen_local": "ucv\\imagenes\\defensores\\5_adrian_martinez.webp"
+            },
+            {
+              "slot": 6,
+              "name": "Francisco Solé",
+              "numero": "6",
+              "posicion": "Centro Campista",
+              "image_url": "https://ucvfcoficial.com/wp-content/uploads/2026/03/ODU_3286-768x768.webp",
+              "imagen_local": "ucv\\imagenes\\centrocampistas\\6_francisco_sole.webp"
+            },
+            {
+              "slot": 7,
+              "name": "Juan Manuel Cuesta",
+              "numero": "7",
+              "posicion": "Delantero",
+              "image_url": "https://ucvfcoficial.com/wp-content/uploads/2026/03/ODU_3356-768x768.webp",
+              "imagen_local": "ucv\\imagenes\\delanteros\\7_juan_manuel_cuesta.webp"
+            },
+            {
+              "slot": 8,
+              "name": "Juan Camilo Zapata",
+              "numero": "8",
+              "posicion": "Delantero",
+              "image_url": "https://ucvfcoficial.com/wp-content/uploads/2026/03/ODU_3419-768x768.webp",
+              "imagen_local": "ucv\\imagenes\\delanteros\\8_juan_camilo_zapata.webp"
+            },
+            {
+              "slot": 9,
+              "name": "Yeiber Murillo",
+              "numero": "9",
+              "posicion": "Delantero",
+              "image_url": "https://ucvfcoficial.com/wp-content/uploads/2026/03/ODU_2764-768x768.webp",
+              "imagen_local": "ucv\\imagenes\\delanteros\\9_yeiber_murillo.webp"
+            },
+            {
+              "slot": 10,
+              "name": "Samuel Sosa",
+              "numero": "10",
+              "posicion": "Delantero",
+              "image_url": "https://ucvfcoficial.com/wp-content/uploads/2026/03/ODU_3021-768x768.webp",
+              "imagen_local": "ucv\\imagenes\\delanteros\\10_samuel_sosa.webp"
+            },
+            {
+              "slot": 11,
+              "name": "Jovanny Bolívar",
+              "numero": "11",
+              "posicion": "Delantero",
+              "image_url": "https://ucvfcoficial.com/wp-content/uploads/2026/03/ODU_3408-768x768.webp",
+              "imagen_local": "ucv\\imagenes\\delanteros\\11_jovanny_bolivar.webp"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

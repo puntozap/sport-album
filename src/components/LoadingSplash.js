@@ -2,9 +2,12 @@ import { t } from '../i18n.js';
 import { CLIENT, clientLogoHtml } from '../config/client.js';
 
 let splashEl = null;
+let splashBuiltActive = null;
 
 function ensure() {
-  if (splashEl) return splashEl;
+  // Reconstruir si CLIENT.active cambió (empresa cargó después del primer render)
+  if (splashEl && splashBuiltActive === CLIENT.active) return splashEl;
+  if (splashEl) splashEl.remove();
 
   const clientBlock = CLIENT.active ? `
     <div class="loading-client-section">
@@ -22,8 +25,9 @@ function ensure() {
     <div class="loading-splash-content">
       <div class="loading-splash-badge" aria-hidden="true">🏆</div>
       ${clientBlock}
-      <div class="loading-splash-title">${t('unofficial_title')}</div>
-      <div class="loading-splash-sub">${t('unofficial_sub')}</div>
+      <div class="loading-splash-title">${CLIENT.active ? 'ÁLBUM DE FIGURITAS EMPRESARIAL' : t('unofficial_title')}</div>
+      <div class="loading-splash-sub">${CLIENT.active ? 'Creado por zempercodes.com' : t('unofficial_sub')}</div>
+      ${!CLIENT.active ? `
       <div class="loading-splash-links">
         <a class="loading-splash-link" href="https://instagram.com/puntozap" target="_blank" rel="noopener noreferrer">
           <span class="loading-splash-link-label">Instagram</span>
@@ -33,12 +37,13 @@ function ensure() {
           <span class="loading-splash-link-label">LinkedIn</span>
           <span class="loading-splash-link-handle">/in/puntozap</span>
         </a>
-      </div>
+      </div>` : ''}
     </div>
   `;
 
   document.body.appendChild(el);
   splashEl = el;
+  splashBuiltActive = CLIENT.active;
   return el;
 }
 
@@ -51,4 +56,3 @@ export function hideLoadingSplash() {
   if (!splashEl) return;
   splashEl.classList.remove('loading-splash-active');
 }
-
