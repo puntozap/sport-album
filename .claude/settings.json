@@ -8,7 +8,11 @@
       "Bash(findstr \"LISTENING\")",
       "Bash(findstr \":5173\\\\|:3000\\\\|:8080\\\\|:80 \")",
       "Bash(findstr \":80\")",
-      "Bash(python scripts/python/upload_empresa_cromos.py bridge._sc)"
+      "Bash(python scripts/python/upload_empresa_cromos.py bridge._sc)",
+      "Bash(Select-Object -First 30)",
+      "Bash(git merge *)",
+      "Bash(git stash *)",
+      "Bash(git commit *)"
     ],
     "additionalDirectories": [
       "c:\\Users\\LENOVO\\.claude\\projects\\c--laragon-www-album-panini\\memory"
