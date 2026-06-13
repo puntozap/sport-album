@@ -10,7 +10,6 @@ import { ReceivePage } from './components/ReceivePage.js';
 import { handleScanRoute } from './components/ScanPage.js';
 import { SharePage } from './components/SharePage.js';
 import { PongPage } from './components/PongPage.js';
-import { ARPage } from './components/ARPage.js';
 import { FindPage } from './components/FindPage.js';
 import { MapPage } from './components/MapPage.js';
 import { empty } from './utils/dom.js';
@@ -22,6 +21,8 @@ import { showLoadingSplash, hideLoadingSplash } from './components/LoadingSplash
 import { serverResultsStore } from './data/serverResultsStore.js';
 import { updateSEO } from './seo.js';
 import { restoreMusicPlayer } from './components/MusicPlayer.js';
+import { openPackModal } from './components/PackOpener.js';
+import { collectionStore } from './data/collectionStore.js';
 
 async function fetchPlayerOverrides() {
   try {
@@ -147,8 +148,16 @@ export function initApp() {
     });
   });
 
-  // Ruta raíz → primera entidad
-  router.on('/', () => router.navigate('/' + (allEntityIds[0] || 'mexico')));
+  let _packOpenedOnLoad = false;
+
+  // Ruta raíz → primera entidad + abre sobre automáticamente en la primera carga
+  router.on('/', () => {
+    router.navigate('/' + (allEntityIds[0] || 'mexico'));
+    if (!_packOpenedOnLoad && collectionStore.canOpenPack()) {
+      _packOpenedOnLoad = true;
+      setTimeout(() => openPackModal(), 1800);
+    }
+  });
 
   // Simulador y bracket solo en modo FIFA
   if (!isEmpresaMode()) {
@@ -184,12 +193,6 @@ export function initApp() {
   router.on('/pong', () => {
     document.getElementById('pong-page')?.remove();
     PongPage();
-  });
-
-  // AR: colocar cromo en la ciudad (admin)
-  router.on('/ar', () => {
-    document.getElementById('ar-page')?.remove();
-    ARPage();
   });
 
   // Find: buscar cromo en la ciudad (usuario)
