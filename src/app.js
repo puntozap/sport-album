@@ -1,11 +1,18 @@
 import { router, getCompanySlug } from './router.js';
+import { downloadAlbumPdf } from './components/AlbumPdfExport.js';
 import { countries, getCountryById, patchPlayerNames } from './data/countries.js';
 import { isEmpresaMode, getEmpresaEntities } from './data/albumContext.js';
 import { CountryPage } from './components/CountryPage.js';
 import { BracketPage } from './components/BracketPage.js';
 import { GivePage } from './components/GivePage.js';
+import { GiftCreatorPage } from './components/GiftCreatorPage.js';
 import { ReceivePage } from './components/ReceivePage.js';
+import { handleScanRoute } from './components/ScanPage.js';
 import { SharePage } from './components/SharePage.js';
+import { PongPage } from './components/PongPage.js';
+import { ARPage } from './components/ARPage.js';
+import { FindPage } from './components/FindPage.js';
+import { MapPage } from './components/MapPage.js';
 import { empty } from './utils/dom.js';
 import { initPageSwipe } from './components/PageSwipe.js';
 import { initResponsiveScale } from './utils/scale.js';
@@ -129,9 +136,14 @@ export function initApp() {
             });
           });
 
-      showCountryCurtain(entity.id, () => {
+      if (window._skipNextCurtain) {
+        window._skipNextCurtain = false;
         if (swipeController) swipeController.update(entity.id);
-      }, readyPromise);
+      } else {
+        showCountryCurtain(entity.id, () => {
+          if (swipeController) swipeController.update(entity.id);
+        }, readyPromise);
+      }
     });
   });
 
@@ -156,10 +168,46 @@ export function initApp() {
     if (!document.querySelector('.gr-overlay')) GivePage();
   });
 
+  // Crear regalo de cromos (elige país + slots desde duplicados)
+  router.on('/gift-creator', () => {
+    updateSEO('/gift-creator');
+    if (!document.querySelector('.gc-overlay')) GiftCreatorPage();
+  });
+
   // Share
   router.on('/share', () => {
     document.getElementById('share-page')?.remove();
     document.body.appendChild(SharePage());
+  });
+
+  // Pong multijugador
+  router.on('/pong', () => {
+    document.getElementById('pong-page')?.remove();
+    PongPage();
+  });
+
+  // AR: colocar cromo en la ciudad (admin)
+  router.on('/ar', () => {
+    document.getElementById('ar-page')?.remove();
+    ARPage();
+  });
+
+  // Find: buscar cromo en la ciudad (usuario)
+  router.on('/find', () => {
+    document.getElementById('find-page')?.remove();
+    FindPage();
+  });
+
+  // Map: mapa público de todos los cromoses escondidos
+  router.on('/map', () => {
+    document.getElementById('map-page')?.remove();
+    MapPage();
+  });
+
+  // Descarga directa del PDF por URL
+  router.on('/pdf', () => {
+    router.navigate('/' + (allEntityIds[0] || 'mexico'));
+    setTimeout(() => downloadAlbumPdf(), 400);
   });
 
   router.on('/404', (path) => {
@@ -169,6 +217,14 @@ export function initApp() {
       ReceivePage({ transferId: receiveMatch[1] });
       return;
     }
+
+    // Intercambio de cromos QR: /scan?need=... o /scan?give=...
+    if (path?.match(/^\/scan(\?.*)?$/)) {
+      document.querySelector('.sc-overlay')?.remove();
+      handleScanRoute(path);
+      return;
+    }
+
     appRoot.innerHTML = `<h1>${t('page_not_found')}</h1>`;
   });
 

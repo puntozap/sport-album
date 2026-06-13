@@ -362,6 +362,17 @@
   color: #fff;
   box-shadow: 0 4px 16px rgba(0,0,0,0.4);
 }
+.sticker-reveal-action-btn--share {
+  background: linear-gradient(135deg, #6633cc, #00a9bd);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(102,51,204,.4);
+  width: 100%;
+  flex: unset;
+}
+.sticker-reveal-action-btn--share:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(102,51,204,.55);
+}
 .sticker-reveal-action-btn[data-style="gold"] {
   background: linear-gradient(135deg, #d4af37, #a8892a);
   color: #000;
@@ -376,6 +387,31 @@
 .sticker-reveal-action-btn:not([data-style="active"]):hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+/* ── Hint "toca el cromo para pegarlo" (modo regalo) ── */
+.sticker-reveal-tap-hint {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.04em;
+  animation: hint-pulse 1.6s ease-in-out infinite;
+  margin-top: -4px;
+}
+
+@keyframes hint-pulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50%       { opacity: 1;    transform: scale(1.04); }
+}
+
+.sticker-reveal-card-container--tappable {
+  cursor: pointer;
+}
+.sticker-reveal-card-container--tappable:hover .sticker-reveal-card {
+  filter: brightness(1.12) drop-shadow(0 0 18px rgba(255,255,255,0.3));
+}
+.sticker-reveal-card-container--tappable:active .sticker-reveal-card {
+  transform: scale(0.96) !important;
+  transition: transform 0.1s ease-out !important;
 }
 
 /* Responsive */

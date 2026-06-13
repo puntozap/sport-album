@@ -1570,6 +1570,29 @@
   cursor: not-allowed;
 }
 
+/* ── Botón Compartir ── */
+.match-card-share {
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid rgba(80, 160, 255, 0.25);
+  color: rgba(110, 170, 255, 0.65);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+.match-card-share.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+.match-card-share:hover {
+  background: rgba(80, 160, 255, 0.12);
+  border-color: rgba(100, 180, 255, 0.6);
+  color: #6ab4ff;
+}
+
 /* ── Botón Borrar ── */
 .match-card-delete {
   padding: 5px 10px;

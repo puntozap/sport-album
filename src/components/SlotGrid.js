@@ -1,6 +1,6 @@
 import { Slot } from './Slot.js';
 
-export function SlotGrid({ countryCode, countryId, slots, countryName, flag, onStickerClick }) {
+export function SlotGrid({ countryCode, countryId, slots, countryName, flag, onStickerClick, onMissingClick }) {
   const fragment = document.createDocumentFragment();
 
   slots.forEach(slotData => {
@@ -15,7 +15,8 @@ export function SlotGrid({ countryCode, countryId, slots, countryName, flag, onS
       stickerUrl: slotData.stickerUrl,
       countryName,
       flag,
-      onStickerClick
+      onStickerClick,
+      onMissingClick
     });
     fragment.appendChild(slotEl);
   });

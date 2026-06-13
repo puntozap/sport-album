@@ -209,5 +209,16 @@ export const collectionStore = {
         const [countryId, slotIndex] = key.split(':');
         return { countryId, slotIndex: Number(slotIndex), count };
       });
+  },
+
+  // Cuántas copias tiene en duplicados de un cromo específico
+  getDuplicateCount(countryId, slotIndex) {
+    const data = this._loadDupes();
+    return data[stickerKey(countryId, slotIndex)] || 0;
+  },
+
+  // Recibir un cromo de regalo — lo añade directamente a la colección
+  receiveGift(countryId, slotIndex) {
+    return this.collect(countryId, slotIndex);
   }
 };

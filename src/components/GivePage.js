@@ -43,6 +43,10 @@ export function GivePage() {
   overlay.className = 'gr-overlay';
   overlay.addEventListener('pointerdown', e => e.stopPropagation());
 
+  let selected  = [];
+  let pollTimer = null;
+  let curStep   = 'select';
+
   // ── Sin duplicados ──
   if (dupes.length === 0) {
     overlay.innerHTML = `
@@ -68,10 +72,6 @@ export function GivePage() {
     if (!dupesByCountry[d.countryId]) dupesByCountry[d.countryId] = [];
     dupesByCountry[d.countryId].push(d);
   });
-
-  let selected  = []; // {countryId, slotIndex, stickerUrl, name}
-  let pollTimer = null;
-  let curStep   = 'select';
 
   overlay.innerHTML = `
     <div class="gr-header">

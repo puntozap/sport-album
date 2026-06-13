@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>OG Image Generator — Álbum 2026</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #111; display: flex; flex-direction: column; align-items: center; padding: 24px 16px; gap: 20px; font-family: sans-serif; color: #eee; min-height: 100vh; }
+    h2 { color: #d4af37; font-size: 20px; }
+    #grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; width: 100%; max-width: 1100px; }
+    .slot { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    canvas { border: 2px solid #333; width: 100%; max-width: 380px; border-radius: 6px; cursor: pointer; }
+    canvas:hover { border-color: #6633cc; }
+    .dl { padding: 7px 18px; background: #6633cc; color: #fff; border: none; border-radius: 6px; font-size: 13px; cursor: pointer; width: 100%; max-width: 380px; }
+    .dl:hover { background: #4f27a0; }
+    .regen { padding: 7px 18px; background: #1a5c38; color: #fff; border: none; border-radius: 6px; font-size: 13px; cursor: pointer; width: 100%; max-width: 380px; }
+    .regen:hover { background: #144a2d; }
+    #dl-all { padding: 12px 40px; background: #00843d; color: #fff; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; font-weight: bold; }
+    #dl-all:hover { background: #006830; }
+    p { color: #888; font-size: 13px; text-align: center; max-width: 700px; line-height: 1.5; }
+    code { background: #222; padding: 2px 6px; border-radius: 4px; color: #f07800; }
+    .top-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; justify-content: center; }
+    #status { color: #6633cc; font-size: 13px; }
+  </style>
+</head>
+<body>
+<h2>⚽ OG Image Generator — aleatorio en cada F5</h2>
+<p>Cada vez que recargas (F5) se generan 6 imágenes completamente distintas + 1 variante de celebración de álbum completo. Haz clic en cualquier imagen para regenerarla individualmente.</p>
+<div class="top-row">
+  <button id="dl-all">⬇ Descargar las 7 imágenes</button>
+  <button id="regen-all" style="padding:12px 28px;background:#444;color:#fff;border:none;border-radius:8px;font-size:15px;cursor:pointer">🔄 Regenerar todas</button>
+  <span id="status"></span>
+</div>
+<div id="grid"></div>
+<p>Sube los archivos a <code>public/assets/og-image-1.jpg … og-image-6.jpg</code> — el PHP rota entre ellas cada día automáticamente.</p>
+
+<script>
+// ── Auto-detectar base de cromos según el entorno ────────────────────────────
+// Laragon sirve /album-panini/public/og-generator.html → cromos en /album-panini/cromos_extraidos/
+// Producción sirve /og-generator.html → cromos en /cromos_extraidos/
+const _p = window.location.pathname;
+const CROMO_BASE = (() => {
+  // Si estamos dentro de un subdirectorio tipo /album-panini/...
+  const match = _p.match(/^(\/[^/]+)\/(?:public\/)?og-generator\.html$/);
+  if (match) return match[1] + '/';
+  return '/';
+})();
+
+// ── Cromos estrella fijos (izquierda siempre) ────────────────────────────────
+const HERO_STICKERS = [
+  { path: CROMO_BASE + 'cromos_extraidos/grupos/j/1/09.png', label: 'MESSI',   flag: 'ar' },
+  { path: CROMO_BASE + 'cromos_extraidos/grupos/i/1/08.png', label: 'MBAPPÉ',  flag: 'fr' },
+  { path: CROMO_BASE + 'cromos_extraidos/grupos/k/1/08.png', label: 'RONALDO', flag: 'pt' },
+  { path: CROMO_BASE + 'cromos_extraidos/grupos/h/1/09.png', label: 'YAMAL',   flag: 'es' },
+  { path: CROMO_BASE + 'cromos_extraidos/grupos/g/4/04.png', label: 'T.PAYNE', flag: 'nz' },
+];
+
+// ── Países con flag ISO2 ──────────────────────────────────────────────────────
+const COUNTRIES = [
+  {id:'argentina',   flag:'ar'}, {id:'brazil',      flag:'br'}, {id:'france',      flag:'fr'},
+  {id:'spain',       flag:'es'}, {id:'portugal',    flag:'pt'}, {id:'germany',     flag:'de'},
+  {id:'mexico',      flag:'mx'}, {id:'colombia',    flag:'co'}, {id:'uruguay',     flag:'uy'},
+  {id:'unitedstates',flag:'us'}, {id:'canada',      flag:'ca'}, {id:'morocco',     flag:'ma'},
+  {id:'senegal',     flag:'sn'}, {id:'netherlands', flag:'nl'}, {id:'belgium',     flag:'be'},
+  {id:'japan',       flag:'jp'}, {id:'england',     flag:'gb-eng'}, {id:'croatia', flag:'hr'},
+  {id:'switzerland', flag:'ch'}, {id:'australia',   flag:'au'}, {id:'newzealand',  flag:'nz'},
+  {id:'egypt',       flag:'eg'}, {id:'ghana',       flag:'gh'}, {id:'nigeria',     flag:'ng'},
+  {id:'saudiarabia', flag:'sa'}, {id:'iran',        flag:'ir'}, {id:'korearepublic',flag:'kr'},
+  {id:'norway',      flag:'no'}, {id:'sweden',      flag:'se'}, {id:'ecuador',     flag:'ec'},
+];
+
+const HALOS = [
+  ['#4a90d9','rgba(102,51,204,.20)','rgba(200,16,46,.10)'],
+  ['#009c3b','rgba(212,175,55,.18)','rgba(0,169,189,.12)'],
+  ['#002395','rgba(200,16,46,.20)','rgba(102,51,204,.15)'],
+  ['#c60b1e','rgba(212,175,55,.20)','rgba(0,169,100,.12)'],
+  ['#006600','rgba(200,16,46,.18)','rgba(102,51,204,.12)'],
+  ['#333333','rgba(102,51,204,.22)','rgba(200,16,46,.12)'],
+];
+
+const STRIPES = ['#f5a3b7','#c8102e','#f07800','#6633cc','#00843d','#00a9bd','#d4af37','#ec4899'];
+
+let stickerMap = null;
+
+function rnd(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+function shuffle(a) {
+  const b=[...a]; for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];} return b;
+}
+function rndInt(min,max) { return Math.floor(Math.random()*(max-min+1))+min; }
+function rndFloat(min,max) { return Math.random()*(max-min)+min; }
+
+async function loadImg(src) {
+  return new Promise(res => {
+    const img = new Image(); img.crossOrigin='anonymous';
+    img.onload=()=>res(img); img.onerror=()=>res(null); img.src=src;
+  });
+}
+
+function roundRect(ctx,x,y,w,h,r) {
+  ctx.beginPath();
+  ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y); ctx.arcTo(x+w,y,x+w,y+r,r);
+  ctx.lineTo(x+w,y+h-r); ctx.arcTo(x+w,y+h,x+w-r,y+h,r);
+  ctx.lineTo(x+r,y+h); ctx.arcTo(x,y+h,x,y+h-r,r);
+  ctx.lineTo(x,y+r); ctx.arcTo(x,y,x+r,y,r);
+  ctx.closePath();
+}
+
+async function loadStickerMap() {
+  if (stickerMap) return stickerMap;
+  try {
+    const r = await fetch(CROMO_BASE + 'api/stickerMap.json');
+    stickerMap = await r.json();
+  } catch { stickerMap = {}; }
+  return stickerMap;
+}
+
+// Elige N cromos al azar de países distintos
+function pickRandomStickers(map, count) {
+  const countries = Object.keys(map).filter(k => map[k].length > 1);
+  const picked = shuffle(countries).slice(0, count);
+  return picked.map(id => {
+    const paths = map[id];
+    // Evitar slot 0 (suele ser el escudo)
+    const path = paths[rndInt(1, paths.length-1)];
+    const country = COUNTRIES.find(c=>c.id===id) || {id,flag:'un'};
+    return { path: CROMO_BASE + path, country };
+  });
+}
+
+async function drawVariant(canvas) {
+  const ctx = canvas.getContext('2d');
+  const W=1200, H=630;
+  const map = await loadStickerMap();
+
+  // País destacado aleatorio
+  const featCountry = rnd(COUNTRIES.filter(c=>map[c.id]));
+  const haloSet = rnd(HALOS);
+
+  // Cromos izquierda: 5 estrellas fijas + 1 al azar
+  const heroImgs = await Promise.all(HERO_STICKERS.map(h=>loadImg(h.path)));
+  const HERO_IDS = ['argentina','france','portugal','spain','newzealand'];
+  const randomExtra = pickRandomStickers(map, 8).filter(s => !HERO_IDS.includes(s.country?.id));
+  const randomExtraImg = randomExtra[0] ? await loadImg(randomExtra[0].path) : null;
+
+  // Cromos derecha: 4 al azar (países distintos a los de izquierda)
+  const rightStickers = pickRandomStickers(map, 12).filter(s => !HERO_IDS.includes(s.country?.id)).slice(0,4);
+  const rightImgs = await Promise.all(rightStickers.map(s=>loadImg(s.path)));
+
+  // Para compatibilidad con el resto del código que usa stickerImgs
+  const stickerImgs = [...heroImgs, randomExtraImg, ...rightImgs];
+
+  // Banderas: 20 al azar
+  const flagPool = shuffle(COUNTRIES).slice(0,20).map(c=>c.flag);
+
+  // Cromo grande: path al azar del país destacado
+  const featPaths = map[featCountry.id] || [];
+  const featStickerPath = featPaths.length > 1 ? CROMO_BASE + featPaths[rndInt(1,featPaths.length-1)] : null;
+  const featStickerImg = featStickerPath ? await loadImg(featStickerPath) : null;
+  const featFlagImg = await loadImg(`https://flagcdn.com/w160/${featCountry.flag}.png`);
+
+  // ── Fondo ─────────────────────────────────────────────────────────────────
+  const bg=ctx.createLinearGradient(0,0,W,H);
+  bg.addColorStop(0,'#060e1a'); bg.addColorStop(.45,'#0a1a0f'); bg.addColorStop(1,'#06111a');
+  ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+
+  const halo=(x,y,r,c)=>{
+    const g=ctx.createRadialGradient(x,y,0,x,y,r);
+    g.addColorStop(0,c); g.addColorStop(1,'transparent');
+    ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+  };
+  halo(200,340,420,haloSet[0]+'44');
+  halo(980,160,360,haloSet[1]);
+  halo(600,520,280,haloSet[2]);
+
+  // ── Franjas ───────────────────────────────────────────────────────────────
+  const sw=W/STRIPES.length;
+  STRIPES.forEach((c,i)=>{ ctx.fillStyle=c; ctx.fillRect(i*sw,0,sw,18); });
+
+  // ── Banderas (2 filas de 10) ──────────────────────────────────────────────
+  const fSz=44;
+  for(let row=0;row<2;row++){
+    const rowF=flagPool.slice(row*10,row*10+10);
+    const gap=(W-40)/rowF.length;
+    for(let i=0;i<rowF.length;i++){
+      const x=20+i*gap+gap/2-fSz/2, y=26+row*(fSz+6);
+      const img=await loadImg(`https://flagcdn.com/w80/${rowF[i]}.png`);
+      if(!img) continue;
+      ctx.save();
+      ctx.beginPath(); ctx.arc(x+fSz/2,y+fSz/2,fSz/2,0,Math.PI*2); ctx.clip();
+      ctx.drawImage(img,x,y,fSz,fSz); ctx.restore();
+      ctx.beginPath(); ctx.arc(x+fSz/2,y+fSz/2,fSz/2,0,Math.PI*2);
+      ctx.strokeStyle='rgba(255,255,255,.2)'; ctx.lineWidth=2; ctx.stroke();
+    }
+  }
+
+  // ── Dibujar cromo con imagen real ─────────────────────────────────────────
+  function drawCard(cx, cy, rot, img, goldFrame=false, playerLabel=null) {
+    const cw=90, ch=120, cr=9;
+    ctx.save();
+    ctx.translate(cx+cw/2, cy+ch/2);
+    ctx.rotate(rot*Math.PI/180);
+    ctx.shadowColor='rgba(0,0,0,.75)'; ctx.shadowBlur=18; ctx.shadowOffsetY=8;
+
+    if(goldFrame){
+      roundRect(ctx,-cw/2-2,-ch/2-2,cw+4,ch+4,cr+1);
+      const gf=ctx.createLinearGradient(-cw/2,-ch/2,cw/2,ch/2);
+      gf.addColorStop(0,'#d4af37'); gf.addColorStop(.5,'#f5d97a'); gf.addColorStop(1,'#b8962a');
+      ctx.fillStyle=gf; ctx.fill();
+    }
+    ctx.shadowBlur=0;
+
+    roundRect(ctx,-cw/2,-ch/2,cw,ch,cr);
+    ctx.fillStyle='#0d1825'; ctx.fill();
+
+    if(img){
+      ctx.save();
+      roundRect(ctx,-cw/2,-ch/2,cw,ch,cr); ctx.clip();
+      const iw=img.naturalWidth||img.width, ih=img.naturalHeight||img.height;
+      const scale=Math.max(cw/iw,ch/ih);
+      ctx.drawImage(img,-iw*scale/2,-ih*scale/2,iw*scale,ih*scale);
+      ctx.restore();
+    } else {
+      ctx.fillStyle='rgba(255,255,255,.04)';
+      ctx.font='bold 60px Impact'; ctx.textAlign='center'; ctx.textBaseline='middle';
+      ctx.fillText('26',0,0);
+    }
+
+    // Overlay degradado
+    const ov=ctx.createLinearGradient(0,-ch/2,0,ch/2);
+    ov.addColorStop(.4,'transparent'); ov.addColorStop(1,'rgba(0,0,0,.7)');
+    roundRect(ctx,-cw/2,-ch/2,cw,ch,cr); ctx.fillStyle=ov; ctx.fill();
+
+    ctx.restore();
+  }
+
+  // Izquierda: 3 columnas × 2 filas = 6 cromos (5 estrellas + 1 al azar)
+  // Fila 1: Messi, Mbappé, Cristiano | Fila 2: Yamal, T.Payne, aleatorio
+  const lx=[14,92,170], ly=[136,282];
+  const leftHeroes = [...HERO_STICKERS, null]; // null = el aleatorio
+  for(let row=0;row<2;row++) for(let col=0;col<3;col++){
+    const idx=row*3+col;
+    const hero=leftHeroes[idx];
+    const img=hero ? heroImgs[idx] : (idx===5 ? randomExtraImg : null);
+    const label=hero ? hero.label : null;
+    const isHero=!!hero;
+    const rot=rndFloat(isHero?-6:-11, isHero?6:11);
+    drawCard(lx[col]+rndInt(-3,3), ly[row]+rndInt(-3,3), rot, img, isHero, label);
+  }
+
+  // Derecha: 2 columnas × 2 filas = 4 cromos aleatorios
+  const rx=[926,1014], ry=[136,282];
+  for(let row=0;row<2;row++) for(let col=0;col<2;col++){
+    const idx=row*2+col;
+    const rot=rndFloat(-11,11);
+    drawCard(rx[col]+rndInt(-3,3), ry[row]+rndInt(-3,3), rot, rightImgs[idx]||null, false);
+  }
+
+  // ── Cromo grande del país destacado ──────────────────────────────────────
+  const fcx=265, fcy=132, fcw=136, fch=182, fcr=12;
+  ctx.save();
+  ctx.shadowColor='rgba(0,0,0,.8)'; ctx.shadowBlur=32; ctx.shadowOffsetY=14;
+  roundRect(ctx,fcx-3,fcy-3,fcw+6,fch+6,fcr+2);
+  const gf=ctx.createLinearGradient(fcx,fcy,fcx+fcw,fcy+fch);
+  gf.addColorStop(0,'#d4af37'); gf.addColorStop(.5,'#f5e080'); gf.addColorStop(1,'#c8a020');
+  ctx.fillStyle=gf; ctx.fill(); ctx.shadowBlur=0;
+
+  roundRect(ctx,fcx,fcy,fcw,fch,fcr);
+  ctx.fillStyle='#0d1825'; ctx.fill();
+
+  if(featStickerImg){
+    ctx.save();
+    roundRect(ctx,fcx,fcy,fcw,fch,fcr); ctx.clip();
+    const iw=featStickerImg.naturalWidth||featStickerImg.width;
+    const ih=featStickerImg.naturalHeight||featStickerImg.height;
+    const scale=Math.max(fcw/iw,fch/ih);
+    ctx.drawImage(featStickerImg,fcx+(fcw-iw*scale)/2,fcy+(fch-ih*scale)/2,iw*scale,ih*scale);
+    ctx.restore();
+  } else if(featFlagImg){
+    ctx.save();
+    roundRect(ctx,fcx+8,fcy+18,fcw-16,fch-60,8); ctx.clip();
+    ctx.drawImage(featFlagImg,fcx+8,fcy+18,fcw-16,fch-60); ctx.restore();
+  }
+
+  // Overlay bottom
+  const fov=ctx.createLinearGradient(0,fcy+fch-70,0,fcy+fch);
+  fov.addColorStop(0,'transparent'); fov.addColorStop(1,'rgba(0,0,0,.9)');
+  roundRect(ctx,fcx,fcy,fcw,fch,fcr); ctx.fillStyle=fov; ctx.fill();
+
+  // Banderita del país sobre la imagen
+  if(featFlagImg){
+    ctx.save();
+    ctx.beginPath(); ctx.arc(fcx+fcw/2,fcy+fch-46,14,0,Math.PI*2); ctx.clip();
+    ctx.drawImage(featFlagImg,fcx+fcw/2-14,fcy+fch-60,28,28); ctx.restore();
+    ctx.beginPath(); ctx.arc(fcx+fcw/2,fcy+fch-46,14,0,Math.PI*2);
+    ctx.strokeStyle='rgba(212,175,55,.8)'; ctx.lineWidth=2; ctx.stroke();
+  }
+
+  ctx.fillStyle='#d4af37'; ctx.font='bold 12px Arial Black,Impact';
+  ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillText(featCountry.id.toUpperCase().replace('UNITEDSTATES','USA').replace('KOREAREPUBLIC','KOREA').replace('NEWZEALAND','N.ZEALAND'), fcx+fcw/2, fcy+fch-20);
+  ctx.restore();
+
+  // ── Centro ────────────────────────────────────────────────────────────────
+  ctx.shadowColor='rgba(212,175,55,.65)'; ctx.shadowBlur=55;
+  ctx.font='108px serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillText('🏆',W/2,252); ctx.shadowBlur=0;
+
+  const tg=ctx.createLinearGradient(310,0,890,0);
+  tg.addColorStop(0,'#f5a3b7'); tg.addColorStop(.3,'#f07800');
+  tg.addColorStop(.6,'#d4af37'); tg.addColorStop(1,'#00a9bd');
+  ctx.fillStyle=tg; ctx.font='bold 66px Impact,Arial Black';
+  ctx.textAlign='center'; ctx.textBaseline='alphabetic';
+  ctx.fillText('ÁLBUM DE FIGURITAS',W/2,352);
+
+  ctx.fillStyle='#fff'; ctx.font='bold 50px Impact,Arial Black';
+  ctx.fillText('MUNDIAL 2026',W/2,408);
+
+  const div=ctx.createLinearGradient(300,0,900,0);
+  div.addColorStop(0,'transparent'); div.addColorStop(.5,'rgba(255,255,255,.35)'); div.addColorStop(1,'transparent');
+  ctx.strokeStyle=div; ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.moveTo(300,426); ctx.lineTo(900,426); ctx.stroke();
+
+  ctx.fillStyle='rgba(255,255,255,.55)'; ctx.font='26px Arial';
+  ctx.fillText('COLECCIONA · INTERCAMBIA · COMPLETA',W/2,464);
+
+  [{t:'⚽ 48 Selecciones',x:W/2-220},{t:'🎴 576 Cromos',x:W/2},{t:'🆓 Gratis',x:W/2+210}].forEach(p=>{
+    ctx.save();
+    roundRect(ctx,p.x-85,484,170,32,16);
+    ctx.fillStyle='rgba(255,255,255,.07)'; ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,.18)'; ctx.lineWidth=1; ctx.stroke(); ctx.restore();
+    ctx.fillStyle='rgba(255,255,255,.8)'; ctx.font='14px Arial';
+    ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(p.t,p.x,500);
+  });
+
+  ctx.fillStyle='rgba(255,255,255,.3)'; ctx.font='16px monospace';
+  ctx.textAlign='center'; ctx.textBaseline='alphabetic';
+  ctx.fillText('sportalbum.chanzia.com  ·  album.figurita.lat',W/2,598);
+
+  [...STRIPES].reverse().forEach((c,i)=>{ ctx.fillStyle=c; ctx.fillRect(i*sw,H-14,sw,14); });
+}
+
+// ── Variante 7: ¡Álbum 100% completado! ─────────────────────────────────────
+async function drawCelebrationVariant(canvas) {
+  const ctx = canvas.getContext('2d');
+  const W=1200, H=630;
+  const map = await loadStickerMap();
+  const rand=(a,b)=>a+Math.random()*(b-a);
+
+  // ── 1. Fondo base ──────────────────────────────────────────────────────────
+  ctx.fillStyle='#060810'; ctx.fillRect(0,0,W,H);
+
+  // ── 2. Fondo con TODOS los cromos (blur) ──────────────────────────────────
+  // Recoger hasta 40 imágenes al azar del mapa
+  const allIds = shuffle(Object.keys(map).filter(k=>map[k].length>2));
+  const bgPaths = allIds.slice(0,40).map(id=>{
+    const paths=map[id];
+    return CROMO_BASE + paths[rndInt(1, Math.min(paths.length-1, paths.length))];
+  });
+  const bgImgs = await Promise.all(bgPaths.map(p=>loadImg(p)));
+
+  // Dibujar en canvas auxiliar y luego con blur
+  const bgCv = document.createElement('canvas');
+  bgCv.width=W; bgCv.height=H;
+  const bgCtx = bgCv.getContext('2d');
+  const SW=90, SH=126;
+  const cols=Math.ceil(W/SW)+2, rows=Math.ceil(H/SH)+2;
+  let ii=0;
+  for(let row=-1;row<rows;row++) for(let col=-1;col<cols;col++){
+    const img=bgImgs[ii%bgImgs.length]; ii++;
+    if(!img) continue;
+    const x=col*SW + (row%2?SW/2:0);
+    const y=row*SH;
+    const rot=rand(-10,10);
+    bgCtx.save();
+    bgCtx.translate(x+SW/2, y+SH/2);
+    bgCtx.rotate(rot*Math.PI/180);
+    bgCtx.globalAlpha=rand(0.5,0.9);
+    const s=Math.max(SW/img.naturalWidth, SH/img.naturalHeight);
+    bgCtx.drawImage(img,-img.naturalWidth*s/2,-img.naturalHeight*s/2,img.naturalWidth*s,img.naturalHeight*s);
+    bgCtx.restore();
+  }
+  // Aplicar blur al fondo de cromos
+  ctx.filter='blur(7px)';
+  ctx.globalAlpha=0.55;
+  ctx.drawImage(bgCv,0,0);
+  ctx.filter='none';
+  ctx.globalAlpha=1;
+
+  // ── 3. Overlay degradado oscuro central para legibilidad ───────────────────
+  const ov=ctx.createRadialGradient(W/2,H/2,60,W/2,H/2,W*0.65);
+  ov.addColorStop(0,'rgba(4,6,18,0.90)');
+  ov.addColorStop(0.45,'rgba(4,6,18,0.78)');
+  ov.addColorStop(1,'rgba(4,6,18,0.25)');
+  ctx.fillStyle=ov; ctx.fillRect(0,0,W,H);
+
+  // ── 4. Halos de color ──────────────────────────────────────────────────────
+  const halo=(x,y,r,c)=>{const g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,c);g.addColorStop(1,'transparent');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);};
+  halo(W/2,H/2,340,'rgba(212,175,55,.30)');
+  halo(180,220,260,'rgba(200,16,46,.22)');
+  halo(W-180,380,240,'rgba(102,51,204,.25)');
+  halo(W/2,550,200,'rgba(0,169,189,.20)');
+
+  // ── 5. Franjas de color arriba y abajo ────────────────────────────────────
+  const sw=W/STRIPES.length;
+  STRIPES.forEach((c,i)=>{ctx.fillStyle=c;ctx.fillRect(i*sw,0,sw,20);});
+  [...STRIPES].reverse().forEach((c,i)=>{ctx.fillStyle=c;ctx.fillRect(i*sw,H-20,sw,20);});
+
+  // ── 6. Confeti sobre todo ─────────────────────────────────────────────────
+  const confColors=['#f5a3b7','#c8102e','#f07800','#6633cc','#00843d','#00a9bd','#d4af37','#ec4899','#ffffff'];
+  for(let i=0;i<160;i++){
+    const x=rand(0,W), y=rand(22,H-22), sz=rand(3,12);
+    ctx.fillStyle=confColors[Math.floor(Math.random()*confColors.length)];
+    ctx.globalAlpha=rand(0.3,0.95);
+    ctx.save(); ctx.translate(x,y); ctx.rotate(rand(0,Math.PI));
+    if(Math.random()>0.45){ ctx.fillRect(-sz/2,-sz,sz,sz*2.4); }
+    else { ctx.beginPath(); ctx.arc(0,0,sz/2,0,Math.PI*2); ctx.fill(); }
+    ctx.restore();
+  }
+  ctx.globalAlpha=1;
+
+  // ── 7. Icono SVG del álbum — trofeo con halo dorado ─────────────────────────
+  const svgSrc = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" fill="none"/><text x="256" y="380" text-anchor="middle" font-size="360" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,serif">🏆</text></svg>`;
+  const svgBlob = new Blob([svgSrc],{type:'image/svg+xml'});
+  const svgUrl = URL.createObjectURL(svgBlob);
+  const iconImg = await loadImg(svgUrl);
+  URL.revokeObjectURL(svgUrl);
+
+  const IS=130; // tamaño del icono
+  const IX=W/2-IS/2, IY=18;
+  // Halo dorado exterior
+  const iconHalo=ctx.createRadialGradient(W/2,IY+IS/2,0,W/2,IY+IS/2,IS*0.9);
+  iconHalo.addColorStop(0,'rgba(212,175,55,0.55)');
+  iconHalo.addColorStop(0.5,'rgba(212,175,55,0.20)');
+  iconHalo.addColorStop(1,'transparent');
+  ctx.fillStyle=iconHalo; ctx.fillRect(W/2-IS,IY-IS*0.3,IS*2,IS*1.6);
+  // Círculo de fondo oscuro suave
+  ctx.save();
+  ctx.beginPath(); ctx.arc(W/2,IY+IS/2,IS*0.55,0,Math.PI*2);
+  ctx.fillStyle='rgba(10,13,26,0.55)'; ctx.fill();
+  ctx.restore();
+  // Anillo dorado
+  ctx.save();
+  ctx.beginPath(); ctx.arc(W/2,IY+IS/2,IS*0.56,0,Math.PI*2);
+  ctx.strokeStyle='rgba(212,175,55,0.7)'; ctx.lineWidth=2.5; ctx.stroke();
+  ctx.restore();
+  // Icono
+  if(iconImg){ ctx.drawImage(iconImg,IX,IY,IS,IS); }
+
+  // ── 8. Texto principal — máxima emoción ──────────────────────────────────
+  ctx.textAlign='center'; ctx.textBaseline='alphabetic';
+  ctx.shadowColor='rgba(0,0,0,0.95)'; ctx.shadowBlur=28; ctx.shadowOffsetY=6;
+
+  // "¡ÁLBUM" — cada letra su color
+  const colors1=['#f5a3b7','#f07800','#d4af37','#00a9bd','#f5a3b7','#f07800'];
+  const line1='¡ÁLBUM';
+  ctx.font='bold 134px Impact,"Arial Black",sans-serif';
+  const l1W=ctx.measureText(line1).width;
+  let charX=W/2-l1W/2;
+  for(let c of line1){
+    const cW=ctx.measureText(c).width;
+    ctx.fillStyle=colors1.shift()||'#fff';
+    ctx.fillText(c,charX+cW/2,270);
+    charX+=cW;
+  }
+
+  // "COMPLETO!" — más grande
+  const colors2=['#6633cc','#c8102e','#f07800','#d4af37','#00843d','#00a9bd','#d4af37','#f07800','#6633cc'];
+  const line2='COMPLETO!';
+  ctx.font='bold 144px Impact,"Arial Black",sans-serif';
+  const l2W=ctx.measureText(line2).width;
+  let charX2=W/2-l2W/2;
+  for(let c of line2){
+    const cW=ctx.measureText(c).width;
+    ctx.fillStyle=colors2.shift()||'#fff';
+    ctx.fillText(c,charX2+cW/2,415);
+    charX2+=cW;
+  }
+  ctx.shadowBlur=0; ctx.shadowOffsetY=0;
+
+  // ── 9. Estrellas ─────────────────────────────────────────────────────────
+  ctx.shadowColor='#d4af37'; ctx.shadowBlur=16;
+  ctx.fillStyle='#d4af37'; ctx.font='22px serif';
+  ctx.fillText('★  ★  ★  ★  ★  ★  ★', W/2, 438);
+  ctx.shadowBlur=0;
+
+  // ── 10. Badge 576/576 ─────────────────────────────────────────────────────
+  const pill1W=500,pill1H=40,pill1X=W/2-250,pill1Y=448;
+  roundRect(ctx,pill1X,pill1Y,pill1W,pill1H,20);
+  const pb=ctx.createLinearGradient(pill1X,0,pill1X+pill1W,0);
+  pb.addColorStop(0,'rgba(200,16,46,.75)'); pb.addColorStop(.5,'rgba(212,175,55,.75)'); pb.addColorStop(1,'rgba(0,169,189,.75)');
+  ctx.fillStyle=pb; ctx.fill();
+  ctx.strokeStyle='rgba(255,255,255,.2)'; ctx.lineWidth=1; ctx.stroke();
+  ctx.fillStyle='#fff'; ctx.font='bold 20px Impact'; ctx.textBaseline='middle';
+  ctx.fillText('⚽  576 / 576 CROMOS   ·   48 SELECCIONES   ✓ 100%', W/2, pill1Y+pill1H/2);
+
+  // ── 11. Frase emocional ───────────────────────────────────────────────────
+  ctx.textBaseline='alphabetic';
+  ctx.shadowColor='rgba(0,0,0,.85)'; ctx.shadowBlur=8;
+  ctx.fillStyle='rgba(255,255,255,.93)'; ctx.font='bold 20px Arial';
+  ctx.fillText('¡Lo lograste! Eres parte de los que vivieron el Mundial completo. 🎉', W/2, 516);
+  ctx.fillStyle='rgba(255,255,255,.58)'; ctx.font='italic 16px Arial';
+  ctx.fillText('"Hecho con IA y corazón, para que la emoción del fútbol llegue a todos" — Jose Ivan Zapata', W/2, 542);
+  ctx.shadowBlur=0;
+
+  // URL
+  ctx.fillStyle='rgba(255,255,255,.28)'; ctx.font='14px monospace';
+  ctx.fillText('sportalbum.chanzia.com  ·  album.figurita.lat', W/2, 592);
+}
+
+// ── Montar UI ─────────────────────────────────────────────────────────────────
+async function init() {
+  const grid=document.getElementById('grid');
+  const status=document.getElementById('status');
+
+  // Precargar el mapa una sola vez
+  status.textContent='Cargando stickerMap…';
+  await loadStickerMap();
+  status.textContent='';
+
+  for(let i=0;i<6;i++){
+    const slot=document.createElement('div'); slot.className='slot';
+    const canvas=document.createElement('canvas'); canvas.width=1200; canvas.height=630; canvas.id=`cv${i}`;
+    const label=document.createElement('span'); label.style.cssText='font-size:12px;color:#888';
+    label.textContent=`Variante ${i+1}`;
+
+    const row=document.createElement('div'); row.style.cssText='display:flex;gap:6px;width:100%;max-width:380px';
+    const btnDl=document.createElement('button'); btnDl.className='dl'; btnDl.style.flex='1';
+    btnDl.textContent=`⬇ og-image-${i+1}.jpg`;
+    btnDl.onclick=()=>dlOne(canvas,i+1);
+
+    const btnRe=document.createElement('button'); btnRe.className='regen'; btnRe.style.flex='0 0 auto';
+    btnRe.textContent='🔄'; btnRe.title='Regenerar esta imagen';
+    btnRe.onclick=()=>{ label.textContent=`Variante ${i+1} — generando…`; drawVariant(canvas).then(()=>label.textContent=`Variante ${i+1}`); };
+
+    canvas.onclick=()=>btnRe.click();
+    row.appendChild(btnDl); row.appendChild(btnRe);
+    slot.appendChild(canvas); slot.appendChild(label); slot.appendChild(row);
+    grid.appendChild(slot);
+    setTimeout(()=>drawVariant(canvas).then(()=>{ label.textContent=`Variante ${i+1}`; }), i*250);
+  }
+
+  // Variante 7 especial: celebración 100%
+  {
+    const i=6;
+    const slot=document.createElement('div'); slot.className='slot';
+    // Destacar con borde dorado
+    slot.style.cssText='grid-column:1/-1;display:flex;flex-direction:column;align-items:center;gap:6px;border:2px solid #d4af37;border-radius:10px;padding:12px;background:rgba(212,175,55,.06)';
+    const canvas=document.createElement('canvas'); canvas.width=1200; canvas.height=630; canvas.id=`cv${i}`;
+    canvas.style.cssText='max-width:800px;width:100%;border-radius:6px;border:2px solid #d4af37;cursor:pointer';
+    const label=document.createElement('span'); label.style.cssText='font-size:13px;color:#d4af37;font-weight:bold';
+    label.textContent='🏆 Variante 7 — ¡ÁLBUM 100% COMPLETADO! (Imagen especial para celebrar)';
+
+    const row=document.createElement('div'); row.style.cssText='display:flex;gap:6px';
+    const btnDl=document.createElement('button'); btnDl.className='dl';
+    btnDl.style.cssText='background:#d4af37;color:#000;font-weight:bold';
+    btnDl.textContent='⬇ og-image-7.jpg (celebración)';
+    btnDl.onclick=()=>dlOne(canvas,7);
+
+    const btnRe=document.createElement('button'); btnRe.className='regen';
+    btnRe.textContent='🔄 Regenerar';
+    btnRe.onclick=()=>{ label.textContent='🏆 Variante 7 — generando…'; drawCelebrationVariant(canvas).then(()=>label.textContent='🏆 Variante 7 — ¡ÁLBUM 100% COMPLETADO!'); };
+
+    canvas.onclick=()=>btnRe.click();
+    row.appendChild(btnDl); row.appendChild(btnRe);
+    slot.appendChild(canvas); slot.appendChild(label); slot.appendChild(row);
+    grid.appendChild(slot);
+    setTimeout(()=>drawCelebrationVariant(canvas).then(()=>{ label.textContent='🏆 Variante 7 — ¡ÁLBUM 100% COMPLETADO!'; }), 6*250);
+  }
+}
+
+function dlOne(canvas,num){
+  const a=document.createElement('a');
+  a.href=canvas.toDataURL('image/jpeg',.92); a.download=`og-image-${num}.jpg`; a.click();
+}
+
+document.getElementById('dl-all').addEventListener('click',async()=>{
+  const status=document.getElementById('status');
+  status.textContent='Descargando…';
+  for(let i=0;i<7;i++){ dlOne(document.getElementById(`cv${i}`),i+1); await new Promise(r=>setTimeout(r,500)); }
+  status.textContent='✓ Listo (7 imágenes)';
+  setTimeout(()=>status.textContent='',2500);
+});
+
+document.getElementById('regen-all').addEventListener('click',async()=>{
+  const status=document.getElementById('status');
+  status.textContent='Regenerando…';
+  for(let i=0;i<6;i++) setTimeout(()=>drawVariant(document.getElementById(`cv${i}`)), i*250);
+  setTimeout(()=>drawCelebrationVariant(document.getElementById('cv6')), 6*250);
+  setTimeout(()=>status.textContent='',2500);
+});
+
+init();
+</script>
+</body>
+</html>

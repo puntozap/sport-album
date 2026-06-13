@@ -15,7 +15,8 @@
  * "Partidos", el servidor se actualiza automáticamente.
  */
 
-const SERVER_URL   = 'https://sportalbum.chanzia.com/api/manage-matches';
+const SERVER_URL   = 'https://sportalbum.chanzia.com/api/manage-matches.php';
+const SERVER_URL2  = 'https://album.figurita.lat/api/manage-matches';
 const UPLOAD_TOKEN = 'xK9#mP2$qR7nL4vT8wY1';
 const SHEET_NAME   = 'Partidos';
 
@@ -141,20 +142,14 @@ function enviarAlServidor(matches) {
     muteHttpExceptions: true
   };
 
-  try {
-    const response = UrlFetchApp.fetch(SERVER_URL, options);
-    const code     = response.getResponseCode();
-    const body     = response.getContentText();
-    Logger.log(`Respuesta ${code}: ${body}`);
-
-    if (code !== 200) {
-      Logger.log('⚠️ Error al actualizar el servidor');
-    } else {
-      Logger.log(`✅ ${matches.length} partido(s) actualizado(s)`);
+  [SERVER_URL, SERVER_URL2].forEach(url => {
+    try {
+      const response = UrlFetchApp.fetch(url, options);
+      Logger.log(`${url} → ${response.getResponseCode()}: ${response.getContentText()}`);
+    } catch (err) {
+      Logger.log(`❌ Error en ${url}: ${err.message}`);
     }
-  } catch (err) {
-    Logger.log(`❌ Error de conexión: ${err.message}`);
-  }
+  });
 }
 
 // ── Resetear un partido (borrar su resultado del servidor) ────────────────────
@@ -168,12 +163,14 @@ function resetarPartido(matchId) {
     muteHttpExceptions: true
   };
 
-  try {
-    const response = UrlFetchApp.fetch(SERVER_URL, options);
-    Logger.log(`Reset partido ${matchId} → ${response.getResponseCode()}: ${response.getContentText()}`);
-  } catch (err) {
-    Logger.log(`❌ Error reseteando partido ${matchId}: ${err.message}`);
-  }
+  [SERVER_URL, SERVER_URL2].forEach(url => {
+    try {
+      const response = UrlFetchApp.fetch(url, options);
+      Logger.log(`Reset ${matchId} en ${url} → ${response.getResponseCode()}`);
+    } catch (err) {
+      Logger.log(`❌ Error reseteando en ${url}: ${err.message}`);
+    }
+  });
 }
 
 // ── Instalar trigger (ejecutar UNA VEZ manualmente) ──────────────────────────

@@ -7,6 +7,8 @@ import { resultsStore } from '../data/resultsStore.js';
 import { serverResultsStore } from '../data/serverResultsStore.js';
 import { getTeamId } from '../data/teamNameMap.js';
 import { t, getLang } from '../i18n.js';
+import { SimulationPresentation } from './SimulationPresentation.js';
+import { shareMatchResult } from '../utils/socialShare.js';
 
 const FLAG_CODES = {
   mexico: 'mx', southafrica: 'za', korearepublic: 'kr', czechia: 'cz',
@@ -203,6 +205,7 @@ export function MatchCard({ match, onSave }) {
     <div class="match-card-actions">
       <button class="match-card-simulate" title="${t('simulate_result_title')}" ${!editable ? 'disabled' : ''}>🎰 ${t('simulate_result')}</button>
       <button class="match-card-save">${t('save')}</button>
+      <button class="match-card-share ${isSaved || serverResult ? 'visible' : ''}" title="Compartir resultado">📤</button>
       <button class="match-card-delete ${isSaved && editable ? 'visible' : ''}" title="${t('reset')}">🗑️</button>
     </div>
     ${isSaved && !serverResult ? `<div class="match-card-saved-label">${t('saved_check')}</div>` : ''}
@@ -212,6 +215,7 @@ export function MatchCard({ match, onSave }) {
   const awayInput = el.querySelector('[data-side="away"]');
   const saveBtn   = el.querySelector('.match-card-save');
   const deleteBtn = el.querySelector('.match-card-delete');
+  const shareBtn  = el.querySelector('.match-card-share');
   const simBtn    = el.querySelector('.match-card-simulate');
   const resetOfficialBtn = el.querySelector('.match-card-reset-official');
 
@@ -250,6 +254,7 @@ export function MatchCard({ match, onSave }) {
     const hasAnyValue = hv !== '' || av !== '';
     deleteBtn.classList.toggle('visible', !!saved || hasAnyValue);
 
+    shareBtn.classList.toggle('visible', hv !== '' && av !== '');
     if (hv === '' || av === '') { saveBtn.classList.remove('visible'); return; }
     const isDirty = !saved || saved.homeGoals !== Number(hv) || saved.awayGoals !== Number(av);
     saveBtn.classList.toggle('visible', isDirty);
@@ -279,6 +284,15 @@ export function MatchCard({ match, onSave }) {
       if (onSave) onSave();
     });
 
+    // El botón compartir muestra el resultado actual (guardado o escrito)
+    shareBtn.addEventListener('click', () => {
+      const hv = homeInput.value;
+      const av = awayInput.value;
+      if (hv === '' || av === '') return;
+      const mode = isMatchInFuture(match) ? 'prediction' : 'result';
+      shareMatchResult(match.home, match.away, Number(hv), Number(av), mode);
+    });
+
     deleteBtn.addEventListener('click', () => {
       resultsStore.remove(match.id);
       homeInput.value = '';
@@ -286,13 +300,33 @@ export function MatchCard({ match, onSave }) {
       el.classList.remove('match-card-saved');
       deleteBtn.classList.remove('visible');
       saveBtn.classList.remove('visible');
+      shareBtn.classList.remove('visible');
       const label = el.querySelector('.match-card-saved-label');
       if (label) label.remove();
       if (onSave) onSave();
     });
 
     simBtn.addEventListener('click', () => {
-      runSimulator(homeInput, awayInput, el, simBtn, () => checkDirty());
+      SimulationPresentation({
+        match,
+        onSave: (h, a) => {
+          homeInput.value = h;
+          awayInput.value = a;
+          resultsStore.save(match.id, h, a);
+          el.classList.add('match-card-saved');
+          saveBtn.classList.remove('visible');
+          deleteBtn.classList.add('visible');
+          let label = el.querySelector('.match-card-saved-label');
+          if (!label) {
+            label = document.createElement('div');
+            label.className = 'match-card-saved-label';
+            label.textContent = t('saved_check');
+            el.appendChild(label);
+          }
+          if (onSave) onSave();
+        },
+        onClose: () => {}
+      });
     });
   }
 

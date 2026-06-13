@@ -4,6 +4,9 @@ import { inlineBuildPlugin } from './vite-plugin-inline-build.js';
 
 export default defineConfig({
   base: './',
+  server: {
+    host: true
+  },
   build: {
     chunkSizeWarningLimit: 1000,
     minify: 'terser',
@@ -11,12 +14,13 @@ export default defineConfig({
       compress: {
         drop_console: true,
         drop_debugger: false,
-        passes: 2
+        passes: 1
       },
       mangle: {
         toplevel: false,
         keep_classnames: true,
-        keep_fnames: false
+        keep_fnames: false,
+        reserved: ['L', 'leafMap']
       }
     },
     cssMinify: true,

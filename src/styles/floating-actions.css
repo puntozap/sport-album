@@ -179,6 +179,7 @@
 .fa-menu-card-badge--pack  { background: rgba(255,255,255,0.2); color: #fff; }
 .fa-menu-card-badge--trade { background: #f59e0b; color: #000; }
 .fa-menu-card-badge--blog  { background: #ef4444; color: #fff; }
+.fa-menu-card-badge--community { background: #25d366; color: #fff; font-size: 0.6rem; padding: 2px 7px !important; }
 
 /* Colores temáticos por card */
 .fa-menu-card--pack  { border-color: rgba(108,63,197,0.4);  background: rgba(108,63,197,0.12); }
@@ -192,6 +193,10 @@
 .fa-menu-card--lang  { border-color: rgba(26,122,58,0.4);   background: rgba(26,122,58,0.1); grid-column: span 2; min-height: 60px; flex-direction: row; gap: 10px; justify-content: center; padding: 14px 20px; }
 .fa-menu-card--lang:hover  { background: rgba(26,122,58,0.18); box-shadow: 0 8px 24px rgba(26,122,58,0.15); }
 .fa-menu-card--lang .fa-menu-card-icon { font-size: 1.4rem; margin-bottom: 0; }
+
+.fa-menu-card--community { border-color: rgba(37,211,102,0.5); background: rgba(37,211,102,0.12); text-decoration: none; }
+.fa-menu-card--community:hover { background: rgba(37,211,102,0.22); box-shadow: 0 8px 28px rgba(37,211,102,0.25); }
+.fa-menu-card-badge--community { background: #25d366; color: #fff; font-size: 0.6rem; padding: 2px 7px; border-radius: 8px; font-weight: bold; letter-spacing: .04em; }
 
 .fa-menu-modal-footer {
   text-align: center;
@@ -497,6 +502,17 @@
 @keyframes fa-pulse-purple {
   0%, 100% { box-shadow: 0 4px 14px rgba(0,0,0,0.45), 0 0 0 3px rgba(108,63,197,0.3); }
   50%       { box-shadow: 0 4px 18px rgba(0,0,0,0.45), 0 0 0 8px rgba(130,80,220,0.1); }
+}
+
+/* ── City map button ── */
+.fa-btn-city {
+  background: linear-gradient(135deg, #0e7c5e, #0a5c45);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.35), 0 0 0 3px rgba(14,124,94,0.25);
+}
+.fa-btn-city:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4), 0 0 18px rgba(14,124,94,0.3);
 }
 
 /* ── Missing button — rojo/naranja ── */

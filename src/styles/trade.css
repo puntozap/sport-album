@@ -720,6 +720,53 @@
 }
 .tr-back-btn:hover { background: rgba(212,175,55,0.25); }
 
+/* ── Banner comunidad WhatsApp ───────────────────────────────────────────── */
+.tr-community-banner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 12px 16px;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, rgba(37,211,102,0.15), rgba(18,140,78,0.12));
+  border: 1.5px solid rgba(37,211,102,0.4);
+  border-radius: 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.18s, border-color 0.18s, transform 0.15s;
+  flex-shrink: 0;
+}
+.tr-community-banner:hover {
+  background: linear-gradient(135deg, rgba(37,211,102,0.26), rgba(18,140,78,0.20));
+  border-color: rgba(37,211,102,0.65);
+  transform: translateY(-1px);
+}
+.tr-community-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+.tr-community-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.tr-community-text strong {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #fff;
+}
+.tr-community-text span {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.4;
+}
+.tr-community-arrow {
+  font-size: 1.1rem;
+  color: #25d366;
+  flex-shrink: 0;
+  font-weight: bold;
+}
+
 /* ── Modal de registro ───────────────────────────────────────────────────── */
 .tr-registro-overlay {
   position: fixed;
@@ -823,7 +870,8 @@
 }
 .tr-registro-cancel:hover { color: rgba(255,255,255,0.6); }
 
-/* ── Select nativo de país (solo móvil) ─────────────────────────────────── */
+/* ── Fila país + número ─────────────────────────────────────────────────── */
+.tr-registro-phone-row,
 .tr-registro-phone-mobile {
   display: flex;
   gap: 8px;
@@ -832,7 +880,7 @@
 .tr-registro-country-select {
   flex: 0 0 auto;
   width: 46%;
-  background: rgba(255,255,255,0.06);
+  background: #1a3526;
   border: 1.5px solid rgba(255,255,255,0.14);
   border-radius: 10px;
   color: #fff;
@@ -844,6 +892,10 @@
 }
 .tr-registro-country-select:focus {
   border-color: rgba(212,175,55,0.6);
+}
+.tr-registro-country-select option {
+  background: #1a3526;
+  color: #fff;
 }
 .tr-registro-phone-num {
   flex: 1;

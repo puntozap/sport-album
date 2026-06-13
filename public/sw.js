@@ -136,10 +136,14 @@ self.addEventListener('fetch', e => {
     return;
   }
 
-  // API dinámica: red primero, caché como fallback (funciona offline con datos viejos)
+  // API dinámica: solo GET se cachea; POST va directo a red sin cachear
   if (url.pathname.startsWith('/api/')) {
+    if (request.method !== 'GET') {
+      e.respondWith(fetch(request));
+      return;
+    }
     e.respondWith(
-      fetch(request)
+      fetch(request, { cache: 'no-store' })
         .then(res => {
           if (res.ok) {
             const copy = res.clone();

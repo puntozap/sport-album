@@ -1,6 +1,15 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+
+  # Servir archivos estáticos directamente, nunca reescribirlos
+  RewriteRule ^cromos_extraidos/ - [L]
+  RewriteRule ^assets/ - [L]
+  RewriteRule ^api/manage-matches$ api/manage-matches.php [L]
+  RewriteRule ^api/manage-players$ api/manage-players.php [L]
+  RewriteRule ^api/manage-cromo$ api/manage-cromo.php [L]
+  RewriteRule ^api/ - [L]
+
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d

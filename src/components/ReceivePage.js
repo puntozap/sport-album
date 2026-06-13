@@ -11,12 +11,6 @@ export function ReceivePage({ transferId }) {
   const countryMap = {};
   activeEntities.forEach(c => { countryMap[c.id] = c; });
 
-  // Ocultar sticker tray mientras estamos en receive
-  function hideTray() { document.querySelector('.st-tray')?.classList.add('st-tray--hidden'); }
-  hideTray();
-  const trayObserver = new MutationObserver(hideTray);
-  trayObserver.observe(document.body, { childList: true, subtree: true });
-
   const overlay = document.createElement('div');
   overlay.className = 'rv-overlay';
 
@@ -90,36 +84,55 @@ function showStickers(overlay, transferId, stickers, countryMap) {
       const res = await transferService.accept(transferId);
       if (res.error) throw new Error(res.error);
 
-      collectionStore.savePendingPack(stickers);
-      refreshStickerTray();
-      showSuccess(overlay, stickers[0]?.countryId);
-    } catch (err) {
+      // Stickers ya poseídos (colección O bandeja pendiente) van a repetidas
+      const pendingKeys = new Set(
+        collectionStore.getPendingPack().map(s => `${s.countryId}:${s.slotIndex}`)
+      );
+      const newStickers = [];
+      let dupCount = 0;
+      stickers.forEach(({ countryId, slotIndex }) => {
+        const inCollection = collectionStore.has(countryId, slotIndex);
+        const inTray       = pendingKeys.has(`${countryId}:${slotIndex}`);
+        if (inCollection || inTray) {
+          collectionStore.addDuplicate(countryId, slotIndex);
+          dupCount++;
+        } else {
+          newStickers.push({ countryId, slotIndex });
+        }
+      });
+
+      if (newStickers.length > 0) collectionStore.savePendingPack(newStickers);
+
+      const parts = [];
+      if (newStickers.length > 0) parts.push(`${newStickers.length} nuevo${newStickers.length !== 1 ? 's' : ''} en tu bandeja`);
+      if (dupCount > 0)           parts.push(`${dupCount} añadido${dupCount !== 1 ? 's' : ''} a tus repetidas`);
+
+      overlay.innerHTML = `
+        <div class="rv-header">
+          <div class="rv-title">✅ ¡Cromos recibidos!</div>
+          <div class="rv-subtitle">${parts.join(' · ')}</div>
+        </div>
+        <div class="rv-footer">
+          <button class="rv-btn" id="rv-done">Ir al álbum</button>
+        </div>
+      `;
+      overlay.querySelector('#rv-done').addEventListener('click', () => {
+        overlay.remove();
+        window._skipNextCurtain = true;
+        router.navigate('/');
+        setTimeout(() => refreshStickerTray(), 80);
+      });
+    } catch {
       btn.disabled    = false;
       btn.textContent = '❌ Error. Reintentar';
     }
   });
 }
 
-function restoreTray() {
-  trayObserver.disconnect();
-  document.querySelector('.st-tray')?.classList.remove('st-tray--hidden');
-}
-
-function showSuccess(overlay, firstCountryId) {
-  overlay.innerHTML = `
-    <div class="rv-success">
-      <div class="rv-success-icon">🎉</div>
-      <div class="rv-success-title">¡Cromos recibidos!</div>
-      <div class="rv-success-sub">Ya están en tu bandeja listos para pegar en tu álbum.</div>
-    </div>
-    <div class="rv-footer">
-      <button class="rv-btn" id="rv-go-album">🎴 Pegar en mi álbum</button>
-    </div>
-  `;
-
-  overlay.querySelector('#rv-go-album').addEventListener('click', () => {
-    window.location.href = window.location.origin + '/';
-  });
+function goHome() {
+  document.querySelector('.rv-overlay')?.remove();
+  window._skipNextCurtain = true;
+  router.navigate('/');
 }
 
 function showError(overlay, msg) {
@@ -133,9 +146,7 @@ function showError(overlay, msg) {
       <button class="rv-btn" id="rv-go-home" style="background:#132018;color:rgba(255,255,255,0.7);">Ir al álbum</button>
     </div>
   `;
-  overlay.querySelector('#rv-go-home').addEventListener('click', () => {
-    window.location.href = window.location.origin + '/';
-  });
+  overlay.querySelector('#rv-go-home').addEventListener('click', goHome);
 }
 
 function showAlreadyAccepted(overlay) {
@@ -149,7 +160,5 @@ function showAlreadyAccepted(overlay) {
       <button class="rv-btn" id="rv-go-home2" style="background:#132018;color:rgba(255,255,255,0.7);">Ir al álbum</button>
     </div>
   `;
-  overlay.querySelector('#rv-go-home2').addEventListener('click', () => {
-    window.location.href = window.location.origin + '/';
-  });
+  overlay.querySelector('#rv-go-home2').addEventListener('click', goHome);
 }

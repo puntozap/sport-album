@@ -188,6 +188,28 @@
 }
 .share-btn--whatsapp:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(37,211,102,.5); }
 
+.share-btn--facebook {
+  background: linear-gradient(135deg, #1877f2, #0d5ec7);
+  color: #fff;
+  box-shadow: 0 6px 24px rgba(24,119,242,.35);
+}
+.share-btn--facebook:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(24,119,242,.5); }
+
+.share-btn--linkedin {
+  background: linear-gradient(135deg, #0a66c2, #084f9a);
+  color: #fff;
+  box-shadow: 0 6px 24px rgba(10,102,194,.35);
+}
+.share-btn--linkedin:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(10,102,194,.5); }
+
+.share-btn--twitter {
+  background: linear-gradient(135deg, #1a1a1a, #333);
+  color: #fff;
+  border: 1px solid #444;
+  box-shadow: 0 6px 24px rgba(0,0,0,.4);
+}
+.share-btn--twitter:hover { transform: translateY(-2px); background: linear-gradient(135deg, #222, #444); }
+
 .share-btn--copy {
   background: linear-gradient(135deg, #d4af37, #a8892a);
   color: #000;
@@ -202,6 +224,14 @@
   box-shadow: none;
 }
 .share-btn--download:hover { background: rgba(255,255,255,.14); }
+
+.share-btn--kit {
+  background: linear-gradient(135deg, rgba(102,51,204,.25), rgba(0,169,189,.25));
+  color: rgba(255,255,255,.9);
+  border: 1px solid rgba(102,51,204,.5);
+  text-decoration: none;
+}
+.share-btn--kit:hover { background: linear-gradient(135deg, rgba(102,51,204,.4), rgba(0,169,189,.4)); }
 
 /* Estado copiado */
 .share-btn--copy.copied {
