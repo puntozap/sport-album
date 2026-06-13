@@ -1,13 +1,9 @@
-# Permitir acceso directo a archivos PHP en esta carpeta
-<IfModule mod_rewrite.c>
-  RewriteEngine Off
+<IfModule mod_php8.c>
+  php_value open_basedir /var/www/html/album
 </IfModule>
-
-# Permitir ejecución de PHP
-<IfModule mod_php.c>
-  php_flag engine on
+<IfModule mod_php7.c>
+  php_value open_basedir /var/www/html/album
 </IfModule>
-
-<FilesMatch "\.(php)$">
-  Require all granted
-</FilesMatch>
+<IfModule mod_php5.c>
+  php_value open_basedir /var/www/html/album
+</IfModule>

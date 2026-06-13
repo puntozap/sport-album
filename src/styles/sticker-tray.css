@@ -400,3 +400,118 @@
   .st-card-img-wrap { height: 64px; }
   .st-tray-row { gap: 6px; }
 }
+
+/* ── Finger Tutorial ──────────────────────────────────────────────────────── */
+.st-finger-tutorial {
+  position: fixed;
+  inset: 0;
+  z-index: 99990;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.st-finger-tutorial--in  { opacity: 1; pointer-events: auto; }
+.st-finger-tutorial--out { opacity: 0; pointer-events: none; }
+
+/* Scrim oscuro */
+.st-finger-scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(1px);
+}
+
+/* Spotlight circular sobre el cromo */
+.st-finger-spotlight {
+  position: absolute;
+  width: 90px;
+  height: 120px;
+  transform: translate(-50%, -50%);
+  border-radius: 12px;
+  box-shadow: 0 0 0 9999px rgba(0,0,0,.55);
+  border: 2px solid rgba(255,255,255,.5);
+  pointer-events: none;
+}
+
+/* Burbuja de texto */
+.st-finger-bubble {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  background: #fff;
+  color: #111;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 20px;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0,0,0,.3);
+  pointer-events: none;
+}
+.st-finger-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 7px solid transparent;
+  border-top-color: #fff;
+  border-bottom: none;
+}
+
+/* Dedo */
+.st-finger-hand {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  font-size: 36px;
+  line-height: 1;
+  pointer-events: none;
+  transition: transform 0.12s cubic-bezier(0.4,0,0.2,1);
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,.5));
+}
+.st-finger-hand.st-finger--tap {
+  transform: translate(-50%, calc(-100% + 14px)) scale(0.88);
+}
+
+/* Ripple */
+.st-finger-ripple {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  border: 2.5px solid rgba(255,255,255,.8);
+  opacity: 0;
+  pointer-events: none;
+}
+.st-finger-ripple--active {
+  animation: stRipple 0.5s ease-out forwards;
+}
+.st-finger-ripple.r2 {
+  width: 90px;
+  height: 90px;
+  animation-delay: 0.08s;
+}
+
+@keyframes stRipple {
+  0%   { transform: translate(-50%,-50%) scale(0); opacity: .9; }
+  100% { transform: translate(-50%,-50%) scale(1.6); opacity: 0; }
+}
+
+/* Botón Entendido */
+.st-finger-skip {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,.15);
+  color: #fff;
+  border: 1.5px solid rgba(255,255,255,.4);
+  border-radius: 20px;
+  padding: 9px 28px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s;
+}
+.st-finger-skip:hover { background: rgba(255,255,255,.25); }

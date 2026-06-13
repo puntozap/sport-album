@@ -52,14 +52,24 @@ export function initPushNotifications() {
       autoResubscribe: true,
     });
 
-    // Capturar y guardar el Player ID para poder recibir notificaciones dirigidas
+    // Capturar Player ID y etiquetar dominio (necesario para filtrar notificaciones por sitio)
     try {
+      const applyDomainTag = () => {
+        try { OneSignal.User.addTag('domain', window.location.hostname); } catch (_) {}
+      };
+
       const id = OneSignal.User?.PushSubscription?.id;
-      if (id) localStorage.setItem(PLAYER_ID_KEY, id);
+      if (id) {
+        localStorage.setItem(PLAYER_ID_KEY, id);
+        applyDomainTag();
+      }
 
       OneSignal.User.PushSubscription.addEventListener('change', event => {
         const newId = event?.current?.id;
-        if (newId) localStorage.setItem(PLAYER_ID_KEY, newId);
+        if (newId) {
+          localStorage.setItem(PLAYER_ID_KEY, newId);
+          applyDomainTag();
+        }
       });
     } catch (_) {}
   });

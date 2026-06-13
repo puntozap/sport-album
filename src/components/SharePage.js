@@ -3,8 +3,9 @@ import { router, getCompanySlug } from '../router.js';
 import { isEmpresaMode, getEmpresaEntities } from '../data/albumContext.js';
 import { getLang } from '../i18n.js';
 import { CLIENT } from '../config/client.js';
+import { getSocialLinks } from '../utils/socialShare.js';
 
-const BASE_URL = 'https://sportalbum.chanzia.com';
+const BASE_URL = window.location.origin;
 
 function getBaseUrl() {
   if (CLIENT.shareUrl) return CLIENT.shareUrl.replace(/\/share\/?$/, '');
@@ -211,8 +212,8 @@ export function SharePage() {
 
   const waText = encodeURIComponent(
     es
-      ? `🎴 ¡Mira este álbum de figuritas! Colecciona cromos, abre sobres e intercambia con amigos. Entra aquí: ${url}`
-      : `🎴 Check out this sticker album! Collect cards, open packs and trade with friends. Enter here: ${url}`
+      ? `⚽ ¡La fiebre del Mundial 2026 llegó y este álbum es GRATIS! 🏆\n\nColecciona los 576 cromos de las 48 selecciones sin gastar nada. Lo hicimos con Inteligencia Artificial para que la emoción del Mundial llegue a todas las familias.\n\nPorque ese momento de buscar cromos con tus hijos, tu hermano o tu mejor amigo… ese momento no tiene precio. 🎴❤️\n\nÚnete y empieza a coleccionar: ${url}`
+      : `⚽ World Cup 2026 fever is here — and this album is FREE! 🏆\n\nCollect all 576 stickers from 48 teams without spending a thing. Built with AI so every family can feel the World Cup magic.\n\nBecause that moment of searching for stickers with your kids, your sibling or your best friend… that moment is priceless. 🎴❤️\n\nJoin and start collecting: ${url}`
   );
   const waLink = `https://wa.me/?text=${waText}`;
 
@@ -244,7 +245,22 @@ export function SharePage() {
       <div class="share-btns">
         <a class="share-btn share-btn--whatsapp" href="${waLink}" target="_blank" rel="noopener noreferrer">
           <span>💬</span>
-          <span>${es ? 'Enviar por WhatsApp' : 'Send via WhatsApp'}</span>
+          <span>${es ? 'WhatsApp' : 'WhatsApp'}</span>
+        </a>
+
+        <a class="share-btn share-btn--facebook" id="share-fb-btn" href="#" target="_blank" rel="noopener noreferrer">
+          <span>👥</span>
+          <span>Facebook</span>
+        </a>
+
+        <a class="share-btn share-btn--linkedin" id="share-li-btn" href="#" target="_blank" rel="noopener noreferrer">
+          <span>💼</span>
+          <span>LinkedIn</span>
+        </a>
+
+        <a class="share-btn share-btn--twitter" id="share-tw-btn" href="#" target="_blank" rel="noopener noreferrer">
+          <span>🐦</span>
+          <span>Twitter / X</span>
         </a>
 
         <button class="share-btn share-btn--copy" id="share-copy-btn">
@@ -254,8 +270,13 @@ export function SharePage() {
 
         <button class="share-btn share-btn--download" id="share-dl-btn">
           <span>📸</span>
-          <span>${es ? 'Descargar historia para Instagram' : 'Download Instagram Story'}</span>
+          <span>${es ? 'Descargar historia Instagram' : 'Download Instagram Story'}</span>
         </button>
+
+        <a class="share-btn share-btn--kit" href="/marketing-kit.html" target="_blank" rel="noopener noreferrer">
+          <span>🎨</span>
+          <span>${es ? 'Crear imagen de marketing' : 'Create marketing image'}</span>
+        </a>
       </div>
 
       <div class="share-tagline">
@@ -272,6 +293,12 @@ export function SharePage() {
     page.remove();
     router.navigate('/');
   });
+
+  // Links sociales
+  const socialLinks = getSocialLinks();
+  page.querySelector('#share-fb-btn').href = socialLinks.facebook;
+  page.querySelector('#share-li-btn').href = socialLinks.linkedin;
+  page.querySelector('#share-tw-btn').href = socialLinks.twitter;
 
   // Copiar enlace
   const copyBtn = page.querySelector('#share-copy-btn');
@@ -325,7 +352,7 @@ export function SharePage() {
     nativeBtn.addEventListener('click', () => {
       navigator.share({
         title: es ? '¡Álbum de Figuritas 2026!' : 'Sticker Album 2026!',
-        text:  es ? '¡Colecciona cromos del Mundial 2026! Abre sobres, pega figuritas e intercambia con amigos.' : 'Collect World Cup 2026 stickers! Open packs, stick cards and trade with friends.',
+        text:  es ? '⚽ ¡La fiebre del Mundial 2026 llegó y este álbum es GRATIS! Colecciona 576 cromos de 48 selecciones, hecho con IA para que la emoción llegue a todas las familias. 🏆🎴' : '⚽ World Cup 2026 fever is here — FREE sticker album! Collect 576 stickers from 48 teams, built with AI for every family. 🏆🎴',
         url,
       }).catch(() => {});
     });

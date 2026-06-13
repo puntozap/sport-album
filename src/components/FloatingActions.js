@@ -4,18 +4,22 @@ import { showBlogModal, getNewBlogPostsCount } from './BlogPage.js';
 import { CLIENT, clientLogoHtml } from '../config/client.js';
 import { countries } from '../data/countries.js';
 import { isEmpresaMode, getEmpresaEntities } from '../data/albumContext.js';
-
-function getActiveEntities() {
-  return isEmpresaMode() ? getEmpresaEntities() : countries;
-}
 import { router } from '../router.js';
 import { collectionStore } from '../data/collectionStore.js';
 import { openPackModal } from './PackOpener.js';
 import { refreshStickerTray } from './StickerTray.js';
 import { triggerInstall, canInstall } from './PWAInstall.js';
 import { showPerfilModal } from './TradePage.js';
+import { openStickerScanner } from './StickerScanner.js';
 import { showNoPacksModal } from './NoPacksModal.js';
 import { openMusicManager, isMusicActive, stopMusic } from './MusicPlayer.js';
+import { maybeShowCompletionModal } from './CompletionModal.js';
+import { subscribeOneSignal } from './MatchNotifModal.js';
+import { downloadAlbumPdf } from './AlbumPdfExport.js';
+
+function getActiveEntities() {
+  return isEmpresaMode() ? getEmpresaEntities() : countries;
+}
 
 // ── Modal de países con cromos faltantes ────────────────────────────────────
 function buildMissingModal() {
@@ -117,7 +121,9 @@ function buildMissingModal() {
   requestAnimationFrame(() => requestAnimationFrame(() => overlay.classList.add('fa-modal-active')));
 }
 
-const WHATSAPP_NUMBER = '584247647893';
+const WHATSAPP_NUMBER   = '584247647893';
+const WA_COMMUNITY_LINK = 'https://chat.whatsapp.com/KfBNnndf5JM4VIJtXwNn3k';
+
 function getAlbumUrl() {
   return CLIENT.shareUrl || 'https://sportalbum.chanzia.com';
 }
@@ -264,6 +270,14 @@ function buildMenuModal({ es, onPack, onPackTick }) {
           <span class="fa-menu-card-sub">${total - collected} ${es ? 'por conseguir' : 'to collect'}</span>
         </button>
 
+        <button class="fa-menu-card fa-menu-card--scan">
+          <span class="fa-menu-card-icon">📷</span>
+          <span class="fa-menu-card-label">${es ? 'Escanear QR' : 'Scan QR'}</span>
+          <span class="fa-menu-card-sub">${es ? 'Dar o recibir un cromo' : 'Give or receive a sticker'}</span>
+        </button>
+
+
+
         <button class="fa-menu-card fa-menu-card--info">
           <span class="fa-menu-card-icon">⭐</span>
           <span class="fa-menu-card-label">Info</span>
@@ -294,6 +308,13 @@ function buildMenuModal({ es, onPack, onPackTick }) {
           <span class="fa-menu-card-label">${es ? 'Ver partidos' : 'Watch matches'}</span>
           <span class="fa-menu-card-sub">104 partidos · Paramount+</span>
         </button>
+
+        ${percent >= 100 ? `
+        <button class="fa-menu-card fa-menu-card--pdf">
+          <span class="fa-menu-card-icon">📄</span>
+          <span class="fa-menu-card-label">${es ? 'Descargar PDF' : 'Download PDF'}</span>
+          <span class="fa-menu-card-sub">${es ? 'Tu álbum como recuerdo' : 'Your album as memento'}</span>
+        </button>` : ''}
 
         <button class="fa-menu-card fa-menu-card--lang">
           <span class="fa-menu-card-icon">🌐</span>
@@ -355,6 +376,12 @@ function buildMenuModal({ es, onPack, onPackTick }) {
     setTimeout(() => buildMissingModal(), 200);
   });
 
+  overlay.querySelector('.fa-menu-card--scan').addEventListener('click', () => {
+    close();
+    setTimeout(() => openStickerScanner(), 200);
+  });
+
+
   overlay.querySelector('.fa-menu-card--info').addEventListener('click', () => {
     close();
     setTimeout(() => buildCreditsModal(), 200);
@@ -377,6 +404,11 @@ function buildMenuModal({ es, onPack, onPackTick }) {
   overlay.querySelector('.fa-menu-card--paramount').addEventListener('click', () => {
     close();
     setTimeout(() => showParamountModal(), 200);
+  });
+
+  overlay.querySelector('.fa-menu-card--pdf')?.addEventListener('click', () => {
+    close();
+    setTimeout(() => downloadAlbumPdf(), 300);
   });
 
   overlay.querySelector('.fa-menu-card--lang').addEventListener('click', () => {
@@ -418,6 +450,7 @@ export function createFloatingActions() {
   // ── Barra de progreso ──────────────────────────────────────────────────────
   const { percent } = collectionStore.getProgress(getActiveEntities());
   const pct = percent.toFixed(1);
+  maybeShowCompletionModal(percent);
 
   const progressPill = document.createElement('div');
   progressPill.className = 'fa-progress-pill';
@@ -440,82 +473,112 @@ export function createFloatingActions() {
   `;
   panel.appendChild(btnMenu);
 
-  // ── Botón Abrir sobre ──────────────────────────────────────────────────────
-  const canOpen   = collectionStore.canOpenPack();
-  const remaining = collectionStore.packsRemaining();
-  const btnPack = document.createElement('button');
-  btnPack.className = 'fa-btn fa-btn-pack fa-btn-wide';
-  btnPack.title = canOpen
-    ? (es ? `${remaining} sobre${remaining !== 1 ? 's' : ''} disponibles` : `${remaining} pack${remaining !== 1 ? 's' : ''} available`)
-    : (es ? 'Sin sobres por ahora' : 'No packs left');
+  // ── Botón Abrir sobre / Notificaciones ────────────────────────────────────
+  const albumComplete = percent >= 100;
 
-  const packLabel = canOpen
-    ? `${es ? 'Abrir sobre' : 'Open pack'} <span class="fa-pack-count">${remaining}</span>`
-    : `${es ? 'Sin sobres' : 'No packs'}`;
-  btnPack.innerHTML = `<span class="fa-btn-icon">🎴</span><span class="fa-btn-label">${packLabel}</span>`;
-  if (!canOpen) btnPack.disabled = true;
-  panel.appendChild(btnPack);
-
-  const packTimer = document.createElement('div');
-  packTimer.className = 'fa-pack-timer';
-  panel.appendChild(packTimer);
-
-  function formatMs(ms) {
-    const s = Math.max(0, Math.floor(ms / 1000));
-    const hh = String(Math.floor(s / 3600)).padStart(2, '0');
-    const mm = String(Math.floor((s % 3600) / 60)).padStart(2, '0');
-    const ss = String(s % 60).padStart(2, '0');
-    return `${hh}:${mm}:${ss}`;
-  }
-
-  function refreshPackUi() {
-    const can     = collectionStore.canOpenPack();
-    const leftNow = collectionStore.packsRemaining();
-    if (can) {
-      btnPack.disabled = false;
-      btnPack.querySelector('.fa-btn-label').innerHTML =
-        `${es ? 'Abrir sobre' : 'Open pack'} <span class="fa-pack-count">${leftNow}</span>`;
-      packTimer.textContent = '';
-      return true;
-    }
-    btnPack.disabled = true;
-    btnPack.querySelector('.fa-btn-label').innerHTML = `${es ? 'Sin sobres' : 'No packs'}`;
-    const ms = collectionStore.msUntilNextPack();
-    packTimer.textContent = es ? `Disponible en ${formatMs(ms)}` : `Available in ${formatMs(ms)}`;
-    return false;
-  }
-
-  refreshPackUi();
-  let packTick = null;
-  if (!collectionStore.canOpenPack()) {
-    packTick = setInterval(() => {
-      if (!panel.isConnected) { clearInterval(packTick); return; }
-      if (refreshPackUi()) clearInterval(packTick);
-    }, 1000);
-  }
-
-  function doOpenPack() {
-    if (!collectionStore.canOpenPack()) return;
-    collectionStore.markPackOpened();
-    const left = collectionStore.packsRemaining();
-    if (left === 0) {
-      refreshPackUi();
-      if (!packTick) {
-        packTick = setInterval(() => {
-          if (!panel.isConnected) { clearInterval(packTick); return; }
-          if (refreshPackUi()) clearInterval(packTick);
-        }, 1000);
-      }
-      setTimeout(() => showNoPacksModal(), 800);
+  if (albumComplete) {
+    // Álbum completo → mostrar botón de notificaciones de partidos
+    const SUBSCRIBED_KEY = 'wc2026_push_subscribed';
+    const alreadySubscribed = localStorage.getItem(SUBSCRIBED_KEY) === 'true';
+    const btnNotif = document.createElement('button');
+    btnNotif.className = 'fa-btn fa-btn-pack fa-btn-wide';
+    if (alreadySubscribed) {
+      btnNotif.innerHTML = `<span class="fa-btn-icon">✅</span><span class="fa-btn-label">${es ? 'Notificaciones activas' : 'Notifications active'}</span>`;
+      btnNotif.disabled = true;
     } else {
-      const badge = btnPack.querySelector('.fa-pack-count');
-      if (badge) badge.textContent = left;
+      btnNotif.innerHTML = `<span class="fa-btn-icon">🔔</span><span class="fa-btn-label">${es ? 'Activar notificaciones de partidos' : 'Enable match notifications'}</span>`;
+      btnNotif.addEventListener('click', () => subscribeOneSignal(btnNotif.querySelector('.fa-btn-label'), es));
     }
-    openPackModal({ onClose: () => refreshStickerTray() });
+    panel.appendChild(btnNotif);
+
+    btnMenu.addEventListener('click', () => buildMenuModal({ es, onPack: null }));
+  } else {
+    const canOpen   = collectionStore.canOpenPack();
+    const remaining = collectionStore.packsRemaining();
+    const btnPack = document.createElement('button');
+    btnPack.className = 'fa-btn fa-btn-pack fa-btn-wide';
+    btnPack.title = canOpen
+      ? (es ? `${remaining} sobre${remaining !== 1 ? 's' : ''} disponibles` : `${remaining} pack${remaining !== 1 ? 's' : ''} available`)
+      : (es ? 'Sin sobres por ahora' : 'No packs left');
+
+    const packLabel = canOpen
+      ? `${es ? 'Abrir sobre' : 'Open pack'} <span class="fa-pack-count">${remaining}</span>`
+      : `${es ? 'Sin sobres' : 'No packs'}`;
+    btnPack.innerHTML = `<span class="fa-btn-icon">🎴</span><span class="fa-btn-label">${packLabel}</span>`;
+    if (!canOpen) btnPack.disabled = true;
+    panel.appendChild(btnPack);
+
+    const packTimer = document.createElement('div');
+    packTimer.className = 'fa-pack-timer';
+    panel.appendChild(packTimer);
+
+    function formatMs(ms) {
+      const s = Math.max(0, Math.floor(ms / 1000));
+      const hh = String(Math.floor(s / 3600)).padStart(2, '0');
+      const mm = String(Math.floor((s % 3600) / 60)).padStart(2, '0');
+      const ss = String(s % 60).padStart(2, '0');
+      return `${hh}:${mm}:${ss}`;
+    }
+
+    function refreshPackUi() {
+      const can     = collectionStore.canOpenPack();
+      const leftNow = collectionStore.packsRemaining();
+      if (can) {
+        btnPack.disabled = false;
+        btnPack.querySelector('.fa-btn-label').innerHTML =
+          `${es ? 'Abrir sobre' : 'Open pack'} <span class="fa-pack-count">${leftNow}</span>`;
+        packTimer.textContent = '';
+        return true;
+      }
+      btnPack.disabled = true;
+      btnPack.querySelector('.fa-btn-label').innerHTML = `${es ? 'Sin sobres' : 'No packs'}`;
+      const ms = collectionStore.msUntilNextPack();
+      packTimer.textContent = es ? `Disponible en ${formatMs(ms)}` : `Available in ${formatMs(ms)}`;
+      return false;
+    }
+
+    refreshPackUi();
+    let packTick = null;
+    if (!collectionStore.canOpenPack()) {
+      packTick = setInterval(() => {
+        if (!panel.isConnected) { clearInterval(packTick); return; }
+        if (refreshPackUi()) clearInterval(packTick);
+      }, 1000);
+    }
+
+    function doOpenPack() {
+      if (!collectionStore.canOpenPack()) return;
+      collectionStore.markPackOpened();
+      const left = collectionStore.packsRemaining();
+      if (left === 0) {
+        refreshPackUi();
+        if (!packTick) {
+          packTick = setInterval(() => {
+            if (!panel.isConnected) { clearInterval(packTick); return; }
+            if (refreshPackUi()) clearInterval(packTick);
+          }, 1000);
+        }
+        setTimeout(() => showNoPacksModal(), 800);
+      } else {
+        const badge = btnPack.querySelector('.fa-pack-count');
+        if (badge) badge.textContent = left;
+      }
+      openPackModal({ onClose: () => refreshStickerTray() });
+    }
+
+    btnMenu.addEventListener('click', () => buildMenuModal({ es, onPack: doOpenPack }));
+    btnPack.addEventListener('click', doOpenPack);
   }
 
-  btnMenu.addEventListener('click', () => buildMenuModal({ es, onPack: doOpenPack }));
-  btnPack.addEventListener('click', doOpenPack);
+  // ── Botón Buscar cromoses en la ciudad ─────────────────────────────────────
+  const btnMap = document.createElement('button');
+  btnMap.className = 'fa-btn fa-btn-wide fa-btn-city';
+  btnMap.innerHTML = `
+    <span class="fa-btn-icon">📍</span>
+    <span class="fa-btn-label">${es ? 'Buscar cromoses en la ciudad' : 'Find stickers in the city'}</span>
+  `;
+  btnMap.addEventListener('click', () => router.navigate('/map'));
+  panel.appendChild(btnMap);
 
   return panel;
 }

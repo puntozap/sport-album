@@ -15,4 +15,10 @@
 export const REMOTE = {
   n8nBase: null,           // ← pon aquí tu URL: 'https://mi-n8n.app'
   timeout: 6000,           // ms máximos para esperar la respuesta
+  // URL base para cromos. '' = relativo al servidor actual (correcto para multi-server).
+  stickerBase: '',
+  // API de WhatsApp para enviar mensajes con imagen.
+  // Body esperado: { message, number, urlMedia }
+  // null = desactivado, usa navigator.share como fallback.
+  whatsappApiUrl: null,    // ← pon aquí tu endpoint: 'https://mi-n8n.app/webhook/whatsapp'
 };

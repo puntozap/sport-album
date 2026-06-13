@@ -1,8 +1,16 @@
 const APP_URL  = 'https://sportalbum.chanzia.com';
 const IOS_KEY  = 'pwa_gate_ios_installed';
 
+function isDirectUrl() {
+  const path = window.location.hash + window.location.pathname;
+  return path.includes('gift-creator') || path.includes('/receive/');
+}
+
 // Returns true if the gate is shown (app should not init)
 export async function initAppGate() {
+  // Rutas de acceso directo por URL nunca muestran el gate
+  if (isDirectUrl()) return false;
+
   // Already inside the installed app → record iOS flag and skip
   const inStandalone = window.matchMedia('(display-mode: standalone)').matches
     || window.navigator.standalone === true;

@@ -1,11 +1,28 @@
 import '../styles/trade.css';
-import 'intl-tel-input/dist/css/intlTelInput.css';
-import intlTelInput from 'intl-tel-input/dist/js/intlTelInputWithUtils.mjs';
 import { collectionStore } from '../data/collectionStore.js';
 import { tradeService } from '../data/tradeService.js';
 import { countries } from '../data/countries.js';
 import { router } from '../router.js';
 import { isEmpresaMode } from '../data/albumContext.js';
+
+const WA_COMMUNITY = 'https://chat.whatsapp.com/KfBNnndf5JM4VIJtXwNn3k';
+
+function communityBanner() {
+  const el = document.createElement('a');
+  el.className = 'tr-community-banner';
+  el.href = WA_COMMUNITY;
+  el.target = '_blank';
+  el.rel = 'noopener noreferrer';
+  el.innerHTML = `
+    <div class="tr-community-icon">👥</div>
+    <div class="tr-community-text">
+      <strong>Comunidad de intercambios</strong>
+      <span>Únete al grupo de WhatsApp y encuentra personas para cambiar tus cromos repetidos</span>
+    </div>
+    <div class="tr-community-arrow">→</div>
+  `;
+  return el;
+}
 
 const countryMap = {};
 countries.forEach(c => { countryMap[c.id] = c; });
@@ -71,6 +88,7 @@ function buildEmpty(close) {
     <div class="tr-empty-desc">Cuando tengas cromos repetidos podrás intercambiarlos aquí.</div>
     <button class="tr-back-btn">← Volver al álbum</button>
   `;
+  wrap.insertBefore(communityBanner(), wrap.querySelector('.tr-back-btn'));
   wrap.querySelector('.tr-back-btn').addEventListener('click', close);
   return wrap;
 }
@@ -88,6 +106,9 @@ function buildWizard(dupes, close) {
 
   const wrap = document.createElement('div');
   wrap.className = 'tr-wrap';
+
+  // ── Community banner ────────────────────────────────────────────────────
+  wrap.appendChild(communityBanner());
 
   // ── Header ─────────────────────────────────────────────────────────────
   const header = document.createElement('div');
@@ -474,7 +495,10 @@ function buildContactForm(onSubmit) {
   const savedName = localStorage.getItem('trade_my_name')  || '';
   const savedIso2 = localStorage.getItem('trade_my_phone_iso2') || 've';
   const savedNum  = localStorage.getItem('trade_my_phone_num')  || '';
-  const isMobile  = window.innerWidth < 700;
+
+  const optionsHtml = DIAL_COUNTRIES.map(c =>
+    `<option value="${c.iso2}" data-dial="${c.dial}" ${c.iso2 === savedIso2 ? 'selected' : ''}>${c.name} +${c.dial}</option>`
+  ).join('');
 
   const wrap = document.createElement('div');
   wrap.className = 'tr-contact-form';
@@ -482,90 +506,47 @@ function buildContactForm(onSubmit) {
     <div class="tr-contact-title">¿Cómo te contactamos?</div>
     <div class="tr-contact-sub">Te avisamos por WhatsApp cuando encontremos tu intercambio</div>
     <input class="tr-registro-input" id="tr-c-nombre" type="text" placeholder="Tu nombre" maxlength="50" autocomplete="name" value="${savedName.replace(/"/g, '&quot;')}">
-    <div class="tr-registro-phone-wrap">
-      ${isMobile ? `
-        <div class="tr-registro-phone-mobile">
-          <select class="tr-registro-country-select" id="tr-c-pais">
-            ${[...new Map(DIAL_COUNTRIES.map(c => [c.iso2 + c.dial, c])).values()]
-                .map(c => `<option value="${c.iso2}" data-dial="${c.dial}" ${c.iso2 === savedIso2 ? 'selected' : ''}>${c.name} +${c.dial}</option>`)
-                .join('')}
-          </select>
-          <input class="tr-registro-input tr-registro-phone-num" id="tr-c-tel" type="tel" placeholder="Número" autocomplete="tel-national" value="${savedNum}">
-        </div>
-      ` : `
-        <input class="tr-registro-input tr-registro-phone" id="tr-c-tel" type="tel" placeholder="WhatsApp" autocomplete="tel" value="${savedNum}">
-      `}
+    <div class="tr-registro-phone-row">
+      <select class="tr-registro-country-select" id="tr-c-pais">${optionsHtml}</select>
+      <input class="tr-registro-input tr-registro-phone-num" id="tr-c-tel" type="tel" placeholder="Número" autocomplete="tel-national" inputmode="numeric" value="${savedNum}">
     </div>
-    <div class="tr-registro-phone-hint">${isMobile ? 'Sin el 0 inicial — ej: 4247647893' : 'Incluye el código de tu país'}</div>
+    <div class="tr-registro-phone-hint">Sin el 0 inicial</div>
     <button class="tr-submit-btn" disabled>Publicar intercambio</button>
   `;
 
   const nombreInput = wrap.querySelector('#tr-c-nombre');
+  const paisSelect  = wrap.querySelector('#tr-c-pais');
+  const numInput    = wrap.querySelector('#tr-c-tel');
   const submitBtn   = wrap.querySelector('.tr-submit-btn');
 
-  let getPhoneE164;
+  const EJEMPLOS = {
+    've': 'Ej: 4247647893', 'co': 'Ej: 3001234567', 'mx': 'Ej: 5512345678',
+    'ar': 'Ej: 1112345678', 'es': 'Ej: 612345678',  'us': 'Ej: 2025550123',
+    'br': 'Ej: 11912345678','cl': 'Ej: 912345678',  'pe': 'Ej: 912345678',
+  };
+  const hint = wrap.querySelector('.tr-registro-phone-hint');
+  const updateHint = () => { hint.textContent = EJEMPLOS[paisSelect.value] || 'Sin el 0 inicial'; };
+  paisSelect.addEventListener('change', updateHint);
+  updateHint();
 
-  if (isMobile) {
-    const paisSelect = wrap.querySelector('#tr-c-pais');
-    const numInput   = wrap.querySelector('#tr-c-tel');
+  const validate = () => {
+    submitBtn.disabled = !nombreInput.value.trim() || numInput.value.replace(/\D/g, '').length < 6;
+  };
+  nombreInput.addEventListener('input', validate);
+  numInput.addEventListener('input', validate);
+  if (savedName && savedNum) validate();
 
-    const EJEMPLOS = {
-      've': 'Ej: 4247647893', 'co': 'Ej: 3001234567', 'mx': 'Ej: 5512345678',
-      'ar': 'Ej: 1112345678', 'es': 'Ej: 612345678',  'us': 'Ej: 2025550123',
-      'br': 'Ej: 11912345678','cl': 'Ej: 912345678',  'pe': 'Ej: 912345678',
-    };
-    const hint = wrap.querySelector('.tr-registro-phone-hint');
-    const updateHint = () => { hint.textContent = EJEMPLOS[paisSelect.value] || 'Sin el 0 inicial'; };
-    paisSelect.addEventListener('change', updateHint);
-    updateHint();
-
-    const validate = () => {
-      submitBtn.disabled = !nombreInput.value.trim() || numInput.value.replace(/\D/g, '').length < 6;
-    };
-    nombreInput.addEventListener('input', validate);
-    numInput.addEventListener('input', validate);
-    validate();
-
-    getPhoneE164 = () => {
-      const opt  = paisSelect.options[paisSelect.selectedIndex];
-      const dial = opt.dataset.dial;
-      const iso2 = paisSelect.value;
-      let num = numInput.value.replace(/\D/g, '').replace(/^0+/, '');
-      if (iso2 === 'ar' && !num.startsWith('9')) num = '9' + num;
-      if (iso2 === 'mx' && !num.startsWith('1')) num = '1' + num;
-      localStorage.setItem('trade_my_phone_iso2', iso2);
-      localStorage.setItem('trade_my_phone_num',  num);
-      return `+${dial}${num}`;
-    };
-
-    submitBtn.addEventListener('click', () => {
-      const n = nombreInput.value.trim();
-      if (!n) return;
-      onSubmit(n, getPhoneE164());
-    });
-
-  } else {
-    const telefonoInput = wrap.querySelector('#tr-c-tel');
-    const iti = intlTelInput(telefonoInput, {
-      initialCountry: 've', countryOrder: ['ve', 'co', 'mx', 'es', 'us', 'ar'],
-      separateDialCode: true, showFlags: true, formatOnDisplay: true,
-      useFullscreenPopup: false, dropdownContainer: document.body,
-    });
-
-    const validate = () => { submitBtn.disabled = !nombreInput.value.trim() || !iti.isValidNumber(); };
-    nombreInput.addEventListener('input', validate);
-    telefonoInput.addEventListener('input', validate);
-    telefonoInput.addEventListener('countrychange', validate);
-    validate();
-
-    getPhoneE164 = () => iti.getNumber();
-
-    submitBtn.addEventListener('click', () => {
-      const n = nombreInput.value.trim();
-      if (!n || !iti.isValidNumber()) return;
-      onSubmit(n, getPhoneE164());
-    });
-  }
+  submitBtn.addEventListener('click', () => {
+    const n = nombreInput.value.trim();
+    if (!n || numInput.value.replace(/\D/g, '').length < 6) return;
+    const opt  = paisSelect.options[paisSelect.selectedIndex];
+    const dial = opt.dataset.dial;
+    const iso2 = paisSelect.value;
+    const num  = numInput.value.replace(/\D/g, '').replace(/^0+/, '');
+    localStorage.setItem('trade_my_phone_iso2', iso2);
+    localStorage.setItem('trade_my_phone_num',  num);
+    onSubmit(n, `+${dial}${num}`);
+  });
 
   return wrap;
 }
@@ -587,10 +568,13 @@ function showRegistroModal(onDone, opts = {}) {
   const savedName = localStorage.getItem('trade_my_name')  || '';
   const savedIso2 = localStorage.getItem('trade_my_phone_iso2') || 've';
   const savedNum  = localStorage.getItem('trade_my_phone_num')  || '';
-  const isMobile  = window.innerWidth < 700;
 
   const overlay = document.createElement('div');
   overlay.className = 'tr-registro-overlay';
+
+  const optionsHtml = DIAL_COUNTRIES.map(c =>
+    `<option value="${c.iso2}" data-dial="${c.dial}" ${c.iso2 === savedIso2 ? 'selected' : ''}>${c.name} +${c.dial}</option>`
+  ).join('');
 
   const card = document.createElement('div');
   card.className = 'tr-registro-card';
@@ -599,110 +583,63 @@ function showRegistroModal(onDone, opts = {}) {
     <div class="tr-registro-title">${isEdit ? 'Editar perfil' : '¿Cómo te llamamos?'}</div>
     <div class="tr-registro-sub">${isEdit ? 'Actualiza tu nombre o número' : 'Para avisarte por WhatsApp'}</div>
     <input class="tr-registro-input" id="tr-reg-nombre" type="text" placeholder="Tu nombre" maxlength="50" autocomplete="name" value="${savedName.replace(/"/g, '&quot;')}">
-    <div class="tr-registro-phone-wrap">
-      ${isMobile ? `
-        <div class="tr-registro-phone-mobile">
-          <select class="tr-registro-country-select" id="tr-reg-pais">
-            ${[...new Map(DIAL_COUNTRIES.map(c => [c.iso2 + c.dial, c])).values()]
-                .map(c => `<option value="${c.iso2}" data-dial="${c.dial}" ${c.iso2 === savedIso2 ? 'selected' : ''}>${c.name} +${c.dial}</option>`)
-                .join('')}
-          </select>
-          <input class="tr-registro-input tr-registro-phone-num" id="tr-reg-telefono" type="tel" placeholder="Número" autocomplete="tel-national" value="${savedNum}">
-        </div>
-      ` : `
-        <input class="tr-registro-input tr-registro-phone" id="tr-reg-telefono" type="tel" placeholder="WhatsApp" autocomplete="tel" value="${savedNum}">
-      `}
+    <div class="tr-registro-phone-row">
+      <select class="tr-registro-country-select" id="tr-reg-pais">${optionsHtml}</select>
+      <input class="tr-registro-input tr-registro-phone-num" id="tr-reg-telefono" type="tel" placeholder="Número" autocomplete="tel-national" inputmode="numeric" value="${savedNum}">
     </div>
-    <div class="tr-registro-phone-hint">${isMobile ? 'Sin el 0 inicial' : 'Incluye el código de tu país'}</div>
+    <div class="tr-registro-phone-hint">Sin el 0 inicial</div>
     <button class="tr-registro-btn">${isEdit ? '💾 Guardar' : 'Listo ✓'}</button>
     ${isEdit ? `<button class="tr-registro-delete">🗑 Borrar perfil</button>` : ''}
     <button class="tr-registro-cancel">Cancelar</button>
   `;
   overlay.appendChild(card);
 
-  const nombreInput = card.querySelector('#tr-reg-nombre');
-  const btn = card.querySelector('.tr-registro-btn');
-  btn.disabled = !savedName;
+  const nombreInput  = card.querySelector('#tr-reg-nombre');
+  const paisSelect   = card.querySelector('#tr-reg-pais');
+  const numInput     = card.querySelector('#tr-reg-telefono');
+  const btn          = card.querySelector('.tr-registro-btn');
 
-  let getPhoneE164;
+  const validate = () => {
+    btn.disabled = !nombreInput.value.trim() || numInput.value.replace(/\D/g, '').length < 6;
+  };
+  nombreInput.addEventListener('input', validate);
+  numInput.addEventListener('input', validate);
+  if (savedName && savedNum) validate();
+
+  function getPhoneE164() {
+    const opt  = paisSelect.options[paisSelect.selectedIndex];
+    const dial = opt.dataset.dial;
+    const iso2 = paisSelect.value;
+    const num  = numInput.value.replace(/\D/g, '').replace(/^0+/, '');
+    localStorage.setItem('trade_my_phone_iso2', iso2);
+    localStorage.setItem('trade_my_phone_num',  num);
+    return `+${dial}${num}`;
+  }
 
   function closeModal() {
     overlay.classList.remove('tr-registro-active');
     setTimeout(() => overlay.remove(), 260);
   }
 
-  if (isMobile) {
-    const paisSelect = card.querySelector('#tr-reg-pais');
-    const numInput   = card.querySelector('#tr-reg-telefono');
-    const validate   = () => { btn.disabled = !nombreInput.value.trim() || numInput.value.replace(/\D/g, '').length < 6; };
-    nombreInput.addEventListener('input', validate);
-    numInput.addEventListener('input', validate);
+  btn.addEventListener('click', () => {
+    const n = nombreInput.value.trim();
+    if (!n || numInput.value.replace(/\D/g, '').length < 6) return;
+    const phone = getPhoneE164();
+    localStorage.setItem('trade_my_name',  n);
+    localStorage.setItem('trade_my_phone', phone);
+    closeModal();
+    onDone(n, phone);
+  });
 
-    getPhoneE164 = () => {
-      const opt  = paisSelect.options[paisSelect.selectedIndex];
-      const dial = opt.dataset.dial;
-      const iso2 = paisSelect.value;
-      let num = numInput.value.replace(/\D/g, '').replace(/^0+/, '');
-      if (iso2 === 'ar' && !num.startsWith('9')) num = '9' + num;
-      if (iso2 === 'mx' && !num.startsWith('1')) num = '1' + num;
-      localStorage.setItem('trade_my_phone_iso2', iso2);
-      localStorage.setItem('trade_my_phone_num',  num);
-      return `+${dial}${num}`;
-    };
+  card.querySelector('.tr-registro-delete')?.addEventListener('click', () => {
+    ['trade_my_name','trade_my_phone','trade_my_phone_iso2','trade_my_phone_num','trade_my_id'].forEach(k => localStorage.removeItem(k));
+    closeModal();
+  });
 
-    btn.addEventListener('click', () => {
-      const n = nombreInput.value.trim();
-      if (!n) return;
-      closeModal();
-      onDone(n, getPhoneE164());
-    });
+  card.querySelector('.tr-registro-cancel').addEventListener('click', closeModal);
 
-    card.querySelector('.tr-registro-delete')?.addEventListener('click', () => {
-      ['trade_my_name','trade_my_phone','trade_my_phone_iso2','trade_my_phone_num','trade_my_id'].forEach(k => localStorage.removeItem(k));
-      closeModal();
-    });
-
-    card.querySelector('.tr-registro-cancel').addEventListener('click', closeModal);
-    document.body.appendChild(overlay);
-    requestAnimationFrame(() => requestAnimationFrame(() => overlay.classList.add('tr-registro-active')));
-
-  } else {
-    const telefonoInput = card.querySelector('#tr-reg-telefono');
-    const iti = intlTelInput(telefonoInput, {
-      initialCountry: 've', countryOrder: ['ve','co','mx','es','us','ar'],
-      separateDialCode: true, showFlags: true, formatOnDisplay: true,
-      useFullscreenPopup: false, dropdownContainer: document.body,
-    });
-
-    const validate = () => { btn.disabled = !nombreInput.value.trim() || !iti.isValidNumber(); };
-    nombreInput.addEventListener('input', validate);
-    telefonoInput.addEventListener('input', validate);
-    telefonoInput.addEventListener('countrychange', validate);
-
-    getPhoneE164 = () => iti.getNumber();
-
-    btn.addEventListener('click', () => {
-      const n = nombreInput.value.trim();
-      if (!n || !iti.isValidNumber()) return;
-      overlay.classList.remove('tr-registro-active');
-      setTimeout(() => { iti.destroy(); overlay.remove(); }, 260);
-      onDone(n, getPhoneE164());
-    });
-
-    card.querySelector('.tr-registro-delete')?.addEventListener('click', () => {
-      ['trade_my_name','trade_my_phone','trade_my_phone_iso2','trade_my_phone_num','trade_my_id'].forEach(k => localStorage.removeItem(k));
-      overlay.classList.remove('tr-registro-active');
-      setTimeout(() => { iti.destroy(); overlay.remove(); }, 260);
-    });
-
-    card.querySelector('.tr-registro-cancel').addEventListener('click', () => {
-      overlay.classList.remove('tr-registro-active');
-      setTimeout(() => { iti.destroy(); overlay.remove(); }, 260);
-    });
-
-    document.body.appendChild(overlay);
-    requestAnimationFrame(() => requestAnimationFrame(() => overlay.classList.add('tr-registro-active')));
-  }
+  document.body.appendChild(overlay);
+  requestAnimationFrame(() => requestAnimationFrame(() => overlay.classList.add('tr-registro-active')));
 }
 
 // ── Drag-scroll horizontal táctil ────────────────────────────────────────────

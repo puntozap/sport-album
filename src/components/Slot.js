@@ -2,7 +2,7 @@ import '../styles/slot.css';
 import { SlotCard } from './SlotCard.js';
 import { markStickerFailed } from '../data/stickerLoader.js';
 
-export function Slot({ code, countryId, number, name, type, pos, btnCorner, stickerUrl, countryName, flag, onStickerClick }) {
+export function Slot({ code, countryId, number, name, type, pos, btnCorner, stickerUrl, countryName, flag, onStickerClick, onMissingClick }) {
   const el = document.createElement('article');
   el.className = `slot ${type === 'gold' ? 'gold' : ''}`;
   el.style.left = pos.left;
@@ -91,11 +91,14 @@ export function Slot({ code, countryId, number, name, type, pos, btnCorner, stic
     return el;
   }
 
-  renderPlaceholder(el, code, number, name);
+  const missingCb = onMissingClick
+    ? () => onMissingClick({ countryId, slotIndex: number, name, code, type })
+    : null;
+  renderPlaceholder(el, code, number, name, missingCb);
   return el;
 }
 
-function renderPlaceholder(el, code, number, name) {
+function renderPlaceholder(el, code, number, name, onMissingClick) {
   const nameHtml = name.replace(/\n/g, '<br>');
   const inner = document.createElement('div');
   inner.className = 'slot-inner';
@@ -117,5 +120,26 @@ function renderPlaceholder(el, code, number, name) {
 
   inner.appendChild(topCard);
   inner.appendChild(bottomCard);
+
+  if (onMissingClick) {
+    inner.classList.add('slot-inner--requestable');
+
+    // Botón central llamativo
+    const btn = document.createElement('div');
+    btn.className = 'slot-request-btn';
+    btn.innerHTML = `
+      <span class="slot-request-btn__ring"></span>
+      <span class="slot-request-btn__icon">📲</span>
+      <span class="slot-request-btn__label">PEDIR</span>
+    `;
+    inner.appendChild(btn);
+
+    inner.addEventListener('pointerdown', e => e.stopPropagation());
+    inner.addEventListener('click', (e) => {
+      e.stopPropagation();
+      onMissingClick();
+    });
+  }
+
   el.appendChild(inner);
 }

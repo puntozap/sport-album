@@ -17,6 +17,8 @@ import { refreshStickerTray } from './StickerTray.js';
 import { openMusicManager, isMusicActive, stopMusic } from './MusicPlayer.js';
 import { getLang } from '../i18n.js';
 import { isEmpresaMode, getEmpresaEntities } from '../data/albumContext.js';
+import { showStickerRequestModal } from './StickerRequestModal.js';
+import { openStickerScanner } from './StickerScanner.js';
 
 export function CountryPage({ country, allCountryIds }) {
   const theme = buildThemeFromAlbumColors(country.colors);
@@ -76,9 +78,16 @@ export function CountryPage({ country, allCountryIds }) {
     }
   });
 
+  const scanBtn = document.createElement('button');
+  scanBtn.className = 'cp-mobile-scan-btn';
+  scanBtn.innerHTML = `📷 ${es ? 'Escanear QR' : 'Scan QR'}`;
+  scanBtn.title = es ? 'Dar o recibir un cromo' : 'Give or receive a sticker';
+  scanBtn.addEventListener('click', () => openStickerScanner());
+
   const btnWrap = document.createElement('div');
   btnWrap.className = 'cp-mobile-btn-row';
   btnWrap.appendChild(mobilePackBtn);
+  btnWrap.appendChild(scanBtn);
   btnWrap.appendChild(musicBtn);
 
   const fedEl = header.querySelector('.federation');
@@ -105,7 +114,10 @@ export function CountryPage({ country, allCountryIds }) {
     slots: visibleSlots,
     countryName: country.name,
     flag: country.federation?.flag || null,
-    onStickerClick: (data) => stickerReveal.show(data)
+    onStickerClick: (data) => stickerReveal.show(data),
+    onMissingClick: ({ countryId, slotIndex, name, code, type }) => {
+      showStickerRequestModal({ countryId, slotIndex, name, code, type, country });
+    }
   });
   fragment.appendChild(slots);
 

@@ -15,7 +15,14 @@ export function getStickerUrl(countryId, slotIndex) {
   if (!list || slotIndex < 0 || slotIndex >= list.length) return null;
   const raw = list[slotIndex] ?? null;
   if (!raw) return null;
-  const url = (!raw.startsWith('http') && !raw.startsWith('/')) ? '/' + raw : raw;
+  let url;
+  if (raw.startsWith('http')) {
+    url = raw;
+  } else {
+    const base = REMOTE.stickerBase ? REMOTE.stickerBase.replace(/\/$/, '') : '';
+    const path = raw.startsWith('/') ? raw : '/' + raw;
+    url = base + path;
+  }
   if (failedUrls.has(url)) return `${url}?t=${Date.now()}`;
   return url;
 }

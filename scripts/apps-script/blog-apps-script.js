@@ -63,7 +63,10 @@ const BLOG_SHEET = 'Blog';
 // La REST API Key va SOLO aquí (nunca en el frontend).
 const ONESIGNAL_APP_ID  = '9e0cfb0b-799a-43ec-81c8-f15fae46a98b';
 const ONESIGNAL_API_KEY = 'os_v2_app_tygpwc3ztjb6zaoi6fp24rvjrp3c2m3gpareavfqk2fjjzvjq2efxykz2kugsqzq5uhgpmakxwicgw6fjqx6hpzuhvvaciajbxf4eci';
-const ALBUM_URL         = 'https://sportalbum.chanzia.com';
+const ALBUM_URLS = [
+  'https://sportalbum.chanzia.com',
+  'https://album.figurita.lat',
+];
 
 // ── Trigger ───────────────────────────────────────────────────────────────────
 
@@ -161,24 +164,27 @@ function _handleNotifEdit(e, sheet) {
 // ── OneSignal ─────────────────────────────────────────────────────────────────
 
 function enviarPush(heading, contents) {
-  const payload = {
-    app_id:            ONESIGNAL_APP_ID,
-    included_segments: ['All'],
-    headings:          { en: heading, es: heading },
-    contents:          { en: contents, es: contents },
-    url:               ALBUM_URL,
-  };
+  ALBUM_URLS.forEach(function(url) {
+    const domain = url.replace('https://', '');
+    const payload = {
+      app_id:   ONESIGNAL_APP_ID,
+      filters:  [{ field: 'tag', key: 'domain', relation: '=', value: domain }],
+      headings: { en: heading, es: heading },
+      contents: { en: contents, es: contents },
+      url:      url,
+    };
 
-  const options = {
-    method:      'post',
-    contentType: 'application/json',
-    headers:     { Authorization: 'Key ' + ONESIGNAL_API_KEY },
-    payload:     JSON.stringify(payload),
-    muteHttpExceptions: true,
-  };
+    const options = {
+      method:      'post',
+      contentType: 'application/json',
+      headers:     { Authorization: 'Key ' + ONESIGNAL_API_KEY },
+      payload:     JSON.stringify(payload),
+      muteHttpExceptions: true,
+    };
 
-  const res = UrlFetchApp.fetch('https://onesignal.com/api/v1/notifications', options);
-  Logger.log('OneSignal [' + heading + ']: ' + res.getContentText());
+    const res = UrlFetchApp.fetch('https://onesignal.com/api/v1/notifications', options);
+    Logger.log('OneSignal [' + domain + '] [' + heading + ']: ' + res.getContentText());
+  });
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────────

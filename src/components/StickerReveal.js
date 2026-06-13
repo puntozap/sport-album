@@ -5,6 +5,8 @@
 
 import { CLIENT, clientLogoHtml, stampStyle } from '../config/client.js';
 import { isEmpresaMode } from '../data/albumContext.js';
+import { shareSticker } from '../utils/socialShare.js';
+import { getLang } from '../i18n.js';
 
 const PARTICLE_COUNT = 60;
 const REVEAL_DURATION = 800;
@@ -47,7 +49,8 @@ export function initStickerReveal() {
   }
   
   // actions: [{ label, style, onClick(close) }]
-  function show({ stickerUrl, countryName, countryCode, flag, playerName, slotNumber, isGold, actions }) {
+  // onCardClick(close): si se pasa, el cromo mismo se vuelve clickeable (modo regalo)
+  function show({ stickerUrl, countryName, countryCode, flag, playerName, slotNumber, isGold, actions, onCardClick }) {
     if (currentOverlay) close();
 
     const overlay = document.createElement('div');
@@ -99,15 +102,36 @@ export function initStickerReveal() {
           ${isGold ? '✦ CROMO ESPECIAL ✦' : '✦ CROMO COLECCIONABLE ✦'}
         </div>
 
-        ${actions?.length ? '<div class="sticker-reveal-actions"></div>' : ''}
+        ${onCardClick ? '<div class="sticker-reveal-tap-hint">👆 Toca el cromo para pegarlo</div>' : ''}
+        <div class="sticker-reveal-actions"></div>
 
         <button class="sticker-reveal-close">✕</button>
       </div>
     `;
 
-    // Botones de acción opcionales
+    const actionsEl = overlay.querySelector('.sticker-reveal-actions');
+
+    // Botón compartir (siempre presente si hay stickerUrl)
+    if (stickerUrl) {
+      const es = getLang() === 'es';
+      const shareBtn = document.createElement('button');
+      shareBtn.className = 'sticker-reveal-action-btn sticker-reveal-action-btn--share';
+      shareBtn.innerHTML = `<span>📤</span> ${es ? 'Compartir cromo' : 'Share sticker'}`;
+      shareBtn.addEventListener('click', async () => {
+        shareBtn.disabled = true;
+        shareBtn.textContent = es ? 'Generando…' : 'Generating…';
+        try {
+          await shareSticker({ stickerUrl, playerName, countryName, countryCode, flag, slotNumber });
+        } finally {
+          shareBtn.disabled = false;
+          shareBtn.innerHTML = `<span>📤</span> ${es ? 'Compartir cromo' : 'Share sticker'}`;
+        }
+      });
+      actionsEl.appendChild(shareBtn);
+    }
+
+    // Botones de acción opcionales del llamador
     if (actions?.length) {
-      const actionsEl = overlay.querySelector('.sticker-reveal-actions');
       actions.forEach(({ label, style, onClick }) => {
         const btn = document.createElement('button');
         btn.className = 'sticker-reveal-action-btn';
@@ -124,7 +148,17 @@ export function initStickerReveal() {
 
     // Cerrar al hacer click en backdrop o botón
     overlay.querySelector('.sticker-reveal-backdrop').addEventListener('click', close);
-    overlay.querySelector('.sticker-reveal-close').addEventListener('click', close);
+    overlay.querySelector('.sticker-reveal-close').addEventListener('click', onCardClick ? () => onCardClick(close) : close);
+
+    // Modo regalo: el cromo es clickeable para pegar
+    if (onCardClick) {
+      const cardContainer = overlay.querySelector('.sticker-reveal-card-container');
+      cardContainer.classList.add('sticker-reveal-card-container--tappable');
+      cardContainer.addEventListener('click', (e) => {
+        e.stopPropagation();
+        onCardClick(close);
+      });
+    }
 
     document.body.appendChild(overlay);
     currentOverlay = overlay;

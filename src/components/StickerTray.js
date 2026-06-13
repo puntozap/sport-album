@@ -6,6 +6,7 @@ import { router, getCompanySlug } from '../router.js';
 import { Slot } from './Slot.js';
 import { initStickerReveal } from './StickerReveal.js';
 import { getLang } from '../i18n.js';
+import { checkLastStickerCelebration } from './LastStickerCelebration.js';
 
 let trayEl = null;
 let armedStickerKey = null; // 1er toque: navegar/armar, 2do toque (en página correcta): pegar
@@ -324,6 +325,7 @@ function flyCardToSlot(card, slotEl, sticker) {
     setArmedCard(null);
     updateTrayCount();
     checkTrayEmpty();
+    checkLastStickerCelebration();
   }, 420);
 }
 
@@ -397,6 +399,7 @@ function beginDrag(e, card, sticker) {
         setArmedCard(null);
         updateTrayCount();
         checkTrayEmpty();
+        checkLastStickerCelebration();
       }, 260);
     } else {
       ghost.style.transition = 'left 0.28s cubic-bezier(0.22,1,0.36,1), top 0.28s cubic-bezier(0.22,1,0.36,1)';
@@ -500,82 +503,117 @@ function setArmedCard(el) {
 function maybeShowTrayTutorial() {
   if (!trayEl) return;
   if (localStorage.getItem(TRAY_TUTORIAL_KEY)) return;
-  if (trayEl.querySelector('.st-tray-tutorial')) return;
 
   const es = getLang() === 'es';
-  const tip = document.createElement('div');
-  tip.className = 'st-tray-tutorial';
-  tip.innerHTML = `
-    <button class="st-tray-tutorial-close" type="button" aria-label="${es ? 'Cerrar' : 'Close'}">✕</button>
-    <div class="st-tray-tutorial-head">
-      <div class="st-tray-tutorial-badge">TIP</div>
-      <div class="st-tray-tutorial-title">${es ? 'Cómo pegar un cromo' : 'How to place a sticker'}</div>
+
+  // Esperar a que el tray esté visible y el primer card tenga posición
+  setTimeout(() => {
+    const firstCard = trayEl?.querySelector('.st-card');
+    if (!firstCard) return;
+
+    showFingerTutorial(firstCard, es);
+  }, 600);
+}
+
+function showFingerTutorial(card, es) {
+  if (document.querySelector('.st-finger-tutorial')) return;
+
+  const TOTAL_CYCLES = 3;
+  let cycle = 0;
+  let dismissed = false;
+  let timers = [];
+
+  const wrap = document.createElement('div');
+  wrap.className = 'st-finger-tutorial';
+  wrap.innerHTML = `
+    <div class="st-finger-scrim"></div>
+    <div class="st-finger-spotlight"></div>
+    <div class="st-finger-bubble">
+      <span>${es ? '👆 Doble toque para pegar el cromo' : '👆 Double tap to place the sticker'}</span>
     </div>
-    <div class="st-tray-tutorial-steps">
-      <div class="st-tray-tutorial-step" data-step="single">
-        <div class="st-tray-tutorial-num">1</div>
-        <div class="st-tray-tutorial-text">
-          <div class="st-tray-tutorial-action">${es ? 'Doble tap / doble click' : 'Double tap / double click'}</div>
-          <div class="st-tray-tutorial-desc">${es ? 'Te lleva a la página del equipo' : 'Takes you to the team page'}</div>
-        </div>
-        <div class="st-tray-tutorial-check" aria-hidden="true">✓</div>
-      </div>
-      <div class="st-tray-tutorial-step" data-step="double">
-        <div class="st-tray-tutorial-num">2</div>
-        <div class="st-tray-tutorial-text">
-          <div class="st-tray-tutorial-action">${es ? 'Doble tap (en la página del equipo)' : 'Double tap (on the team page)'}</div>
-          <div class="st-tray-tutorial-desc">${es ? 'Lo pega en su espacio con animación' : 'Places it in its slot with animation'}</div>
-        </div>
-        <div class="st-tray-tutorial-check" aria-hidden="true">✓</div>
-      </div>
+    <div class="st-finger-hand">
+      <div class="st-finger-icon">👆</div>
+      <div class="st-finger-ripple r1"></div>
+      <div class="st-finger-ripple r2"></div>
     </div>
-    <div class="st-tray-tutorial-hint">${es ? 'Pruébalo: doble toca un cromo para ir al equipo, luego doble toca para pegarlo.' : 'Try it: double tap a sticker to go to the team, then double tap to place it.'}</div>
-    <button class="st-tray-tutorial-btn" type="button" disabled>${es ? 'Listo' : 'Done'}</button>
+    <button class="st-finger-skip">${es ? 'Entendido' : 'Got it'}</button>
   `;
+  document.body.appendChild(wrap);
+
+  const spotlight = wrap.querySelector('.st-finger-spotlight');
+  const hand      = wrap.querySelector('.st-finger-hand');
+  const r1        = wrap.querySelector('.st-finger-ripple.r1');
+  const r2        = wrap.querySelector('.st-finger-ripple.r2');
+  const bubble    = wrap.querySelector('.st-finger-bubble');
+  const skipBtn   = wrap.querySelector('.st-finger-skip');
+
+  function positionOverCard() {
+    const rect = card.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top  + rect.height / 2;
+
+    spotlight.style.left   = `${cx}px`;
+    spotlight.style.top    = `${cy}px`;
+    hand.style.left        = `${cx}px`;
+    hand.style.top         = `${cy - 10}px`;
+    bubble.style.left      = `${cx}px`;
+    bubble.style.top       = `${rect.top - 48}px`;
+    r1.style.left = r2.style.left = `${cx}px`;
+    r1.style.top  = r2.style.top  = `${cy}px`;
+  }
+
+  function fireRipple() {
+    [r1, r2].forEach(r => {
+      r.classList.remove('st-finger-ripple--active');
+      void r.offsetWidth;
+      r.classList.add('st-finger-ripple--active');
+    });
+  }
+
+  function doTap(offsetMs) {
+    return setTimeout(() => {
+      if (dismissed) return;
+      hand.classList.add('st-finger--tap');
+      fireRipple();
+      setTimeout(() => hand.classList.remove('st-finger--tap'), 180);
+    }, offsetMs);
+  }
+
+  function runCycle() {
+    if (dismissed) return;
+    positionOverCard();
+    // Tap 1 at t=0, tap 2 at t=350
+    timers.push(doTap(0));
+    timers.push(doTap(350));
+    // Next cycle after 3s
+    timers.push(setTimeout(() => {
+      cycle++;
+      if (cycle < TOTAL_CYCLES) {
+        runCycle();
+      } else {
+        dismiss();
+      }
+    }, 3000));
+  }
 
   function dismiss() {
+    if (dismissed) return;
+    dismissed = true;
+    timers.forEach(clearTimeout);
     localStorage.setItem(TRAY_TUTORIAL_KEY, '1');
-    tip.classList.remove('st-tray-tutorial--show');
-    setTimeout(() => tip.remove(), 220);
+    wrap.classList.add('st-finger-tutorial--out');
+    window.removeEventListener('tray:tutorial', onUserAction);
+    setTimeout(() => wrap.remove(), 400);
   }
 
-  const doneBtn = tip.querySelector('.st-tray-tutorial-btn');
-  doneBtn?.addEventListener('click', dismiss);
-  tip.querySelector('.st-tray-tutorial-close')?.addEventListener('click', dismiss);
+  function onUserAction() { dismiss(); }
 
-  let didSingle = false;
-  let didDouble = false;
+  skipBtn.addEventListener('click', dismiss);
+  window.addEventListener('tray:tutorial', onUserAction, { once: true });
 
-  function markDone(type) {
-    if (type === 'single') didSingle = true;
-    if (type === 'double') didDouble = true;
-
-    if (type === 'single' || type === 'double') {
-      tip.querySelector(`.st-tray-tutorial-step[data-step="${type}"]`)?.classList.add('done');
-    }
-
-    if (didSingle && didDouble) {
-      tip.classList.add('st-tray-tutorial--complete');
-      if (doneBtn) doneBtn.disabled = false;
-      const hint = tip.querySelector('.st-tray-tutorial-hint');
-      if (hint) hint.textContent = es ? '¡Perfecto! Ya sabes cómo pegar.' : 'Great! You know how to place stickers.';
-    }
-  }
-
-  function onTutorEvent(ev) {
-    const type = ev?.detail?.type;
-    if (type === 'single' || type === 'double') markDone(type);
-  }
-
-  window.addEventListener('tray:tutorial', onTutorEvent);
-
-  // Limpieza si el tip se elimina por cualquier razón
-  const origRemove = tip.remove.bind(tip);
-  tip.remove = () => {
-    window.removeEventListener('tray:tutorial', onTutorEvent);
-    origRemove();
-  };
-
-  trayEl.appendChild(tip);
-  requestAnimationFrame(() => tip.classList.add('st-tray-tutorial--show'));
+  // Iniciar
+  requestAnimationFrame(() => {
+    wrap.classList.add('st-finger-tutorial--in');
+    runCycle();
+  });
 }

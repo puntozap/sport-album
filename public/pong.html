@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+<title>🏓 Pong — Álbum 2026</title>
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{
+  height:100%;width:100%;
+  background:#060b14;color:#fff;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  overflow:hidden;user-select:none;-webkit-user-select:none;touch-action:none;
+}
+/* ── Screens ── */
+.sc{
+  position:fixed;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:16px;padding:30px 24px;text-align:center;
+}
+.sc[hidden]{display:none!important}
+#sc-game{padding:0}
+/* ── Typography ── */
+h2{font-size:24px;font-weight:800;line-height:1.2}
+.sub{color:rgba(255,255,255,.55);font-size:14px;line-height:1.55;max-width:280px}
+/* ── QR card ── */
+.qr-card{background:#fff;border-radius:16px;padding:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)}
+.qr-card img{display:block;width:170px;height:170px;border-radius:6px}
+.qr-url{font-size:10px;color:rgba(255,255,255,.3);font-family:monospace;word-break:break-all;max-width:240px}
+/* ── Badges ── */
+.badge{display:inline-block;padding:7px 20px;border-radius:999px;font-weight:700;font-size:13px}
+.b1{background:rgba(102,51,204,.3);border:1px solid #6633cc;color:#b08aff}
+.b2{background:rgba(200,16,46,.3);border:1px solid #c8102e;color:#ff8fa5}
+/* ── Buttons ── */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  padding:12px 26px;border:none;border-radius:12px;
+  font-size:14px;font-weight:700;cursor:pointer;transition:opacity .2s,transform .1s;
+}
+.btn:hover{opacity:.85}.btn:active{transform:scale(.97)}
+.btn-primary{background:linear-gradient(135deg,#6633cc,#00a9bd);color:#fff}
+.btn-ghost{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.65)}
+.btn-green{background:linear-gradient(135deg,#00843d,#00a94d);color:#fff}
+.btn-red{background:rgba(200,16,46,.25);border:1px solid #c8102e;color:#ff8fa5}
+/* ── Score ── */
+.score-big{font-size:42px;font-weight:900;letter-spacing:10px}
+/* ── Top bar ── */
+#topbar{
+  position:fixed;top:0;left:0;right:0;z-index:20;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:max(env(safe-area-inset-top,0px),10px) 14px 10px;
+  background:linear-gradient(to bottom,rgba(6,11,20,.95),transparent);
+  pointer-events:none;
+}
+#topbar button{pointer-events:all}
+#topbar-title{font-size:14px;font-weight:800;color:rgba(255,255,255,.4);letter-spacing:.5px}
+/* ── Canvas ── */
+#canvas{display:block;touch-action:none}
+/* ── Hint ── */
+#hint{
+  position:fixed;bottom:max(env(safe-area-inset-bottom,0px),8px);
+  left:0;right:0;text-align:center;font-size:11px;
+  color:rgba(255,255,255,.18);pointer-events:none;z-index:5;
+}
+/* ── Rematch panels ── */
+.rmatch-panel{display:flex;flex-direction:column;align-items:center;gap:10px;width:100%;max-width:280px}
+/* ── Anim ── */
+.pulse{animation:blink 1.3s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+/* ── Row ── */
+.row{display:flex;gap:10px;width:100%;max-width:240px}
+.row .btn{flex:1}
+</style>
+</head>
+<body>
+
+<!-- Top bar (visible durante el juego) -->
+<div id="topbar" hidden>
+  <button class="btn btn-ghost" style="font-size:12px;padding:6px 12px" id="btn-back">← Álbum</button>
+  <div id="topbar-title">🏓 Pong</div>
+  <div style="width:72px"></div>
+</div>
+
+<!-- 1. Lobby (esperando que PeerJS asigne ID) -->
+<div class="sc" id="sc-lobby">
+  <div style="font-size:56px">🏓</div>
+  <h2>Pong<br>Multijugador</h2>
+  <p class="sub pulse" id="lobby-msg">Iniciando conexión…</p>
+</div>
+
+<!-- 2. Host esperando al rival → muestra QR -->
+<div class="sc" id="sc-host" hidden>
+  <div style="font-size:40px">🏓</div>
+  <h2>Esperando rival</h2>
+  <div class="qr-card"><img id="qr-img" src="" alt="QR"></div>
+  <p class="sub">El rival escanea el QR o abre:</p>
+  <div class="qr-url" id="qr-url"></div>
+  <div class="badge b1">Jugador 1 🟣 — paleta abajo</div>
+</div>
+
+<!-- 3. Guest conectando -->
+<div class="sc" id="sc-guest" hidden>
+  <div style="font-size:56px pulse">🔌</div>
+  <h2>Conectando…</h2>
+  <p class="sub pulse">Estableciendo conexión con el anfitrión</p>
+</div>
+
+<!-- 4. Juego -->
+<div class="sc" id="sc-game" hidden>
+  <canvas id="canvas"></canvas>
+  <div id="hint">Desliza el dedo para mover tu paleta</div>
+</div>
+
+<!-- 5. Game Over -->
+<div class="sc" id="sc-over" hidden>
+  <div style="font-size:56px" id="over-emo">🏆</div>
+  <h2 id="over-title">Fin del juego</h2>
+  <p class="sub" id="over-sub"></p>
+  <div class="score-big" id="over-score"></div>
+
+  <!-- Estado: pedir revancha -->
+  <div class="rmatch-panel" id="rm-request">
+    <button class="btn btn-primary" id="btn-rematch">↺ Pedir revancha</button>
+  </div>
+  <!-- Estado: esperando respuesta -->
+  <div class="rmatch-panel" id="rm-waiting" hidden>
+    <p class="sub pulse">⏳ Esperando al rival…</p>
+    <button class="btn btn-ghost" id="btn-cancel" style="font-size:13px;padding:8px 18px">Cancelar</button>
+  </div>
+  <!-- Estado: rival pide revancha -->
+  <div class="rmatch-panel" id="rm-incoming" hidden>
+    <p class="sub">🏓 El rival quiere la revancha</p>
+    <div class="row">
+      <button class="btn btn-green" id="btn-accept">✓ Aceptar</button>
+      <button class="btn btn-red"   id="btn-decline">✗ Rechazar</button>
+    </div>
+  </div>
+  <!-- Estado: rechazado -->
+  <div class="rmatch-panel" id="rm-declined" hidden>
+    <p style="color:#c8102e;font-size:14px">❌ El rival rechazó la revancha</p>
+  </div>
+
+  <button class="btn btn-ghost" id="btn-back2">← Volver al álbum</button>
+</div>
+
+<!-- 6. Error / desconectado -->
+<div class="sc" id="sc-error" hidden>
+  <div style="font-size:56px">🔌</div>
+  <h2 id="err-title">Desconectado</h2>
+  <p class="sub" id="err-msg">La conexión se perdió.</p>
+  <button class="btn btn-primary" onclick="location.reload()">↺ Volver a intentar</button>
+  <button class="btn btn-ghost" id="btn-back3">← Volver al álbum</button>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+//  CONSTANTES (deben coincidir en host y guest)
+// ═══════════════════════════════════════════════════════════════
+const VW=400,VH=700,BR=10,PW=90,PH=14,PM=35;
+const INIT_SPEED=5,MAX_SPEED=14,WIN=7;
+
+// ═══════════════════════════════════════════════════════════════
+//  ESTADO
+// ═══════════════════════════════════════════════════════════════
+const params   = new URLSearchParams(location.search);
+const joinId   = params.get('join');
+const albumUrl = location.origin; // para el botón "volver"
+
+let peer=null, conn=null;
+let isHost = !joinId;
+let playerNum = isHost ? 1 : 2;
+let gs = null;
+let running = true;
+
+// Revancha
+let rematchRequester = null; // 1 o 2
+
+// ═══════════════════════════════════════════════════════════════
+//  PANTALLAS
+// ═══════════════════════════════════════════════════════════════
+const screens = ['lobby','host','guest','game','over','error'];
+
+function show(name) {
+  screens.forEach(n => {
+    const el = document.getElementById('sc-'+n);
+    if (el) el.hidden = (n !== name);
+  });
+  document.getElementById('topbar').hidden = (name !== 'game');
+  document.getElementById('hint').hidden   = (name !== 'game');
+  if (name !== 'over') resetRematchUI();
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  PEERJS
+// ═══════════════════════════════════════════════════════════════
+function initPeer() {
+  peer = new Peer();
+
+  peer.on('open', id => {
+    if (isHost) {
+      const joinUrl = `${location.origin}${location.pathname}?join=${id}`;
+      const qrApi   = `https://api.qrserver.com/v1/create-qr-code/?size=340x340&color=111111&bgcolor=ffffff&qzone=2&data=${encodeURIComponent(joinUrl)}`;
+      document.getElementById('qr-img').src = qrApi;
+      document.getElementById('qr-url').textContent = joinUrl;
+      show('host');
+
+      peer.on('connection', c => {
+        conn = c;
+        setupConn();
+      });
+    } else {
+      show('guest');
+      conn = peer.connect(joinId, { serialization: 'json' });
+      setupConn();
+    }
+  });
+
+  peer.on('error', e => {
+    document.getElementById('err-title').textContent = 'Error de conexión';
+    document.getElementById('err-msg').textContent = e.message || 'No se pudo conectar.';
+    show('error');
+  });
+}
+
+function setupConn() {
+  conn.on('open', () => {
+    if (isHost) {
+      gs = newState();
+      startLoop();
+      show('game');
+      sendToGuest({ type:'start', state: serializeState() });
+    }
+    // Guest espera el 'start'
+  });
+
+  conn.on('data', msg => {
+    if (isHost) handleHostMsg(msg);
+    else        handleGuestMsg(msg);
+  });
+
+  conn.on('close', () => {
+    if (!running) return;
+    document.getElementById('err-title').textContent = 'El rival se desconectó';
+    document.getElementById('err-msg').textContent = 'La conexión con el otro jugador se perdió.';
+    show('error');
+    stopLoop();
+  });
+
+  conn.on('error', () => {
+    document.getElementById('err-title').textContent = 'Error de red';
+    document.getElementById('err-msg').textContent = 'Hubo un problema con la conexión.';
+    show('error');
+    stopLoop();
+  });
+}
+
+// ── Mensajes host (recibe del guest) ──────────────────────────
+function handleHostMsg(msg) {
+  if (msg.type === 'paddle' && gs) {
+    gs.p2.x = clamp(msg.x, PW/2, VW-PW/2);
+  }
+  if (msg.type === 'rematch_request' && gs?.status === 'gameover') {
+    rematchRequester = 2;
+    showRematchIncoming();
+  }
+  if (msg.type === 'rematch_accept' && rematchRequester === 1) {
+    rematchRequester = null;
+    startRematch();
+  }
+  if (msg.type === 'rematch_decline' && rematchRequester === 1) {
+    rematchRequester = null;
+    showRmDeclined();
+    sendToGuest({ type:'rematch_declined' });
+  }
+}
+
+// ── Mensajes guest (recibe del host) ─────────────────────────
+function handleGuestMsg(msg) {
+  if (msg.type === 'start') {
+    gs = msg.state;
+    show('game');
+  }
+  if (msg.type === 'state') {
+    gs = msg.state;
+    if (gs.status === 'gameover' && running) {
+      stopLoop();
+      showOver();
+    }
+  }
+  if (msg.type === 'rematch_request') {
+    rematchRequester = 1;
+    showRematchIncoming();
+  }
+  if (msg.type === 'rematch_accept') {
+    // viene como 'start'
+  }
+  if (msg.type === 'rematch_declined') {
+    rematchRequester = null;
+    showRmDeclined();
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  FÍSICA (solo host)
+// ═══════════════════════════════════════════════════════════════
+function newState() {
+  return {
+    ball: spawnBall(Math.random()>.5?1:-1),
+    p1:{ x:VW/2, score:0 },
+    p2:{ x:VW/2, score:0 },
+    status:'playing',
+    winner:null
+  };
+}
+
+function spawnBall(dir) {
+  const a=(Math.random()*50-25)*Math.PI/180;
+  return { x:VW/2,y:VH/2, vx:Math.sin(a)*INIT_SPEED, vy:dir*Math.cos(a)*INIT_SPEED, trail:[] };
+}
+
+function serializeState() {
+  return {
+    ball:{ x:gs.ball.x, y:gs.ball.y, vx:gs.ball.vx, vy:gs.ball.vy, trail:gs.ball.trail },
+    p1:{ x:gs.p1.x, score:gs.p1.score },
+    p2:{ x:gs.p2.x, score:gs.p2.score },
+    status:gs.status, winner:gs.winner
+  };
+}
+
+let loopHandle = null;
+const TICK_MS = 1000/60;
+
+function startLoop() {
+  stopLoop();
+  loopHandle = setInterval(tick, TICK_MS);
+}
+
+function stopLoop() {
+  if (loopHandle) { clearInterval(loopHandle); loopHandle=null; }
+}
+
+function tick() {
+  if (!gs || gs.status!=='playing') return;
+  const {ball,p1,p2} = gs;
+
+  ball.trail.push({x:ball.x,y:ball.y});
+  if (ball.trail.length>9) ball.trail.shift();
+
+  ball.x+=ball.vx; ball.y+=ball.vy;
+
+  if (ball.x-BR<0)  { ball.x=BR;      ball.vx= Math.abs(ball.vx); }
+  if (ball.x+BR>VW) { ball.x=VW-BR;   ball.vx=-Math.abs(ball.vx); }
+
+  // P1 abajo
+  const p1y=VH-PM-PH;
+  if (ball.vy>0 && ball.y+BR>=p1y && ball.y+BR<=p1y+PH+8 &&
+      ball.x+BR>p1.x-PW/2 && ball.x-BR<p1.x+PW/2) {
+    ball.y=p1y-BR; ball.vy=-Math.abs(ball.vy);
+    ball.vx=((ball.x-p1.x)/(PW/2))*6; boost(ball);
+  }
+  // P2 arriba
+  const p2y=PM;
+  if (ball.vy<0 && ball.y-BR<=p2y+PH && ball.y-BR>=p2y-8 &&
+      ball.x+BR>p2.x-PW/2 && ball.x-BR<p2.x+PW/2) {
+    ball.y=p2y+PH+BR; ball.vy=Math.abs(ball.vy);
+    ball.vx=((ball.x-p2.x)/(PW/2))*6; boost(ball);
+  }
+
+  if (ball.y-BR>VH) { p2.score++; checkWin(2)||resetBall(1); }
+  else if (ball.y+BR<0) { p1.score++; checkWin(1)||resetBall(-1); }
+
+  // Broadcast al guest
+  if (conn?.open) sendToGuest({ type:'state', state: serializeState() });
+
+  if (gs.status==='gameover') {
+    stopLoop();
+    showOver();
+    sendToGuest({ type:'state', state: serializeState() }); // último estado
+  }
+}
+
+function boost(b) {
+  const sp=Math.sqrt(b.vx**2+b.vy**2);
+  const ns=Math.min(sp*1.06,MAX_SPEED);
+  b.vx=b.vx/sp*ns; b.vy=b.vy/sp*ns;
+}
+
+function checkWin(w) {
+  const s=w===1?gs.p1.score:gs.p2.score;
+  if (s>=WIN){ gs.status='gameover'; gs.winner=w; return true; }
+  return false;
+}
+
+function resetBall(dir) { gs.ball=spawnBall(dir); }
+
+function sendToGuest(data) {
+  if (conn?.open) conn.send(data);
+}
+
+function clamp(v,min,max){ return Math.max(min,Math.min(max,v)); }
+
+// ═══════════════════════════════════════════════════════════════
+//  CONTROLES
+// ═══════════════════════════════════════════════════════════════
+const canvas = document.getElementById('canvas');
+const ctx    = canvas.getContext('2d');
+let scale = 1;
+
+function resize() {
+  scale=Math.min(window.innerWidth/VW, window.innerHeight/VH);
+  canvas.width=Math.round(VW*scale*devicePixelRatio);
+  canvas.height=Math.round(VH*scale*devicePixelRatio);
+  canvas.style.width=Math.round(VW*scale)+'px';
+  canvas.style.height=Math.round(VH*scale)+'px';
+}
+resize();
+window.addEventListener('resize',resize);
+
+function movePaddle(clientX) {
+  if (!gs||gs.status!=='playing') return;
+  const rect=canvas.getBoundingClientRect();
+  const x=clamp((clientX-rect.left)/scale, PW/2, VW-PW/2);
+  if (isHost) {
+    gs.p1.x=x;
+  } else {
+    conn?.open && conn.send({ type:'paddle', x });
+  }
+}
+
+canvas.addEventListener('touchstart',e=>{ e.preventDefault(); movePaddle(e.touches[0].clientX); },{passive:false});
+canvas.addEventListener('touchmove', e=>{ e.preventDefault(); movePaddle(e.touches[0].clientX); },{passive:false});
+canvas.addEventListener('mousemove', e=>movePaddle(e.clientX));
+
+// ═══════════════════════════════════════════════════════════════
+//  RENDER
+// ═══════════════════════════════════════════════════════════════
+function rr(x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.arcTo(x+w,y,x+w,y+r,r);
+  ctx.lineTo(x+w,y+h-r);ctx.arcTo(x+w,y+h,x+w-r,y+h,r);
+  ctx.lineTo(x+r,y+h);ctx.arcTo(x,y+h,x,y+h-r,r);
+  ctx.lineTo(x,y+r);ctx.arcTo(x,y,x+r,y,r);
+  ctx.closePath();
+}
+
+function draw() {
+  if (!running){ requestAnimationFrame(draw); return; }
+  requestAnimationFrame(draw);
+  if (!gs || document.getElementById('sc-game').hidden) return;
+
+  const s=scale*devicePixelRatio;
+  ctx.setTransform(s,0,0,s,0,0);
+
+  // Fondo
+  const bg=ctx.createLinearGradient(0,0,VW,VH);
+  bg.addColorStop(0,'#060b14'); bg.addColorStop(1,'#0a0618');
+  ctx.fillStyle=bg; ctx.fillRect(0,0,VW,VH);
+
+  // Zonas
+  const z1=ctx.createLinearGradient(0,VH/2,0,VH);
+  z1.addColorStop(0,'transparent'); z1.addColorStop(1,'rgba(102,51,204,.07)');
+  ctx.fillStyle=z1; ctx.fillRect(0,VH/2,VW,VH/2);
+  const z2=ctx.createLinearGradient(0,0,0,VH/2);
+  z2.addColorStop(0,'rgba(200,16,46,.07)'); z2.addColorStop(1,'transparent');
+  ctx.fillStyle=z2; ctx.fillRect(0,0,VW,VH/2);
+
+  // Línea central
+  ctx.setLineDash([14,8]); ctx.strokeStyle='rgba(255,255,255,.07)'; ctx.lineWidth=2;
+  ctx.beginPath(); ctx.moveTo(0,VH/2); ctx.lineTo(VW,VH/2); ctx.stroke();
+  ctx.setLineDash([]);
+
+  const {ball,p1,p2}=gs;
+
+  // Scores fantasma
+  ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.font='bold 130px Arial'; ctx.fillStyle='rgba(255,255,255,.04)';
+  ctx.fillText(p2.score,VW/2,VH*.25);
+  ctx.fillText(p1.score,VW/2,VH*.75);
+
+  // Etiquetas
+  ctx.font='bold 13px Arial';
+  ctx.textBaseline='top';
+  ctx.fillStyle=playerNum===2?'rgba(200,16,46,.9)':'rgba(200,16,46,.3)';
+  ctx.fillText(playerNum===2?'← TÚ  P2 →':'P2  '+p2.score, VW/2, 8);
+  ctx.textBaseline='bottom';
+  ctx.fillStyle=playerNum===1?'rgba(102,51,204,.9)':'rgba(102,51,204,.3)';
+  ctx.fillText(playerNum===1?'← TÚ  P1 →':'P1  '+p1.score, VW/2, VH-8);
+
+  // Trail
+  (ball.trail||[]).forEach((pt,i)=>{
+    const a=(i/ball.trail.length)*.4, r2=BR*.6*(i/ball.trail.length);
+    ctx.beginPath(); ctx.arc(pt.x,pt.y,r2,0,Math.PI*2);
+    ctx.fillStyle=`rgba(255,255,255,${a})`; ctx.fill();
+  });
+
+  // Glow + bola
+  const gl=ctx.createRadialGradient(ball.x,ball.y,0,ball.x,ball.y,BR*3);
+  gl.addColorStop(0,'rgba(255,255,255,.22)'); gl.addColorStop(1,'transparent');
+  ctx.fillStyle=gl; ctx.fillRect(ball.x-BR*3,ball.y-BR*3,BR*6,BR*6);
+  ctx.beginPath(); ctx.arc(ball.x,ball.y,BR,0,Math.PI*2);
+  ctx.fillStyle='#fff'; ctx.fill();
+
+  // P2 arriba — roja
+  const p2y=PM; const me2=playerNum===2;
+  ctx.shadowColor='#c8102e'; ctx.shadowBlur=me2?28:10;
+  rr(p2.x-PW/2,p2y,PW,PH,7);
+  const g2=ctx.createLinearGradient(p2.x-PW/2,0,p2.x+PW/2,0);
+  g2.addColorStop(0,me2?'#c8102e':'#5a0815'); g2.addColorStop(1,me2?'#e8305a':'#7a0a1e');
+  ctx.fillStyle=g2; ctx.fill();
+
+  // P1 abajo — morada
+  const p1y=VH-PM-PH; const me1=playerNum===1;
+  ctx.shadowColor='#6633cc'; ctx.shadowBlur=me1?28:10;
+  rr(p1.x-PW/2,p1y,PW,PH,7);
+  const g1=ctx.createLinearGradient(p1.x-PW/2,0,p1.x+PW/2,0);
+  g1.addColorStop(0,me1?'#6633cc':'#22104f'); g1.addColorStop(1,me1?'#9955ff':'#3a1880');
+  ctx.fillStyle=g1; ctx.fill();
+
+  ctx.shadowBlur=0;
+}
+requestAnimationFrame(draw);
+
+// ═══════════════════════════════════════════════════════════════
+//  GAME OVER
+// ═══════════════════════════════════════════════════════════════
+function showOver() {
+  show('over');
+  const won = gs.winner===playerNum;
+  document.getElementById('over-emo').textContent   = won?'🏆':'😅';
+  document.getElementById('over-title').textContent = won?'¡Ganaste!':'¡Perdiste!';
+  document.getElementById('over-sub').textContent   = won?'¡Eres el campeón del Pong! 🎉':'¡El rival fue más rápido! 😤';
+  document.getElementById('over-score').textContent = `${gs.p1.score} — ${gs.p2.score}`;
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  REVANCHA
+// ═══════════════════════════════════════════════════════════════
+function resetRematchUI() {
+  rematchRequester = null;
+  document.getElementById('rm-request').hidden  = false;
+  document.getElementById('rm-waiting').hidden  = true;
+  document.getElementById('rm-incoming').hidden = true;
+  document.getElementById('rm-declined').hidden = true;
+}
+
+function showRematchIncoming() {
+  document.getElementById('rm-request').hidden  = true;
+  document.getElementById('rm-waiting').hidden  = true;
+  document.getElementById('rm-incoming').hidden = false;
+  document.getElementById('rm-declined').hidden = true;
+}
+
+function showRmDeclined() {
+  document.getElementById('rm-request').hidden  = true;
+  document.getElementById('rm-waiting').hidden  = true;
+  document.getElementById('rm-incoming').hidden = true;
+  document.getElementById('rm-declined').hidden = false;
+}
+
+function startRematch() {
+  if (!isHost) return;
+  gs = newState();
+  startLoop();
+  show('game');
+  sendToGuest({ type:'start', state: serializeState() });
+}
+
+// ── Botones revancha ───────────────────────────────────────────
+document.getElementById('btn-rematch').addEventListener('click', () => {
+  rematchRequester = playerNum;
+  document.getElementById('rm-request').hidden = true;
+  document.getElementById('rm-waiting').hidden = false;
+  if (isHost) {
+    sendToGuest({ type:'rematch_request' });
+  } else {
+    conn?.open && conn.send({ type:'rematch_request' });
+  }
+});
+
+document.getElementById('btn-cancel').addEventListener('click', () => {
+  rematchRequester = null;
+  document.getElementById('rm-request').hidden = false;
+  document.getElementById('rm-waiting').hidden = true;
+});
+
+document.getElementById('btn-accept').addEventListener('click', () => {
+  if (isHost) {
+    // Guest pidió revancha, host acepta → host inicia
+    startRematch();
+  } else {
+    // Host pidió revancha, guest acepta → avisa al host
+    conn?.open && conn.send({ type:'rematch_accept' });
+    show('game'); // guest espera el 'start' del host
+  }
+});
+
+document.getElementById('btn-decline').addEventListener('click', () => {
+  rematchRequester = null;
+  if (isHost) {
+    // Guest pidió, host rechaza
+    sendToGuest({ type:'rematch_declined' });
+    showRmDeclined();
+  } else {
+    // Host pidió, guest rechaza
+    conn?.open && conn.send({ type:'rematch_decline' });
+    showRmDeclined();
+  }
+});
+
+// ═══════════════════════════════════════════════════════════════
+//  VOLVER AL ÁLBUM
+// ═══════════════════════════════════════════════════════════════
+function goBack() {
+  running = false;
+  stopLoop();
+  conn?.close();
+  peer?.destroy();
+  location.href = albumUrl;
+}
+document.getElementById('btn-back').addEventListener('click', goBack);
+document.getElementById('btn-back2').addEventListener('click', goBack);
+document.getElementById('btn-back3').addEventListener('click', goBack);
+
+// ═══════════════════════════════════════════════════════════════
+//  ARRANQUE
+// ═══════════════════════════════════════════════════════════════
+initPeer();
+</script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+/* ══════════════════════════════════════════════════════
+   Pong Page — juego multijugador integrado en el álbum
+   ══════════════════════════════════════════════════════ */
+
+.pong-page {
+  position: fixed;
+  inset: 0;
+  z-index: 9100;
+  background: #060b14;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #fff;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+
+/* ── Barra superior ── */
+.pong-topbar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: max(env(safe-area-inset-top, 0px), 10px) 14px 10px;
+  background: linear-gradient(to bottom, rgba(6,11,20,.95), transparent);
+  pointer-events: none;
+}
+.pong-back-btn {
+  pointer-events: all;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 10px;
+  color: rgba(255,255,255,.75);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 14px;
+  cursor: pointer;
+  transition: background .2s;
+  white-space: nowrap;
+}
+.pong-back-btn:hover { background: rgba(255,255,255,.14); }
+
+.pong-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: rgba(255,255,255,.5);
+  letter-spacing: .5px;
+}
+
+/* ── Pantallas intermedias (espera / conectando / game-over) ── */
+.pong-screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  z-index: 10;
+}
+.pong-screen[hidden] { display: none !important; }
+
+.pong-screen-emoji { font-size: 56px; line-height: 1; }
+
+.pong-screen h2 {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.pong-screen p {
+  color: rgba(255,255,255,.55);
+  font-size: 14px;
+  line-height: 1.55;
+  max-width: 280px;
+}
+
+.pong-badge {
+  display: inline-block;
+  padding: 8px 22px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 14px;
+}
+.pong-badge-1 { background: rgba(102,51,204,.3); border: 1px solid #6633cc; color: #b08aff; }
+.pong-badge-2 { background: rgba(200,16,46,.3);  border: 1px solid #c8102e; color: #ff8fa5; }
+
+/* QR card */
+.pong-qr-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: 0 8px 40px rgba(0,0,0,.5);
+}
+.pong-qr-card img { display: block; width: 160px; height: 160px; border-radius: 6px; }
+
+.pong-qr-url {
+  font-size: 11px;
+  color: rgba(255,255,255,.3);
+  font-family: monospace;
+  word-break: break-all;
+  max-width: 240px;
+}
+
+/* Botones */
+.pong-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity .2s, transform .1s;
+}
+.pong-btn:hover  { opacity: .85; }
+.pong-btn:active { transform: scale(.97); }
+.pong-btn-primary { background: linear-gradient(135deg, #6633cc, #00a9bd); color: #fff; }
+.pong-btn-ghost   { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.6); }
+
+/* Score grande en game-over */
+.pong-score-big {
+  font-size: 40px;
+  font-weight: 900;
+  letter-spacing: 10px;
+  color: #fff;
+}
+
+/* Indicador de pulso */
+.pong-pulse { animation: pong-blink 1.3s infinite; }
+@keyframes pong-blink { 0%,100% { opacity:1 } 50% { opacity:.3 } }
+
+/* ── Canvas del juego ── */
+.pong-canvas-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pong-canvas-wrap[hidden] { display: none !important; }
+
+#pong-canvas {
+  display: block;
+  touch-action: none;
+}
+
+/* Hint inferior */
+.pong-hint {
+  position: absolute;
+  bottom: max(env(safe-area-inset-bottom, 0px), 8px);
+  left: 0; right: 0;
+  text-align: center;
+  font-size: 11px;
+  color: rgba(255,255,255,.18);
+  pointer-events: none;
+  z-index: 5;
+}

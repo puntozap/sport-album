@@ -28,6 +28,9 @@ function showInstallBanner() {
   if (sessionStorage.getItem('pwa-dismissed')) return;
   if (sessionStorage.getItem('pwa-installed')) return;
   if (bannerEl) return;
+  // No mostrar en rutas de acceso directo por URL
+  const _directPath = window.location.hash + window.location.pathname;
+  if (_directPath.includes('gift-creator') || _directPath.includes('/receive/')) return;
 
   const es = getLang() === 'es';
 
