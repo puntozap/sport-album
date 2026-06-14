@@ -28,7 +28,7 @@ export function Slot({ code, countryId, number, name, type, pos, btnCorner, stic
     stickerImg.className = 'slot-sticker';
     stickerImg.alt = `${code} ${number}`;
 
-    const IMG_EXTS = ['jpg', 'jpeg', 'png', 'webp'];
+    const IMG_EXTS = ['webp', 'png', 'jpg', 'jpeg'];
     stickerImg.onerror = () => {
       const src = stickerImg.getAttribute('src') || '';
       const ext = src.split('.').pop().split('?')[0].toLowerCase();
