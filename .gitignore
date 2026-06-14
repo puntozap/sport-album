@@ -9,6 +9,7 @@ dist/
 credentials*.json
 token.json
 token_drive.json
+token_sheets.json
 _data/credentials*
 _data/token*
 

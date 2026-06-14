@@ -1,0 +1,23 @@
+{
+  "albumId": "tachira",
+  "name": "Táchira",
+  "tagline": "",
+  "primaryColor": "#dc2626",
+  "whatsapp": null,
+  "website": null,
+  "sheetsUrl": "",
+  "stamp": {
+    "corner": "bottom-right",
+    "logoHeight": 68,
+    "padding": "0px 0px",
+    "borderRadius": "10px",
+    "offsetV": -40,
+    "offsetH": 2,
+    "rotate": -2
+  },
+  "albumBadge": { "show": false, "logoHeight": 20, "padding": "4px 9px", "borderRadius": "20px" },
+  "albumLogo":  { "show": true,  "logoHeight": 90, "left": "51%", "top": "50%", "opacity": 0.28, "blendMode": "luminosity" },
+  "curtain":    { "logoHeight": 90, "padding": "3px 10px" },
+  "splash":     { "logoHeight": 30, "padding": "8px 20px" },
+  "modal":      { "logoHeight": 50 }
+}

@@ -1,0 +1,142 @@
+{
+  "albumId": "dapta",
+  "name": "Álbum dapta",
+  "groups": [
+    {
+      "id": "dapta-a",
+      "name": "dapta a",
+      "letter": "A",
+      "colors": {
+        "primary": "#16a34a",
+        "secondary": "#ffffff",
+        "accent": "#f59e0b",
+        "sticker": "#e0e7ff",
+        "groupBox": "#16a34a"
+      },
+      "entities": [
+        {
+          "id": "dapta-a",
+          "name": "dapta a",
+          "code": "DAA",
+          "stickerCount": 12,
+          "colors": {
+            "primary": "#16a34a",
+            "secondary": "#ffffff",
+            "accent": "#f59e0b",
+            "sticker": "#e0e7ff",
+            "groupBox": "#16a34a"
+          },
+          "stickers": [
+            {
+              "slot": 0,
+              "name": "nico",
+              "type": "holograma"
+            },
+            {
+              "slot": 1,
+              "name": "malu"
+            },
+            {
+              "slot": 2,
+              "name": "duvan"
+            },
+            {
+              "slot": 3,
+              "name": "dani rocha"
+            },
+            {
+              "slot": 4,
+              "name": "la flecha rojas"
+            },
+            {
+              "slot": 5,
+              "name": "camila gonzalez"
+            },
+            {
+              "slot": 6,
+              "name": "annie"
+            },
+            {
+              "slot": 7,
+              "name": "lusho delgado"
+            },
+            {
+              "slot": 8,
+              "name": "fausto ferrajolo"
+            },
+            {
+              "slot": 9,
+              "name": "josue"
+            },
+            {
+              "slot": 10,
+              "name": "diego medina"
+            },
+            {
+              "slot": 11,
+              "name": "juan p celedon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dapta-b",
+      "name": "dapta b",
+      "letter": "B",
+      "colors": {
+        "primary": "#16a34a",
+        "secondary": "#ffffff",
+        "accent": "#f59e0b",
+        "sticker": "#e0e7ff",
+        "groupBox": "#16a34a"
+      },
+      "entities": [
+        {
+          "id": "dapta-b",
+          "name": "dapta b",
+          "code": "DAB",
+          "stickerCount": 7,
+          "colors": {
+            "primary": "#16a34a",
+            "secondary": "#ffffff",
+            "accent": "#f59e0b",
+            "sticker": "#e0e7ff",
+            "groupBox": "#16a34a"
+          },
+          "stickers": [
+            {
+              "slot": 0,
+              "name": "santiago ramirez",
+              "type": "holograma"
+            },
+            {
+              "slot": 1,
+              "name": "gustavo"
+            },
+            {
+              "slot": 2,
+              "name": "santi morales"
+            },
+            {
+              "slot": 3,
+              "name": "juan pablo lasso"
+            },
+            {
+              "slot": 4,
+              "name": "mafe galvez"
+            },
+            {
+              "slot": 5,
+              "name": "felipe gomez"
+            },
+            {
+              "slot": 6,
+              "name": "joao philippe"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
